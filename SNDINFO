@@ -1,0 +1,1675 @@
+genericdeath1 DSTRDTH1
+genericdeath2 DSTRDTH2
+genericdeath3 DSTRDTH3
+
+$random genericdeath
+{
+   genericdeath1
+   genericdeath2
+   genericdeath3
+}
+
+$playeralias Terminator male *death   genericdeath
+$playeralias Terminator male *xdeath  genericdeath
+$playersound Terminator male *gibbed  DSTRGIBD
+$playersound Terminator male *pain100 DSTRP100
+$playersound Terminator male *pain75  DSTRP75
+$playersound Terminator male *pain50  DSTRP50
+$playersound Terminator male *pain25  DSTRP25
+$playersound Terminator male *grunt   DSTROOF
+$playersound Terminator male *land    DSTRLAND
+$playersound Terminator male *jump    DSTRJUMP
+$playersound Terminator male *usefail DSTRNOW
+$playersound Terminator male *falling DSTRFALL
+$playersound Terminator male *regenerate	LVLSTART
+$playersound Terminator male *taunt	TAUNT
+
+$playeralias Terminator female *death   genericdeath
+$playeralias Terminator female *xdeath  genericdeath
+$playersound Terminator female *gibbed  DSTRGIBD
+$playersound Terminator female *pain100 DSTRP100
+$playersound Terminator female *pain75  DSTRP75
+$playersound Terminator female *pain50  DSTRP50
+$playersound Terminator female *pain25  DSTRP25
+$playersound Terminator female *grunt   DSTROOF
+$playersound Terminator female *land    DSTRLAND
+$playersound Terminator female *jump    DSTRJUMP
+$playersound Terminator female *usefail DSTRNOW
+$playersound Terminator female *falling DSTRFALL
+$playersound Terminator female *regenerate	LVLSTART
+$playersound Terminator female *taunt	TAUNT
+
+$playeralias Terminator other *death   genericdeath
+$playeralias Terminator other *xdeath  genericdeath
+$playersound Terminator other *gibbed  DSTRGIBD
+$playersound Terminator other *pain100 DSTRP100
+$playersound Terminator other *pain75  DSTRP75
+$playersound Terminator other *pain50  DSTRP50
+$playersound Terminator other *pain25  DSTRP25
+$playersound Terminator other *grunt   DSTROOF
+$playersound Terminator other *land    DSTRLAND
+$playersound Terminator other *jump    DSTRJUMP
+$playersound Terminator other *usefail DSTRNOW
+$playersound Terminator other *falling DSTRFALL
+$playersound Terminator other *regenerate	LVLSTART
+$playersound Terminator other *taunt	TAUNT
+
+DSMENU1 DSMENU1
+DSMENU2 DSMENU2
+DSMENU3 DSMENU3
+DSMENU4 DSMENU4
+DSMENU5 DSMENU5
+DSMENU6 DSMENU6
+dschange dschange
+MENUCLIK MENUCLIK
+SHUTDOWN SHUTDOWN
+
+menu/choose			DSMENU2
+menu/backup			DSMENU6
+menu/clear			DSMENU1
+menu/cursor			MENUCLIK
+menu/activate		DSMENU5
+menu/invalid		DSMENU4
+menu/dismiss		DSMENU3
+menu/change			dschange
+
+weapons/axecut SPLICE
+weapons/axebang CLANG
+weapons/axeswing SWISH
+silent DSEMPTY //only in new Zdooms
+weapons/dryfire 			error
+weapons/clipin                dsclipin
+weapons/clipou                dsclipou
+weapons/clipre                dsclipre
+weapons/inkopolispistol		dsinkpst
+weapons/inkopolisexplosion	EXPLSN2
+weapons/mnsawup mnsawup
+$random Weapons/Shotgun/Fire { sbarrel1 }
+sbarrel1 sbarrel1
+Weapons/Shotgun/Pump scock1
+$random Weapons/Shotgun/Load { Shotload1 Shotload2 Shotload3 }
+Shotload1 srel1
+Shotload2 srel2
+Shotload3 srel3
+weapons/pickuphsg				dsgthxs
+weapons/hsgdoublefire			DSQUDBL
+weapons/hsgfire					DSHSFIR
+weapons/hsgopen					DSQSOPN
+weapons/hsgshellslide			DSQSLL
+weapons/hsgclose				DSQSCLS
+weapons/asgfir dsasgfir
+weapons/asgout dsasgout
+weapons/asgin dsasgin
+weapons/asgld1 dsasgld1
+weapons/alice/Fire ALICFIRE
+weapons/alice/Reload ALICREL
+weapons/zenII/fire DSZENF
+
+weapons/9gauge/casing1 DSCAS91
+weapons/9gauge/casing2 DSCAS92
+weapons/9gauge/casing3 DSCAS93
+
+$random weapons/9gauge/casing
+{
+   weapons/9gauge/casing1
+   weapons/9gauge/casing2
+   weapons/9gauge/casing3
+}
+
+weapons/zenII/out    DSZENO
+weapons/zenII/in     DSZENI
+weapons/9gauge/spent DSSCL9
+weapons/nussfire	NUSRLAUN
+weapons/nussfire2	NUSRLAU2
+weapons/nussopen	NUSROPEN
+weapons/nussload	NUSRLOAD
+weapons/nussclose	NUSRCLOS
+
+$random weapons/rocketexplode { rocket1 rocket2 rocket3 }
+rocket1		NUSSEXP1
+rocket2		NUSSEXP2
+rocket3		NUSSEXP3
+
+$random weapons/grenadebounce { grenade1 grenade2 grenade3 }
+grenade1		NUSSGRN1
+grenade2		NUSSGRN2
+grenade3		NUSSGRN3
+
+$random HinikawaFire { Plasma1 Plasma2 Plasma3 }
+Plasma1 PLAFIRE1
+Plasma2 PLAFIRE2
+Plasma3 PLAFIRE3
+
+HinikawaCooldown PLASCOOL
+HinikawaRailFire RAILFIRE
+HinikawaIdle HINIIDLE
+HinikawaReload1 HKREL1
+HinikawaReload2 HKREL2
+HinikawaReload3 HKREL3
+HinikawaPlasmaImpact	{ PlasImp1 PlasImp2 PlasImp3 }
+PlasImp1 PLASIMP1
+PlasImp2 PLASIMP2
+PlasImp3 PLASIMP3
+
+reganbfgidle RBFGIDLE
+reganbfgfire1 RBFGFIR1
+reganbfgfire2 RBFGFIR2
+reganbfgreload0 RBFGREL0
+reganbfgreload1 RBFGREL1
+reganbfgreload2 RBFGREL2
+reganbfgreload3 RBFGREL3
+reganbfgreload4 RBFGREL4
+reganbfgreload5 RBFGREL5
+reganbfgexplode RBFGEXPL
+reganbfgbeep RBFGBEEP
+reganbfgaltballidle RBALTIDL
+reganbfgexplode2 RBALTEXP
+
+mobaxterm XTRMSTRT
+
+//SNDINFO by Daniel
+
+Items/HelmetFlashlightPkup		HLFHPICK
+Invulnerability	INVULGET
+Immortality	IMMORGET
+AdrenalinePickup	ADRPICK
+SuperAdrenalinePickup	SADRPICK
+SkeldCrewmateSuit	SKELDUSE
+HealthBonusPickup	HBPICKUP
+StimpackPickup	STIMPICK
+MedikitPickup	MEDIPICK
+ArmorShardPickup	AMRSHRD
+ARMOR1	ARMOR1
+ARMOR2	ARMOR2
+ARMOR3	ARMOR3
+ARMOR4	ARMOR4
+BackpackPickup	BAKPAKUP
+ToolboxPickup	TOOLBOX
+UltraBackpackPickup	MEGPACK
+LifeSpherePickup LIFESPHR
+TeraspherePickup TERASPHR
+OnukispherePickup ONUKISPH
+AmmospherePickup AMMOSPHR
+UltimaspherePickup ULTISGET
+
+misc/keytry keyfail
+CopperSmallPickup	COPPSMAL
+CopperLargePickup	COPPLARG
+9GaugeSmallPickup	9GAGSMAL
+9GaugeLargePickup	9GAGLARG
+ShellSmallPickup	SHELSMAL
+ShellLargePickup	SHELLARG
+NussrocketSmallPickup	NUSSSMAL
+NussrocketLargePickup	NUSSLARG
+EcoCellSmallPickup	ECOCSMAL
+EcoCellLargePickup	ECOCLARG
+FlamethrowerSmallPickup	FUELSMAL
+FlamethrowerLargePickup	FUELLARG
+AntimatterSmallPickup	ANTISMAL
+AntimatterLargePickup	ANTILARG
+SoulSmallPickup	SOULSMAL
+SoulLargePickup	SOULLARG
+ButcherSmallPickup	BUTCSMAL
+ButcherLargePickup	BUTCLARG
+NukeSmallPickup	NUKESMAL
+NukeLargePickup	NUKELARG
+
+weapons/fuelshot       dsspray
+weapons/fuelhit1       dsslsh1
+weapons/fuelhit2       dsslsh2
+weapons/fuelhit3       dsslsh3
+weapons/fuelhit4       dsslsh4
+$random weapons/fuelhit { weapons/fuelhit1 weapons/fuelhit2 weapons/fuelhit3 weapons/fuelhit4 }
+weapons/fuelslurp      dsslurp
+silverhand/start	SILVSTRT
+silverhand/loop	SILVLOP
+silverhand/end	SILVEND
+silverhand/reload1				SILVRRD1
+silverhand/reload2				SILVRRD2
+
+$random silverhand/reload3		{WP5RA1 WP5RA2 WP5RA3}
+WP5RA1							SILVRRA3
+WP5RA2							SILVRRB3
+WP5RA3							SILVRRC3
+
+$Pitchshift silverhand/reload1 2
+$Pitchshift silverhand/reload2 2
+$Pitchshift silverhand/reload3 2
+silverhand/scorch dsscorch
+silverhand/onfire dsonfire
+weapons/unmaker/hum	unmaidle
+weapons/unmaker/fire	unmafire
+weapons/unmaker/railfire	unmarail
+weapons/unmaker/reload1	UNMAREL1
+weapons/unmaker/reload2	UNMAREL2
+weapons/unmaker/reload3	UNMAREL3
+weapons/unmaker/reload4	UNMAREL4
+Weapons/Revolver/Open REVOOPEN
+Weapons/Revolver/Load REVOLOAD
+Weapons/Revolver/Close REVOCLS
+Weapons/Revolver/Fire1 REVOFIR1
+Weapons/Revolver/Fire2 REVOFIR2
+Weapons/Revolver/Fire3 REVOFIR3
+Weapons/Revolver/Fire4 REVOFIR4
+Weapons/Revolver/Switch REVOSWIT
+
+// ||||||||||||||| All those barrels...
+
+misc/barrel/sizzle1 DSBARB1
+misc/barrel/sizzle2 DSBARB2
+misc/barrel/sizzle3 DSBARB3
+misc/barrel/sizzle4 DSNULL
+misc/barrel/sizzle5 DSNULL
+misc/barrel/sizzle6 DSNULL
+
+$random misc/barrel/sizzle
+{
+   misc/barrel/sizzle1
+   misc/barrel/sizzle2
+   misc/barrel/sizzle3
+   misc/barrel/sizzle4
+   misc/barrel/sizzle5
+   misc/barrel/sizzle6
+}
+
+$volume  misc/barrel/sizzle 0.25
+$limit   misc/barrel/sizzle 3
+$rolloff misc/barrel/sizzle linear 64 640
+
+misc/barrel/hit1 DSBARH1
+misc/barrel/hit2 DSBARH2
+misc/barrel/hit3 DSBARH3
+misc/barrel/hit4 DSBARH4
+misc/barrel/hit5 DSBARH5
+
+$random misc/barrel/hit
+{
+   misc/barrel/hit1
+   misc/barrel/hit2
+   misc/barrel/hit3
+   misc/barrel/hit4
+   misc/barrel/hit5
+}
+
+misc/barrel/explode1 DSBARX1
+misc/barrel/explode2 DSBARX2
+misc/barrel/explode3 DSBARX3
+
+$random misc/barrel/explode
+{
+   misc/barrel/explode1
+   misc/barrel/explode2
+   misc/barrel/explode3
+}
+
+$volume  misc/barrel/explode 1.9
+$rolloff misc/barrel/explode linear 275 1400
+
+misc/barrel/frostsizzle DSIBARS
+misc/barrel/frostleak DSIBARF
+misc/barrel/frostwave DSIBARX
+
+$limit misc/barrel/frostwave 2
+
+misc/barrel/thrustbounce1 DSTBAS1
+misc/barrel/thrustbounce2 DSTBAS2
+
+$random misc/barrel/thrustbounce
+{
+   misc/barrel/thrustbounce1
+   misc/barrel/thrustbounce2
+}
+
+$limit misc/barrel/thrustbounce 5
+
+misc/barrel/thrustsizzle DSTBASS
+
+misc/barrel/chemicalsplat1 DSCBARP1
+misc/barrel/chemicalsplat2 DSCBARP2
+misc/barrel/chemicalsplat3 DSCBARP3
+
+$random misc/barrel/chemicalsplat
+{
+   misc/barrel/chemicalsplat1
+   misc/barrel/chemicalsplat2
+   misc/barrel/chemicalsplat3
+}
+
+misc/barrel/flamingleap DSFBARL
+
+misc/barrel/dangersparkle1 DSEBARS1
+misc/barrel/dangersparkle2 DSEBARS2
+
+$random misc/barrel/dangersparkle
+{
+   misc/barrel/dangersparkle1
+   misc/barrel/dangersparkle2
+}
+
+misc/barrel/holocaustinit1 DSBINIT1
+misc/barrel/holocaustinit2 DSBINIT2
+misc/barrel/holocaustinit3 DSBINIT3
+misc/barrel/holocaustinit4 DSBINIT4
+
+$random misc/barrel/holocaustinit
+{
+   misc/barrel/holocaustinit1
+   misc/barrel/holocaustinit2
+   misc/barrel/holocaustinit3
+   misc/barrel/holocaustinit4
+}
+
+misc/barrel/holocaustmain1 DSBMAIN1
+misc/barrel/holocaustmain2 DSBMAIN2
+misc/barrel/holocaustmain3 DSBMAIN3
+misc/barrel/holocaustmain4 DSBMAIN4
+
+$random misc/barrel/holocaustmain
+{
+   misc/barrel/holocaustmain1
+   misc/barrel/holocaustmain2
+   misc/barrel/holocaustmain3
+   misc/barrel/holocaustmain4
+}
+
+misc/barrel/holocaustlayer1 DSBLAYR1
+misc/barrel/holocaustlayer2 DSBLAYR2
+misc/barrel/holocaustlayer3 DSBLAYR3
+misc/barrel/holocaustlayer4 DSBLAYR4
+misc/barrel/holocaustlayer5 DSBLAYR5
+misc/barrel/holocaustlayer6 DSBLAYR6
+misc/barrel/holocaustlayer7 DSBLAYR7
+misc/barrel/holocaustlayer8 DSBLAYR8
+
+$random misc/barrel/holocaustlayer
+{
+   misc/barrel/holocaustlayer1
+   misc/barrel/holocaustlayer2
+   misc/barrel/holocaustlayer3
+   misc/barrel/holocaustlayer4
+   misc/barrel/holocaustlayer5
+   misc/barrel/holocaustlayer6
+   misc/barrel/holocaustlayer7
+   misc/barrel/holocaustlayer8
+}
+
+misc/barrel/holocaustflavor DSBFLAVR
+
+$rolloff misc/barrel/holocaustmain 400 2000
+$rolloff misc/barrel/holocaustlayer 400 2000
+$rolloff misc/barrel/holocaustflavor 400 2000
+
+player/pickup/redkey Sounds/RedKey
+player/pickup/yellowkey Sounds/YellowKey
+player/pickup/bluekey Sounds/BlueKey
+player/pickup/redskull Sounds/RedSkull
+player/pickup/yellowskull Sounds/YellowSkull
+player/pickup/blueskull Sounds/BlueSkull
+KICKFOOT KICKFOOT
+NUKEXP	NUKEXP
+
+// Footsteps
+// Sound Info
+
+// Define the actual sounds here
+
+// Default / Ground
+step_default1			conc1
+step_default2			conc2
+step_default3			conc3
+step_default4			conc4
+$random step_default { step_default1  step_default2  step_default3  step_default4 }
+
+// Water
+step_water1			slosh1
+step_water2			slosh2
+step_water3			slosh3
+step_water4			slosh4
+$random step_water { step_water1  step_water2  step_water3  step_water4 }
+
+// Carpet
+step_carpet1			grass1
+step_carpet2			grass2
+step_carpet3			grass3
+step_carpet4			grass4
+$random step_carpet { step_carpet1 step_carpet2 step_carpet3 step_carpet4 }
+
+// Dirt
+step_dirt1			dirt1
+step_dirt2			dirt2
+step_dirt3			dirt3
+step_dirt4			dirt4
+$random step_dirt { step_dirt1 step_dirt2 step_dirt3 step_dirt4 }
+
+// Gravel
+step_gravel1			gravel1
+step_gravel2			gravel2
+step_gravel3			gravel3
+step_gravel4			gravel4
+$random step_gravel { step_gravel1 step_gravel2 step_gravel3 step_gravel4 }
+
+// Hard
+step_hard1			conc1
+step_hard2			conc2
+step_hard3			conc3
+step_hard4			conc4
+$random step_hard { step_hard1 step_hard2 step_hard3 step_hard4 }
+
+// Metal A
+step_metal/a1			metal1
+step_metal/a2			metal2
+step_metal/a3			metal3
+step_metal/a4			metal4
+$random step_metala { step_metal/a1 step_metal/a2 step_metal/a3 step_metal/a4 }
+
+// Metal B (Thin Metals, Girders)
+step_metal/b1			metalb1
+step_metal/b2			metalb2
+step_metal/b3			metalb3
+step_metal/b4			metalb4
+$random step_metalb { step_metal/b1 step_metal/b2 step_metal/b3 step_metal/b4 }
+
+// Rock
+step_rock1			conc1
+step_rock2			conc2
+step_rock3			conc3
+step_rock4			conc4
+$random step_rock { step_rock1 step_rock2 step_rock3 step_rock4 }
+
+// Snow
+step_snow5			snow5
+step_snow6			snow6
+$random step_snow { step_snow5 step_snow6 }
+
+// Tile A
+step_tile/a1			tile1
+step_tile/a2			tile2
+step_tile/a3			tile3
+step_tile/a4			tile4
+$random step_tilea { step_tile/a1 step_tile/a2 step_tile/a3 step_tile/a4 }
+
+// Tile B (Hallways, Marble/Finer Tiles)
+step_tile/b1			tile1
+step_tile/b2			tile2
+step_tile/b3			tile3
+step_tile/b4			tile4
+$random step_tileb { step_tile/b1 step_tile/b2 step_tile/b3 step_tile/b4 }
+
+// Wood
+step_wood1			wood1
+step_wood2			wood2
+step_wood3			wood3
+step_wood4			wood4
+$random step_wood { step_wood1 step_wood2 step_wood3 step_wood4 }
+
+// Slime
+step_slime1			mud1
+step_slime2			mud2
+step_slime3			mud3
+step_slime4			mud4
+$random step_slime { step_slime1 step_slime2 step_slime3 step_slime4 }
+
+// Slimy
+step_slimy1			mud1
+step_slimy2			mud2
+step_slimy3			mud3
+step_slimy4			mud4
+$random step_slimy { step_slimy1 step_slimy2 step_slimy3 step_slimy4 }
+
+// Lava
+step_lava1			mud1
+step_lava2			mud2
+step_lava3			mud3
+step_lava4			mud4
+$random step_lava { step_lava1 step_lava2 step_lava3 step_lava4 }
+
+rad_geiger geiger
+
+//Switches
+switches_electri2 swelec2
+switches_electri3 swelec3
+switches_eclunk sweclunk
+switches_clunk swclunk
+switches_gargoyle swgarg
+switches_skin swskinny
+
+YoshimuraspherePickup YOSHSPHR
+
+////////////////////////////////
+//world/watersplash
+////////////////////////////////
+
+$random world/watersplash		
+	{ world/watersplash1  
+	world/watersplash2 }
+
+world/watersplash1	dssplash
+world/watersplash2	dsspla2
+////////////////////////////////
+
+////////////////////////////////
+//world/watersplashsmall
+////////////////////////////////
+
+$random world/watersplashsmall	
+	{ world/watersplashsmall1  
+	world/watersplashsmall2 }
+
+world/watersplashsmall1	dssplsml
+world/watersplashsmall2	dssplsm2
+////////////////////////////////
+
+////////////////////////////////
+//world/sludgegloop
+////////////////////////////////
+
+$random world/sludgegloop
+	{ world/sludgegloop1  
+	world/sludgegloop2 }
+
+world/sludgegloop1	dsploosh
+world/sludgegloop2	dsploo2
+////////////////////////////////
+
+////////////////////////////////
+//world/sludgegloopsmall
+////////////////////////////////
+
+$random world/sludgegloopsmall
+	{ world/sludgegloopsmall1  
+	world/sludgegloopsmall2 }
+
+world/sludgegloopsmall1	dsplosml
+world/sludgegloopsmall2	dsplosm2
+////////////////////////////////
+
+////////////////////////////////
+//world/lavasizzle
+////////////////////////////////
+
+$random world/lavasizzle
+	{ world/lavasizzle1  
+	world/lavasizzle2 }
+
+world/lavasizzle1	dslvsiz
+world/lavasizzle2	dslvsiz3
+////////////////////////////////
+
+////////////////////////////////
+//world/lavsiz2
+////////////////////////////////
+
+$random world/lavsiz2		
+	{ world/lavsiz21  
+	world/lavsiz22 }
+
+world/lavsiz21	        dslvsiz2
+world/lavsiz22	        dslvsiz4
+////////////////////////////////
+
+////////////////////////////////
+//world/lavasizzlesmall
+////////////////////////////////
+
+$random world/lavasizzlesmall	
+	{ world/lavasizzlesmall1  
+	world/lavasizzlesmall2 }
+
+world/lavasizzlesmall1	dslavsml
+world/lavasizzlesmall2	dslavsm2
+////////////////////////////////
+
+jpcpfist/sheathe JFISSHEA
+jpcpchainsaw/idle							JSAWIDLE
+$pitchshift jpcpchainsaw/idle				0
+jpcpchainsaw/swing1							JSAWFIR1
+jpcpchainsaw/swing2							JSAWFIR2
+jpcpchainsaw/swing3							JSAWFIR3
+$random jpcpchainsaw/swing { jpcpchainsaw/swing1 jpcpchainsaw/swing2 jpcpchainsaw/swing3 }
+$limit jpcpchainsaw/swing					0
+jpcpchainsaw/swingiai						JSAWFIR4
+$limit jpcpchainsaw/swingiai				0
+jpcpchainsaw/iaiprojectile					JSAWIAI
+$limit jpcpchainsaw/iaiprojectile			0
+jpcpchainsaw/hitwall1						JSAWWAL1
+jpcpchainsaw/hitwall2						JSAWWAL2
+$random jpcpchainsaw/hitwall { jpcpchainsaw/hitwall1 jpcpchainsaw/hitwall2 }
+$limit jpcpchainsaw/hitwall					0
+
+harmony/loop	HARFIRE
+harmony/stop	HARFEND
+$random harmony/altfire	{ harmony1 harmony2 harmony3 }
+harmony1	HARALT1
+harmony2	HARALT2
+harmony3	HARALT3
+harmony/reload HARREL
+
+NUKEPREP NUKEPREP
+$random NUKEFIRE {NUKEFIR1 NUKEFIR2 NUKEFIR3}
+NUKEFIR1 NUKEFIR1
+NUKEFIR2 NUKEFIR2
+NUKEFIR3 NUKEFIR3
+NUKERELD NUKERELD
+weapons/nuclearmissileexplode	dsnukxpl
+weapons/nuclearmissileburn	dsnukbrn
+weapons/nuclearmissileflamehit	dsflwexp
+weapons/nuclearmissileflamewall	dsflwgrn
+
+splattershot/fire DSBFHFIR
+
+splattershot/ready     DSBFHRDY
+splattershot/dryfire   DSBFHDRY
+splattershot/reload1   DSBFHR1
+splattershot/reload2   DSBFHR2
+splattershot/reload3   DSBFHR3
+splattershot/spentclip DSSBF9
+
+splattershot/lazerstart DSBFHLAZ
+splattershot/lazerend   DSBFHLAX
+splattershot/drain      DSBFHDRA
+splattershot/lightenup  DSBFHFED
+
+intermission/tickone	TickOne
+intermission/ticktwo	TickTwo
+intermission/nextstage	NXTLEVEL
+intermission/midmusic	INTERMUS
+
+$random XJ77/FIRE {XJFIR1 XJFIR2 XJFIR3}
+XJFIR1	XJ77FIR1
+XJFIR2	XJ77FIR2
+XJFIR3	XJ77FIR3
+$random XJ77/ALTFIRE {XJALTFIR1 XJALTFIR2 XJALTFIR3}
+XJALTFIR1	XJ77ALT1
+XJALTFIR2	XJ77ALT2
+XJALTFIR3	XJ77ALT3
+XJ77/Charge	XJ77CHRG
+XJ77/ChargeLoop	XJ77CHLP
+XJ77/ChargeReady	XJ77CHRD
+XJ77/Reload	XJ77RLD1
+XJ77/Reload2	XJ77RLD2
+XJ77/ReloadLoop	XJ77RLLP
+
+INKOGET	INKOGET	
+NussbeisserPickup	NUSSPICK
+HinikawaPickup	HINIPICK
+AmogusrathPickup	AMOGUSGT
+FlamethrowerPickup	FLAMEUP
+PazuzuPickup	PAZUZUPK
+NukePickup	NUKEPICK
+TrinityPickup TRINPICK
+XJ77Pickup	XJ77GET
+AlicePickup	ALICEGET
+HarmonyPickup	HARMONPK
+weapons/axeup DSAXEUP
+
+//DoubleJump
+
+JMPBOT1 JMPBOT1
+JMPBOT2 JMPBOT2
+
+$random JMPBOOT {JMPBOT1 JMPBOT2}
+
+TRACKPIK	TRACKPIK
+TRACKDEV	TRACKDEV
+
+DASH1 DASH1
+DASH2 DASH2
+DASH3 DASH3
+DASH4 DASH4
+DASH5 DASH5
+
+$random DashActivated {DASH1 DASH2 DASH3 DASH4 DASH5}
+
+DASHR1 DASHR1
+DASHR2 DASHR2
+
+$random DashReady {DASHR1 DASHR2}
+
+intermission/hundredpc	HUNDRDPC
+
+//LedgeClimb
+
+CLIMB_1 CLIMB_1
+CLIMB_2 CLIMB_2
+ClIMB_3 ClIMB_3
+
+$random ledgeclimb {CLIMB_1 CLIMB_2 ClIMB_3}
+
+$random WeaponCrateOpen 		{ WeaponCrateOpen1 WeaponCrateOpen2 WeaponCrateOpen3 WeaponCrateOpen4 }
+WeaponCrateOpen1				DSWEPCR1
+WeaponCrateOpen2				DSWEPCR2
+WeaponCrateOpen3				DSWEPCR3
+WeaponCrateOpen4				DSWEPCR4
+
+WeaponCrateBad					DSWCBAD
+WeaponCrateGood					DSWCGOOD
+
+$random ARNQUO {ARNQUO1 ARNQUO2 ARNQUO3 ARNQUO4 ARNQUO5 ARNQUO6 ARNQUO7 ARNQUO8 ARNQUO9 ARNQU10 ARNQUO11 ARNQUO12 ARNQUO13 ARNQUO14 ARNQUO15 ARNQUO16 ARNQUO17 ARNQUO18 ARNQUO19 ARNQUO20 ARNQUO21 ARNQUO22 ARNQUO23 ARNQUO24 ARNQUO25 ARNQUO26}
+ARNQUO1 ARNQUO1
+ARNQUO2 ARNQUO2
+ARNQUO3 ARNQUO3
+ARNQUO4 ARNQUO4
+ARNQUO5 ARNQUO5
+ARNQUO6 ARNQUO6
+ARNQUO7 ARNQUO7
+ARNQUO8 ARNQUO8
+ARNQUO9 ARNQUO9
+ARNQUO10 ARNQUO10
+ARNQUO11 ARNQUO11
+ARNQUO12 ARNQUO12
+ARNQUO13 ARNQUO13
+ARNQUO14 ARNQUO14
+ARNQUO15 ARNQUO15
+ARNQUO16 ARNQUO16
+ARNQUO17 ARNQUO17
+ARNQUO18 ARNQUO18
+ARNQUO19 ARNQUO19
+ARNQUO20 ARNQUO20
+ARNQUO21 ARNQUO21
+ARNQUO22 ARNQUO22
+ARNQUO23 ARNQUO23
+ARNQUO24 ARNQUO24
+ARNQUO25 ARNQUO25
+ARNQUO26 ARNQUO26
+
+weapons/crossbowup	dsxbowup
+weapons/crossbow	dsxbow
+weapons/crossbowcock	dsxbowck
+weapons/crossbowcock2	dsxbowc2
+weapons/crossbowout	dsxbowou
+weapons/crossbowin	dsxbowin
+weapons/crossbowfly	dsxbowxf
+weapons/boltfly		dsboltfl
+$Random Weapons/NailHit	{weapons/nh1 weapons/nh2 weapons/nh3 weapons/nh4 weapons/nh5}
+Weapons/nh1		NAILHIT
+Weapons/nh2		NLRICO1
+weapons/nh3		NLRICO2
+weapons/nh4		NLRICO3
+weapons/nh5		NLRICO4
+Weapons/NailHitBleed	NAILHTBD
+
+BoltSmallPickup	BOLTSMAL
+BoltLargePickup	BOLTLARG
+
+levelload LVLSTART
+
+$random level/intro { intro1 intro2 intro3 intro4 intro5 intro6 intro7 intro8 intro9 intro10 intro11 intro12 intro13 intro14 intro15 intro16 intro17 intro18 intro19 }
+intro1                    INTRO1
+intro2                    INTRO2
+intro3                    INTRO3
+intro4                    INTRO4  
+intro5                    INTRO5  
+intro6                    INTRO6  
+intro7                    INTRO7  
+intro8                    INTRO8  
+intro9                    INTRO9  
+intro10                   INTRO10 
+intro11                   INTRO11 
+intro12                   INTRO12 
+intro13                   INTRO13 
+intro14                   INTRO14 
+intro15                   INTRO15 
+intro16                   INTRO16 
+intro17                   INTRO17 
+intro18                   INTRO18 
+intro19                   INTRO19 
+
+shihong/idlestart      SSHIDLE1 // Taken from omar-alvarado on Freesound
+shihong/idlestop       SSHIDLE2 // Mixed with sounds by ls, sempoo, xsub, and cosp-lcs13 on Freesound
+
+lowhealth	LOHEALTH
+
+systemshutdown	PB2KSHUT
+systemreboot	PB2KSTRT
+
+KILLS1	KILLS1
+KILLS2	KILLS2
+ITEMS	ITEMS
+SECRETS	SECRETS
+BLACKEYE	BLACKEYE
+
+$random misc/secret { WIN11 }
+WIN11	WIN11
+
+$random Misc/shellhit { shellhit1 shellhit2 shellhit3}
+shellhit1          SSHELL1
+shellhit2          SSHELL2
+shellhit3          SSHELL3
+
+weapons/9gauge/casing1 DSCAS91
+weapons/9gauge/casing2 DSCAS92
+weapons/9gauge/casing3 DSCAS93
+
+$random weapons/9gauge/casing
+{
+   weapons/9gauge/casing1
+   weapons/9gauge/casing2
+   weapons/9gauge/casing3
+}
+
+$random Misc/casing { casing1 casing2 casing3}
+casing1          DSCASIN1
+casing2          DSCASIN2
+casing3          DSCASIN3
+
+NuclearCapacitor	CAPACITR
+
+$random terminator/intro	{ TERMIN1 TERMIN2 TERMIN3 TERMIN4 TERMIN5 TERMIN6 TERMIN7 TERMIN8 TERMIN9 TERMIN10 TERMIN11 TERMIN12 TERMIN13 TERMIN14 TERMIN15 TERMIN16 TERMIN17 }
+TERMIN1	TERMIN1
+TERMIN2	TERMIN2
+TERMIN3	TERMIN3
+TERMIN4	TERMIN4
+TERMIN5	TERMIN5
+TERMIN6	TERMIN6
+TERMIN7	TERMIN7
+TERMIN8	TERMIN8
+TERMIN9	TERMIN9
+TERMIN10	TERMIN10
+TERMIN11	TERMIN11
+TERMIN12	TERMIN12
+TERMIN13	TERMIN13
+TERMIN14	TERMIN14
+TERMIN15	TERMIN15
+TERMIN16	TERMIN16
+TERMIN17	TERMIN17
+
+QuadDamage	QUADSPHR
+
+warportteleport DSGBWORT
+
+$random puff/ric {puff/ric1 puff/ric2 puff/ric3 puff/ric4 puff/ric5 puff/ric6 puff/ric7 puff/ric8 puff/ric9 puff/ric0 puff/rica puff/ricb puff/ricc puff/ricd puff/rice puff/ricf}
+puff/ric1				dspuff1
+puff/ric2				dspuff2
+puff/ric3				dspuff3
+puff/ric4				dspuff4
+puff/ric5				dsnull
+puff/ric6				dsnull
+puff/ric7				dsnull
+puff/ric8				dsnull
+puff/ric9				dsnull
+puff/ric0				dsnull
+puff/rica				dsnull
+puff/ricb				dsnull
+puff/ricc				dsnull
+puff/ricd				dsnull
+puff/rice				dsnull
+puff/ricf				dsnull
+
+$random weapons/zenII/firepowered {dschalt1 dschalt2 dschalt3}
+DSCHALT1	DSCHALT1
+DSCHALT2	DSCHALT2
+DSCHALT3	DSCHALT3
+
+weapons/chargebeep	DSBFGBEP
+reganbfgfire3	RBFGFIR3
+
+DOOROPN	DOOROPN
+DOORCLS	DOORCLS
+DOOROPNF	DOOROPNF
+DOORCLSF	DOORCLSF
+ELEVSTRT	ELEVSTRT
+ELEVMOVE	ELEVMOVE
+ELEVSTOP	ELEVSTOP
+
+doors/dr1_open			DOOROPN
+doors/dr1_clos			DOORCLS
+doors/dr2_open			DOOROPNF
+doors/dr2_clos			DOORCLSF
+
+plats/pt1_strt			ELEVSTRT
+plats/pt1_stop			ELEVSTOP
+plats/pt1_mid			ELEVMOVE
+
+Minderiasphere MINDERIA
+
+// props
+
+$random barrel/hit { barrel/hit1 barrel/hit2 barrel/hit3 }
+barrel/hit1		brlhit1
+barrel/hit2		brlhit2
+barrel/hit3		brlhit3
+
+$random barrel/gib { barrel/gib1 barrel/gib2 barrel/gib3 }
+barrel/gib1		brlgib1
+barrel/gib2		brlgib2
+barrel/gib3		brlgib3
+
+barrel/break	brlbrk
+
+$random props/techlamp/break			{ props/techlamp/break1 props/techlamp/break2}
+props/techlamp/break1					glass1
+props/techlamp/break2					glass2
+$random props/glass/shard				{ props/glass/shard1 props/glass/shard2 props/glass/shard3 props/glass/shard4 }
+props/glass/shard1						shard1
+props/glass/shard2						shard2
+props/glass/shard3						shard3
+props/glass/shard4						shard4
+$volume props/glass/shard 0.5
+
+props/burningbarrel/loop				burnbarl
+$volume props/burningbarrel/loop 0.03
+
+props/lighthum1		lite1
+$volume props/lighthum1 0.01
+
+props/lighthum2		lite2
+$volume props/lighthum2 0.01
+
+props/lighthum3		lite3
+$volume props/lighthum3 0.025
+
+props/techpillar/break				pilrbrek
+
+props/floatingskull					flotskul
+$volume props/floatingskull	 0.05
+
+props/beatingheart					dspunch
+$volume props/beatingheart 0.025
+
+props/torch/large					trchbig
+$volume props/torch/large 0.02
+props/torch/small					trchsmol
+$volume props/torch/small 0.02
+
+props/wood/pain			woodpain
+props/wood/die1			wooddie1
+
+$random props/wood/gib 	{ props/wood/gib1 props/wood/gib2 props/wood/gib3 props/wood/gib4 }
+props/wood/gib1			woode1
+props/wood/gib2			woode2
+props/wood/gib3			woode3
+props/wood/gib4			woode4
+$volume props/wood/gib 0.5
+
+props/candles/candlestick	candles
+$volume props/candles/candlestick 0.01
+props/candles/candelabra	candles
+$volume props/candles/candelabra 0.03
+
+props/evileye/die		eeyedie
+
+Jetpack/Pickup			JETPPICK //Raven Soft.\Wolf 3
+Jetpack/Active			JETBUTTS //Raven Soft.\Wolf 3
+$random Jetpack/Thrust { Jetpack/Thrust1 Jetpack/Thrust2 } //EA Games\C&C3
+Jetpack/Thrust1			JETTRST1
+Jetpack/Thrust2			JETTRST2
+
+// -----------------------------------
+// UAC ACCU (Atomic-Core Cluster Unit)
+// -----------------------------------
+
+inventory/accu/found     DSACCUEH
+inventory/accu/bounce    DSACCUBC
+inventory/accu/countdown DSACCUCD
+inventory/accu/alert     DSACCUAL
+inventory/accu/danger    DSACCUDG
+inventory/accu/explode   DSACCUEX
+
+inventory/accu/hit1 DSMREPH1
+inventory/accu/hit2 DSMREPH2
+
+$random inventory/accu/hit
+{
+   inventory/accu/hit1
+   inventory/accu/hit2
+}
+
+NuclearCapacitorFail NCCPFAIL
+
+items/nvon						DSLTAMON
+items/nvoff						DSLTAMOF
+
+//General
+GEMBRK GEMBRK
+GEMGET GEMGET
+GEMBNC GEMBNC
+
+//Fire Gem
+FGEMF1 FGEMF1
+$Limit FGEMF1	0
+FGEMF2 FGEMF2
+$Limit FGEMF2	0
+FGEMF3 FGEMF3
+$Limit FGEMF3	0
+
+$RANDOM FlameErupt {FGEMF1 FGEMF2 FGEMF3}
+
+//Earth Gem
+EGEMQK EGEMQK
+STNBRK STNBRK
+STNBRK2 STNBRK2
+
+$RANDOM BoulderBreak {STNBRK STNBRK2}
+
+//Wind Gem
+TRNWND TRNWND
+
+//Water Gem
+WATDRP WATDRP
+$Limit WATDRP	0
+
+//Poison Gem
+POSPUFF POSPUFF
+POSPUDL POSPUDL
+POIMIST POIMIST
+POIBURST POIBURST
+
+//Lightning Gem
+LSTRIKE LSTRIKE
+LIBOLT LIBOLT
+$Limit LIBOLT	0
+LIBOLT2 LIBOLT2
+$Limit LIBOLT2	0
+
+$RANDOM LightningBolts {LIBOLT LIBOLT2}
+
+//Ice Gem
+ICESHRD ICESHRD
+ICEIMPCT ICEIMPCT
+
+//Dark Gem
+DRKVORTX DRKVORTX
+DRKMVRTX DRKMVRTX
+$Limit DRKMVRTX	0
+VOIDHIT VOIDHIT
+$Limit VOIDHIT	0
+
+//Light Gem
+GLIBREAK GLIBREAK
+$Limit GLIBREAK  0
+GLIGHTD GLIGHTD
+GLGHTIM GLGHTIM
+$Limit GLGHTIM  0
+
+spraypaint/spray	dssprayz
+$random spraypaint/shake {dscan1 dscan2}
+dscan1	dscan1
+dscan2	dscan2
+
+items/medopen					DSMDOPEN
+items/stiminject				DSSTINJT
+items/bloodpack					DSBLPKHL
+items/pillzconsume				DSPILLUS
+items/bandagewrap				DSBNDGWR
+items/healthbonuspkup			DSHEALBN
+
+AMIHERE	AMIHERE
+AMIROCK	AMIROCK
+AMIOHNO	AMIOHNO
+AMICOOL	AMICOOL
+AMIWOW	AMIWOW
+AMIGREAT	AMIGREAT
+AMITERRI	AMITERRI
+AMICOME	AMICOME
+AMIARCAD	AMIARCAD
+AMIGOIN1	AMIGOIN1
+AMIGOIN2	AMIGOIN2
+AMIPAIN1	AMIPAIN1
+AMIPAIN2	AMIPAIN2
+AMIPAIN3	AMIPAIN3
+AMIPAIN4	AMIPAIN4
+AMIPAIN5	AMIPAIN5
+AMIDEATH	AMIDEATH	
+
+$random AMI-RANDOM {AMIHERE AMIROCK AMIOHNO AMICOOL AMIWOW AMIGREAT AMITERRI AMICOME AMIARCAD }
+$random AMIPAIN {AMIPAIN1 AMIPAIN2 AMIPAIN3 AMIPAIN4 AMIPAIN5}
+
+AMIZENII	AMIZENII
+
+YUMIHERE	YUMIHERE
+YUMIROCK	YUMIROCK
+YUMIALRG	YUMIALRG
+YUMIWOHO	YUMIWOHO
+YUMIYEAH	YUMIYEAH
+YUMIYEA2	YUMIYEA2
+YUMIROCI	YUMIROCI
+YUMIWATG	YUMIWATG
+YUMIRHMA	YUMIRHMA
+YUMIARCD	YUMIARCD
+YUMIARC2	YUMIARC2
+YUMIROC2	YUMIROC2
+YUMIWOW	YUMIWOW
+YUMINCST	YUMINCST
+YUMINCS2	YUMINCS2
+YUMIOVER	YUMIOVER
+YUMIPAI1	YUMIPAI1
+YUMIPAI2	YUMIPAI2
+YUMIPAI3	YUMIPAI3
+YUMIPAI4	YUMIPAI4
+YUMIPAI5	YUMIPAI5
+YUMIDETH	YUMIDETH
+
+$random YUMI-RANDOM {YUMIHERE YUMIROCK YUMIALRG YUMIWOHO YUMIYEAH YUMIYEA2 YUMIROCI YUMIWATG YUMIRHMA YUMIARCD YUMIARC2 YUMIROC2 YUMIWOW YUMINCST YUMINCS2 YUMIOVER}
+$random YUMIPAIN {YUMIPAI1 YUMIPAI2 YUMIPAI3 YUMIPAI4 YUMIPAI5}
+
+YUMICHA0	YUMICHA0
+$random YUMIALT {YUMICHA1 YUMICHA2 YUMICHA3}
+YUMICHA1	YUMICHA1
+YUMICHA2	YUMICHA2
+YUMICHA3	YUMICHA3
+
+AMIEXECT	AMIEXECT
+YUMEXECT	YUMEXECT
+
+buzzidle buzzidle
+buzzhit buzzhit
+
+Electra_Idle el_idle
+Electra_Hit el_hit
+Electra_Blast el_blast
+
+Fire_Idle fir_idle
+Fire_Blow fir_blow
+Fire_Blow1 fir_blw1
+
+$random Gravi_Idle_Rnd {Gravi_Idle0 Gravi_Idle00 Gravi_Idle01}
+Gravi_Idle1 gr_idle1
+Gravi_Idle00 gr_idl00
+Gravi_Idle01 gr_idl01
+Gravi_Blast1 gr_blst1
+
+Mincer_BlowOut MBLOWOUT
+
+Vomit NSDARK42
+
+PDAOP PDAOP
+PDADING	PDADING
+flashlight/click	click
+GRNTOSS	GRNTOSS
+GLVIALPK	GLVIALPK
+GRNBNCE	GRNBNCE
+GLASSEXP	GLASSEXP
+SLWSTART SLWSTART
+SLWSTOP SLWSTOP
+SLWLOOP SLWLOOP
+HISS	HISS
+
+$Random FriendMarine/Laugh		{TAUNT1 TAUNT2 TAUNT3 TAUNT4 TAUNT5 TAUNT6 TAUNT7 TAUNT8 TAUNT9 TAUNT10 TAUNT11 TAUNT12 TAUNT13 TAUNT14 TAUNT15 TAUNT16 TAUNT17 TAUNT18 TAUNT19 TAUNT20 TAUNT21 TAUNT22 TAUNT23 TAUNT24 TAUNT25 TAUNT26 TAUNT27 TAUNT28 TAUNT29 TAUNT30 TAUNT31 TAUNT32 TAUNT33 TAUNT34 TAUNT35 TAUNT36 TAUNT37 TAUNT38 TAUNT39 TAUNT40 TAUNT41 TAUNT42 TAUNT43 TAUNT44 TAUNT45 TAUNT46 TAUNT47 TAUNT48 TAUNT49 TAUNT50 TAUNT51 TAUNT52 TAUNT53 TAUNT54 TAUNT55 TAUNT56 TAUNT57 TAUNT58 TAUNT59 TAUNT60 TAUNT61 TAUNT62 TAUNT63 TAUNT64 TAUNT65 TAUNT66 TAUNT67 TAUNT68 TAUNT69 TAUNT70 TAUNT71 TAUNT72 TAUNT73 TAUNT74 TAUNT75 TAUNT76 TAUNT77 TAUNT78 TAUNT79 TAUNT80 TAUNT81 TAUNT82 TAUNT83 TAUNT84 TAUNT85 TAUNT86 TAUNT87 TAUNT88 TAUNT89 TAUNT90 TAUNT91 TAUNT92 TAUNT93 TAUNT94 TAUNT95 TAUNT96 TAUNT97 TAUNT98 TAUNT99 TAUNT100 TAUNT101 TAUNT102 TAUNT103 TAUNT104 TAUNT105 TAUNT106 TAUNT107 TAUNT108 TAUNT109 TAUNT110 TAUNT111 TAUNT112 TAUNT113 TAUNT114 TAUNT115}	
+
+FM/Pain					DSPLPAIN
+
+$Random FM/Death		{FMD1 FMD2}
+FMD1					DSPLDETH					
+FMD2					DSPDIEHI
+						
+FM/Raise				DSSLOP
+
+FM/IntroSFX				DSSGCOCK
+
+FM/Punch				DSPUNCH
+
+$Random FM/Idle			{TAUNT1 TAUNT2 TAUNT3 TAUNT4 TAUNT5 TAUNT6 TAUNT7 TAUNT8 TAUNT9 TAUNT10 TAUNT11 TAUNT12 TAUNT13 TAUNT14 TAUNT15 TAUNT16 TAUNT17 TAUNT18 TAUNT19 TAUNT20 TAUNT21 TAUNT22 TAUNT23 TAUNT24 TAUNT25 TAUNT26 TAUNT27 TAUNT28 TAUNT29 TAUNT30 TAUNT31 TAUNT32 TAUNT33 TAUNT34 TAUNT35 TAUNT36 TAUNT37 TAUNT38 TAUNT39 TAUNT40 TAUNT41 TAUNT42 TAUNT43 TAUNT44 TAUNT45 TAUNT46 TAUNT47 TAUNT48 TAUNT49 TAUNT50 TAUNT51 TAUNT52 TAUNT53 TAUNT54 TAUNT55 TAUNT56 TAUNT57 TAUNT58 TAUNT59 TAUNT60 TAUNT61 TAUNT62 TAUNT63 TAUNT64 TAUNT65 TAUNT66 TAUNT67 TAUNT68 TAUNT69 TAUNT70 TAUNT71 TAUNT72 TAUNT73 TAUNT74 TAUNT75 TAUNT76 TAUNT77 TAUNT78 TAUNT79 TAUNT80 TAUNT81 TAUNT82 TAUNT83 TAUNT84 TAUNT85 TAUNT86 TAUNT87 TAUNT88 TAUNT89 TAUNT90 TAUNT91 TAUNT92 TAUNT93 TAUNT94 TAUNT95 TAUNT96 TAUNT97 TAUNT98 TAUNT99 TAUNT100 TAUNT101 TAUNT102 TAUNT103 TAUNT104 TAUNT105 TAUNT106 TAUNT107 TAUNT108 TAUNT109 TAUNT110 TAUNT111 TAUNT112 TAUNT113 TAUNT114 TAUNT115}					
+TAUNT1 TAUNT1 
+TAUNT2 TAUNT2 
+TAUNT3 TAUNT3 
+TAUNT4 TAUNT4 
+TAUNT5 TAUNT5 
+TAUNT6 TAUNT6 
+TAUNT7 TAUNT7 
+TAUNT8 TAUNT8 
+TAUNT9 TAUNT9 
+TAUNT10 TAUNT10 
+TAUNT11 TAUNT11 
+TAUNT12 TAUNT12 
+TAUNT13 TAUNT13 
+TAUNT14 TAUNT14 
+TAUNT15 TAUNT15 
+TAUNT16 TAUNT16 
+TAUNT17 TAUNT17 
+TAUNT18 TAUNT18 
+TAUNT19 TAUNT19 
+TAUNT20 TAUNT20 
+TAUNT21 TAUNT21 
+TAUNT22 TAUNT22 
+TAUNT23 TAUNT23 
+TAUNT24 TAUNT24 
+TAUNT25 TAUNT25 
+TAUNT26 TAUNT26 
+TAUNT27 TAUNT27 
+TAUNT28 TAUNT28 
+TAUNT29 TAUNT29 
+TAUNT30 TAUNT30 
+TAUNT31 TAUNT31 
+TAUNT32 TAUNT32 
+TAUNT33 TAUNT33 
+TAUNT34 TAUNT34 
+TAUNT35 TAUNT35 
+TAUNT36 TAUNT36 
+TAUNT37 TAUNT37 
+TAUNT38 TAUNT38 
+TAUNT39 TAUNT39 
+TAUNT40 TAUNT40 
+TAUNT41 TAUNT41 
+TAUNT42 TAUNT42 
+TAUNT43 TAUNT43 
+TAUNT44 TAUNT44 
+TAUNT45 TAUNT45 
+TAUNT46 TAUNT46 
+TAUNT47 TAUNT47 
+TAUNT48 TAUNT48 
+TAUNT49 TAUNT49 
+TAUNT50 TAUNT50 
+TAUNT51 TAUNT51 
+TAUNT52 TAUNT52 
+TAUNT53 TAUNT53 
+TAUNT54 TAUNT54 
+TAUNT55 TAUNT55 
+TAUNT56 TAUNT56 
+TAUNT57 TAUNT57 
+TAUNT58 TAUNT58 
+TAUNT59 TAUNT59 
+TAUNT60 TAUNT60 
+TAUNT61 TAUNT61 
+TAUNT62 TAUNT62 
+TAUNT63 TAUNT63 
+TAUNT64 TAUNT64 
+TAUNT65 TAUNT65
+TAUNT66 TAUNT66
+TAUNT67 TAUNT67
+TAUNT68 TAUNT68
+TAUNT69 TAUNT69
+TAUNT70 TAUNT70 
+TAUNT71 TAUNT71 
+TAUNT72 TAUNT72 
+TAUNT73 TAUNT73 
+TAUNT74 TAUNT74 
+TAUNT75 TAUNT75 
+TAUNT76 TAUNT76 
+TAUNT77 TAUNT77 
+TAUNT78 TAUNT78 
+TAUNT79 TAUNT79
+TAUNT80 TAUNT80 
+TAUNT81 TAUNT81 
+TAUNT82 TAUNT82 
+TAUNT83 TAUNT83 
+TAUNT84 TAUNT84 
+TAUNT85 TAUNT85 
+TAUNT86 TAUNT86 
+TAUNT87 TAUNT87 
+TAUNT88 TAUNT88 
+TAUNT89 TAUNT89
+TAUNT90 TAUNT90 
+TAUNT91 TAUNT91 
+TAUNT92 TAUNT92 
+TAUNT93 TAUNT93 
+TAUNT94 TAUNT94 
+TAUNT95 TAUNT95 
+TAUNT96 TAUNT96 
+TAUNT97 TAUNT97 
+TAUNT98 TAUNT98 
+TAUNT99 TAUNT99
+TAUNT100 TAUNT100 
+TAUNT101 TAUNT101 
+TAUNT102 TAUNT102 
+TAUNT103 TAUNT103 
+TAUNT104 TAUNT104 
+TAUNT105 TAUNT105 
+TAUNT106 TAUNT106 
+TAUNT107 TAUNT107 
+TAUNT108 TAUNT108 
+TAUNT109 TAUNT109
+TAUNT110 TAUNT110
+TAUNT111 TAUNT111
+TAUNT112 TAUNT112
+TAUNT113 TAUNT113
+TAUNT114 TAUNT114
+TAUNT115 TAUNT115 
+
+marine/minigun			DSMINIGN
+marine/BFG10Kfire		DS10KCDN
+marine/bfg10kx			dsgrnexp
+marine/sawedoff		dsdshtgn
+$pitchset			marine/sawedoff		1.75
+
+marine/unmaker		dsbgsit1
+$pitchset			marine/unmaker		0.75
+
+marine/knife		dsclaw
+
+marine/sniper		dsshotgn
+$pitchset			marine/sniper		2.0
+
+weapons/sawsta	sawsta
+weapons/sawid	sawid
+weapons/chnroar	chnroar
+$random weapons/sawhit {sawhi1 sawhi2 sawhi3}
+sawhi1	sawhi1
+sawhi2	sawhi2
+sawhi3	sawhi3
+$random weapons/sawrip {sawri1 sawri2 sawri3}
+sawri1	sawri1
+sawri2	sawri2
+sawri3	sawri3
+
+
+$random FAREXPL  {dsbarex1 dsbarex2 dsbarex3 dsbarex4 dsbarex5 dsbarex6 dsbarex7}
+dsbarex1 dsbarex1
+dsbarex2 dsbarex2
+dsbarex3 dsbarex3
+dsbarex4 dsbarex4
+dsbarex5 dsbarex5
+dsbarex6 dsbarex6
+dsbarex7 dsbarex7
+$limit FAREXPL 4
+$rolloff FAREXPL 1000 7500
+
+distantexp distantexp
+$limit distantexp 4
+$rolloff distantexp 1000 9000
+
+AISCAN AISCAN
+AIMALFUN AIMALFUN
+AISTABLE AISTABLE
+AIRELOAD AIRELOAD
+
+//SentryGun
+Sentry/Active	DSSTRYS
+
+RBUILD	RBUILD
+RDISM	RDISM
+
+sentry/found	SENTFOUN
+Sentry/death	DSSTRYSD
+Sentry/Activate	DSSHRDT
+
+K2W/WPB/FR1						K2WPBFR1 //Eisenfaust
+K2W/WPB/FR2						K2WPBFR2 //Eisenfaust
+K2W/WPB/FR3						K2WPBFR3 //Eisenfaust
+K2W/WPB/MS1						K2WPBMS1 //Eisenfaust
+K2W/WPB/HT1						K2WPBHT1 //Eisenfaust
+K2W/WPB/UP1						K2WPBUP1 //Eisenfaust
+
+//Plasma
+PLASIDLE PLASIDLE
+PLSRD PLSRD
+PLREADY PLREADY
+PLSOFF PLSOFF
+ULTCHAR ULTCHAR
+PLSC_1 PLSC_1
+PLSC_2 PLSC_2
+PLSC_3 PLSC_3
+PLSC_4 PLSC_4
+PLSDEARG PLSDEARG
+PLSTHRW	PLSTHRW
+PLSPICK PLSPICK
+7LSPICK 7LSPICK //For no auto talk option; Taken from XWeapon: Hellsturm, 7LSPICK is from the Killing Floor IJC Weapon Pack.
+PLSULT PLSULT
+weapons/plasmarifle PLASMA
+$limit weapons/plasmarifle 0
+$rolloff weapons/plasmarifle 100 2200
+$volume weapons/plasmarifle 0.9
+PLASMA PLASM
+PLSALTFR PLSALTFR
+PLSFULL PLSFULL
+weapons/plasma/cellout CELLOUT
+weapons/plasma/cellin CELLIN
+weapons/plasma/startup PLSMAST
+weapons/plasma/fancybutton PSMABTN
+$random weapons/plasmax { PEXPLO1 PEXPLO2 PEXPLO3 PEXPLO4}
+PEXPLO1 PEXPLO1
+PEXPLO2 PEXPLO2
+PEXPLO3 PEXPLO3
+PEXPLO4 PEXPLO4
+$rolloff weapons/plasmax  300 1600
+PLSM9 PLSM9
+PLSTHRW PLSTHRW
+BEP BEP
+BEPBEP BEPBEP
+
+//PULSE CANNON
+$random CHGX {  CHGX1 CHGX2 }
+CHGX1 CHGX1
+CHGX2 CHGX2
+$random CHRGA {  CHRGA1 CHRGA2 }
+CHRGA1 CHRGA1
+CHRGA2 CHRGA2
+$volume BFGAR 0.85
+$random BFGAR {  BFFAR BFFAR2 }
+BFFAR BFFAR
+BFFAR2 BFFAR2
+$rolloff BFGAR 4200 7400
+Bfgfly1 BfgFly1
+$rolloff BfgFly1 900 1400
+$random BFGEXTRA { BFGXTR1 BFGXTR2 }
+BFGXTR1 BFGXTR1
+BFGXTR2 BFGXTR2
+RKTSLAP RKTSLAP
+$random draugr/fire { DRHEAT1 DRHEAT2 DRHEAT3 DRHEAT4 }
+DRHEAT1 DRHEAT1
+DRHEAT2 DRHEAT2
+DRHEAT3 DRHEAT3
+DRHEAT4 DRHEAT4
+$random MinorHeadshot { BHIT1 BHIT2 BHIT3 BHIT4 BHIT5}
+BHIT1 BHIT1
+BHIT2 BHIT2
+BHIT3 BHIT3
+BHIT4 BHIT4
+BHIT5 BHIT5
+$rolloff MinorHeadshot 300 1300
+BEEEP BEEEP
+PLSDRAW PLSDRAW
+PLSBULB PLSBULB
+PLSBULC PLSBULC
+
+PLASOUT	PLASOUT
+PLASIN	PLASIN
+STEAM	DSSTEAM
+DRKMSHOT	DRKMSHOT
+PLA2COOL	PLA2COOL
+
+////////////////Grenade Launchers
+
+EQLNMI1 EQLNMI1
+EQLNMI2 EQLNMI2
+EQLNMI3 EQLNMI3
+$random EquipmentMoveIn {EQLNMI1 EQLNMI2 EQLNMI3}
+
+EQLNMO1 EQLNMO1
+EQLNMO2 EQLNMO2
+EQLNMO3 EQLNMO3
+$random EquipmentMoveOut {EQLNMO1 EQLNMO2 EQLNMO3}
+
+EQLNGL1 EQLNGL1
+EQLNGL2 EQLNGL2
+EQLNGL3 EQLNGL3
+EQLNGL4 EQLNGL4
+EQLNGL5 EQLNGL5
+$random EquipmentGrenadeLauncher {EQLNGL1 EQLNGL2 EQLNGL3 EQLNGL4 EQLNGL5}
+
+EquipmentGrenadeLauncherCantUse EQLNGLC1
+EquipmentGrenadeLauncherDoneCharging EQLNGLC2
+EquipmentGrenadeLauncherTimer EQLNGLT
+
+////////////////Flame Belch
+
+EQLNFB1 EQLNFB1
+EQLNFB2 EQLNFB2
+EQLNFB3 EQLNFB3
+$random EquipmentFlameBelch {EQLNFB1 EQLNFB2 EQLNFB3}
+
+EquipmentFlameBelchNotReady EQLNFL
+EquipmentFlameBelchReady EQLNFBR
+
+////////////////Ice Bomb
+
+EquipmentIceBombFire EQLNICF
+EquipmentIceBombReload EQLNIR
+EquipmentIceBombFail EQLNIFL
+
+EQLNIE1 EQLNIE1
+EQLNIE2 EQLNIE2
+EQLNIE3 EQLNIE3
+EQLNIE4 EQLNIE4
+$random EquipmentIceExplode {EQLNIE1 EQLNIE2 EQLNIE3 EQLNIE4}
+
+EQLNIEA1 EQLNIEA1
+EQLNIEA2 EQLNIEA2
+EQLNIEA3 EQLNIEA3
+EQLNIEA4 EQLNIEA4
+EQLNIEA5 EQLNIEA5
+EQLNIEA6 EQLNIEA6
+$random EquipmentIceExplodeAdd {EQLNIEA1 EQLNIEA2 EQLNIEA3 EQLNIEA4 EQLNIEA5 EQLNIEA6}
+
+ICEDMB1 ICEDMB1
+ICEDMB2 ICEDMB2
+ICEDMB3 ICEDMB3
+ICEDMB4 ICEDMB4
+ICEDMB5 ICEDMB5
+ICEDMB6 ICEDMB6
+ICEDMB7 ICEDMB7
+ICEDMB8 ICEDMB8
+ICEDMB9 ICEDMB9
+$random	EquipmentIceMonsterBreak {ICEDMB1 ICEDMB2 ICEDMB3 ICEDMB4 ICEDMB5 ICEDMB6 ICEDMB7 ICEDMB8 ICEDMB9}
+
+ICEDAMB1 ICEDAMB1
+ICEDAMB2 ICEDAMB2
+ICEDAMB3 ICEDAMB3
+$random EquipmentIceAmbient {ICEDAMB1 ICEDAMB2 ICEDAMB3}
+
+$random axe/melee { marine/superfist1 marine/superfist2 marine/superfist3 marine/superfist4 marine/superfist5 }
+marine/superfist1 plspnch1
+marine/superfist2 plspnch2
+marine/superfist3 plspnch3
+marine/superfist4 plspnch4
+marine/superfist5 plspnch5
+marine/superfist6 plspnch6
+
+WOOSH	WOOSH
+BytePickup	BYTEPICK
+
+// trading system
+// ______________
+
+tradingsystem/menuon RSHPON
+tradingsystem/menuoff RSHPOFF
+
+tradingsystem/buy RSHPBUY
+tradingsystem/sell RSHPSELL
+tradingsystem/sellall RSHPSALL
+
+tradingsystem/up RSHPUP
+tradingsystem/down RSHPDOWN
+tradingsystem/navigate RSHPNAVI
+
+tradingsystem/fail RSHPFAIL
+tradingsystem/notenough RSHPNOEN
+
+$RANDOM pigpain { PIGP1 PIGP2 PIGP3 PIGP4 PIGP5 PIGP6 PIGP7 PIGP8 PIGD1 PIGD2 PIGD3 PIGD4 PIGD5 PIGD6 PIGD7 PIGD8}
+PIGP1 PIGP1
+PIGP2 PIGP2
+PIGP3 PIGP3
+PIGP4 PIGP4
+PIGP5 PIGP5
+PIGP6 PIGP6
+PIGP7 PIGP7
+PIGP8 PIGP8
+PIGD1 PIGD1
+PIGD2 PIGD2
+PIGD3 PIGD3
+PIGD4 PIGD4
+PIGD5 PIGD5
+PIGD6 PIGD6
+PIGD7 PIGD7
+PIGD8 PIGD8
+
+$RANDOM pigoink { PIGONK1 PIGONK2 PIGONK3 PIGONK4 PIGONK5 PIGONK6 PIGONK7 PIGONK8 PIGONK9 PIGONK10 PIGONK11 PIGONK12}
+PIGONK1 PIGONK1
+PIGONK2 PIGONK2
+PIGONK3 PIGONK3
+PIGONK4 PIGONK4
+PIGONK5 PIGONK5
+PIGONK6 PIGONK6
+PIGONK7 PIGONK7
+PIGONK8 PIGONK8
+PIGONK9 PIGONK9
+PIGONK10 PIGONK10
+PIGONK11 PIGONK11
+PIGONK12 PIGONK12
+
+PIGDES	PIGDES
+
+amb/turnon DPTURNON
+amb/turnoff DPTURNOF
+
+amb/lamp1 LAMPTALL
+amb/lamp2 LAMPSMLL
+amb/shatter1 GLSSBRK1
+amb/shatter2 GLSSBRK2
+$random amb/shatter { amb/shatter1 amb/shatter2 }
+$random amb/spark { spark1 spark2 spark3 }
+spark1	spark1
+spark2	spark2
+spark3	spark3
+amb/fire AMBIFIRE
+$limit amb/fire 0
+amb/metalx METALEXP
+amb/woodx WOODEXPL
+
+misc/uacwasteexplode1 DSUWBX1
+misc/uacwasteexplode2 DSUWBX2
+misc/uacwasteexplode3 DSUWBX3
+
+$random misc/uacwasteexplode
+{
+   misc/uacwasteexplode1
+   misc/uacwasteexplode2
+   misc/uacwasteexplode3
+}
+
+misc/barrelburn DSBRNBAR
+
+$ambient 42421 amb/alarmdist point 0.25 random 40 240 1.0
+$ambient 42422 amb/bigcomp point 1.5 continuous 0.7
+$ambient 42423 amb/ship world continuous 0.1
+$ambient 42424 amb/field point 2.0 continuous 1.0
+$ambient 42425 amb/field point 4.0 continuous 1.0
+$ambient 42426 amb/vent point 5.0 continuous 0.5
+$ambient 42427 amb/computer point 2.0 continuous 1.0
+
+$random amb/alarmdist { amb/alarmdist1 amb/alarmdist2 amb/alarmdist3 amb/alarmdist4 }
+
+amb/bigcomp LITBCOMP
+amb/alarmdist1 LITALRM1
+amb/alarmdist2 LITALRM2
+amb/alarmdist3 LITALRM3
+amb/alarmdist4 LITALRM4
+amb/ship LITHSHIP
+amb/field LITNOENT
+amb/vent LITHVENT
+amb/lightson LITLIGHT
+amb/computer LITHCOMP
+
+PRUActivate	PRUACTIV
+PRUDeactivate	PRUDEACT
+
+mag/drop1       DSAOUNC1
+mag/drop2       DSAOUNC2
+mag/drop3       DSAOUNC3
+mag/drop4       DSAOUNC4
+
+$random mag/drop  {mag/drop1 mag/drop2 mag/drop3 mag/drop4}
+
+weapons/hgrenadethrow 		DSHGREN1
+weapons/hgrenadepin			DSHGREN2
+weapons/hgrenadebounce		DSHGREN3
+weapons/hgrenadepickup		DSHGREN4
+weapons/hgrenadeex			DSHGREN5
+
+Tear/Launch				TEARFIRE
+TearBomb/Bounce			TEARBNCE
+Tear/Gas				STE2LOOP
+Tear/Release			STE2FIRE
+
+weapons/iceshot				DSICESHT
+weapons/icehit				DSICEHIT
+
+weapons/iceshot2			FROSTY2
+weapons/icehit2				SHARDS1B
+
+weapons/chill				DSICE01
+
+BlackHole/Blast						VODGBLST
+
+Hotrod/Loop			HRDGLOOP
+Hotrod/FlakBounce HRDGEND
+$volume Hotrod/FlakBounce 0.2

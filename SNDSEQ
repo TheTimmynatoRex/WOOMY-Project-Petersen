@@ -1,0 +1,5 @@
+:Platform
+	playuntildone ELEVSTRT
+	playrepeat ELEVMOVE
+	stopsound ELEVSTOP
+end

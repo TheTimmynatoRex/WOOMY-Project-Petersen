@@ -1,0 +1,355 @@
+Version 3.2 "Aura" (23/10/2023) (POST FINAL UPDATE)
+Fixed some more bugs in the test map.
+Removed Xim's Helper Marines.
+The Dorogreg 100.09 Nuke Launcher now has an alt-fire where it shoots the nuke in a similar fashion to a timed mine, beeping for a few seconds before exploding normally.
+The Dorogreg 100.09 also fires instantly with no warning alarm when nuclear boosted.
+Pocket Nukes have been given new designs.
+Weapon and ammo drops now only drop their Legacy Mode equivalents if dropped from enemies, regardless if Legacy Mode is on or not.
+Pigs and Anomalies have been removed.
+Ami.exe and Yumi.exe now show up in the test map.
+
+Version 3.1 "Syuen-Regan" (21/03/2023) (REAL FINAL UPDATE)
+Fixed some bugs in the test map.
+Removed the persistent powerup flag as it doesn't really work.
+Fixed a bug with the Eclipse Autoshotgun's nuclear-boosted fire mode.
+
+Version 3.0 "MacNeil" (21/12/2022) (FINAL UPDATE)
+Sorted the options menu into sub-menus for ease of reading.
+Removed the old hand grenades.
+Added new grenade items: Shrapnel, Ice, Flame, Gas, and Black Hole Grenades. Obtained from item crates, completionist boxes, or the Reaper Shop.
+Byte gain per kill is now controlled separately from health regeneration.
+Health regeneration is now capped at 300 health.
+It's no longer possible to regenerate armor per kill.
+Ammo is now animated on the HUD.
+Fixed a bug where item crates sometimes spawn opened up when they're not actually opened.
+Inventory item tags now display a brief description of what the item does.
+Updated the credits screen.
+Portable health items no longer appear on the map. They can still be obtained from completionist boxes or bought from the Reaper Shop.
+The "hold use to store item in inventory" system has been removed. Portable versions of powerups can still be obtained from completionist boxes or bought from the Reaper Shop.
+Fixed a bug with the Schwarze Sonne's reload.
+Sentry gun and pig kills are no longer tracked on War Trophies.
+Pain Killers, Adrenal Boosts, Anti-Rad Tablets and Berserk Injectors now have countdown timers on the HUD.
+Removed the neoatomic altfire from the Eclipse Autoshotgun.
+Added three new modes for the Eclipse Autoshotgun; Slug, Dragon's Breath, and Flak.
+Powerups are now persistent, meaning they'll still be activated when you enter another level.
+
+Version 2.9 "Rebecca" (29/11/2022)
+Added Item Crates. They replace items that spawn in secret areas and open up to reveal a random item that once spawned in secret areas out in the open.
+Added destructible props, available as a separate addon called "WOOMY - DestProps.pk3".
+Anomalies and Angry Birds pigs now spawn alongside barrels. Their spawns are also individually togglable.
+Added an extra addon as a separate download: WOOMY: United Forces of Nieue-Inkopolei, an official monster pack that can be used as a standalone wad and is compatible with many gameplay mods.
+Changed the test map to one based on both Brutal Doom and Lithium's test maps.
+Gold UAC Cards and Cyan Demon Keys now give 2500 bytes (instead of 2000).
+Ammo can no longer be bought on the Reaper Shop; it's replaced with a second item category.
+Sell price in the Reaper Shop is now quarter of the original price instead of half.
+Added the Survival Pack.
+Readded the Portable Rejuvenation Unit, albeit this time it spawns alongside Ammospheres and Ultimaspheres instead of replacing them.
+Readded the Supercharged Stimpacks and Medikits, albeit with their chances boosted.
+Weapons now drop used magazines when reloading. 
+
+Version 2.8 "Lucyna" (28/10/2022)
+Added tooltips to the menus.
+Armor is now shown properly on the HUD, animated and with the right colors.
+Armor can no longer be stacked once again.
+Added a Duke Nukem-style intro if you start a new game.
+Added a flashlight. Toggleable with F as the default key.
+Portable health pickups spawn more frequently.
+Added default switch sounds.
+Added CVars: 
+woomy_startupanimation: Toggle whether the new DN-style intro plays on new games or not.
+woomy_hammerspace: Toggle whether picking up backpacks increase your ammo count all the time, as opposed to just the first time, or not.
+Added four new weapons: "Rebecca" Hellfire Vials, "Lucyna" Acid Mist Vials, "Schwarze Sonne" Dark Matter Pulse Cannon and "Eisenfaust" Cyberware. The vials either spawn in secret areas or are obtained from weapon crates, while the Eisenfaust is a starter weapon and the Schwarze Sonne sometimes replaces the Plasma Rifle.
+Moved the Renzetti Tracking Device to Slot 0.
+Removed the custom automap HUD.
+Added a portable sentry gun. Can spawn in secret areas or be obtained from completionist boxes.
+Bundled Xortts' Bullet Time X into the mod.
+Readded the frag grenade, flame belch and ice bomb quickbinds, with some changes.
+Bundled Xim's Helper Marines into the mod.
+The Midway Nightdive Chainsaw has been given a complete overhaul.
+The Silverhand Flamethrower now reloads faster.
+Portable health items are no longer automatically used when close to death.
+Using a portable health item now drops the used item on the ground.
+All bullets (and quick-kicks) now emit sparks when hitting the wall.
+The Eclipse Autoshotgun's reload has been changed.
+Added Hammerspace Mode: when enabled, backpacks will always increase your max ammo amount every time instead of only the first time.
+Added a custom intermission background.
+Bundled Rachael's Smooth Fluids into the mod.
+Added bytes. Bytes are a form of currency that's obtained by killing enemies, completing stats, or picking up rare items that spawn on deathmatch starts.
+You can now throw the axe by pressing Reload.
+Added the Reaper Shop, a store system where you can buy almost all items and weapons using bytes.
+Added the R.E.B.E.C.C.A. AI PDA. (Currently exists only as an inventory item that accesses the Reaper Shop)
+You're no longer given the Renzetti Tracking Device on titlemaps.
+
+Version 2.7 "Blue Moon" (01/10/2022)
+Added the ability to restore health and armor on kill (much like in Ultrakill).
+Completely reworked the Helmet Flashlight; it now works as standard night vision goggles that can be toggled.
+Jetpacks no longer refuel themselves by default.
+Removed the achievement system due to being unwieldy. (It doesn't reset every time you start a new game, much like War Trophies)
+Removed Weapon Sway as it clashes with weapons using A_WeaponOffset.
+Armors can now be stacked, preventing the waste of more powerful armor when picking up a weaker one.
+Fixed a bug where grenades don't play sounds.
+Added CVars: 
+woomy_healthrestore: Set whether health (and armor) can be restored on kills or not. Can go between 0 and 10 health.
+woomy_jetpackrefuel: Toggle whether jetpacks should refuel when on ground or not.
+woomy_radtablet: Toggle if Anti-Radiation Tablets spawn alongside Skeld Crewmate Suits or not.
+woomy_adrenalboost: Toggle if Adrenal Boosts spawn alongside Ammospheres and Ultimaspheres or not.
+Added elemental gems; they rarely spawn in secret areas, and can also be given from completionist boxes.
+Added a new item: UAC Atomic-Core Cluster Unit. Spawns similarly to the elemental gems above.
+Removed the Supercharged Stimpack and Medikit due to being rather useless.
+Added a 'Removed.txt' file to show things that were removed in updates.
+Secret items spawn more rarely.
+Grenades have a lesser chance of singular grenades spawning alongside the grenade box.
+Secret items now have a super-rare chance of spawning another secret item alongside it.
+A different sound now plays when trying to activate a disabled function while nuclear-boosted.
+Fixed a bug where the Workzone Axe disappears when used while nuclear-boosted.
+Added portable health items. They sometimes replace normal health items, and could also be obtained from completionist boxes.
+Added a new weapon: Squid Sisters "Deep Cut" Spray Paint. Replaces the chainsaw.
+Grenades now send shrapnel everywhere upon exploding.
+The ammo screen on the Hinikawa Plasma Rifle has been changed; it's now bright green, and also shows up when cooling or reloading the weapon.
+Increased the Twin Zen-II's clip size amount to 60.
+Added Pain Killers, Adrenal Boosts, Anti-Radiation Tablets, and Berserk Injectors.
+Berserk Injectors now also have a chance to spawn alongside Adrenaline (much like the Nuclear Capacitor).
+Removed the option to have Nuclear Capacitors replace Adrenaline.
+Anti-Radiation Tablets have a chance to spawn alongside Skeld Crewmate Suits.
+Adrenal Boosts have a chance to spawn alongside Ammospheres and Ultimaspheres.
+Ammo is now graphically shown in the HUDs.
+Updated the lore file as it's rather outdated.
+Added Ami.exe and Yumi.exe as secret bosses. (They currently don't spawn)
+Added anomalies; dangerous obstacles that sometimes spawn randomly on the map. (They also currently don't spawn)
+Updated the credits screen.
+
+Version 2.6 "Red Menace" (08/09/2022)
+Added the Minderiasphere, which regenerates your health by five every second up to 100 health. Active for 100 seconds, and only spawns in secret areas.
+Weapons now have unique pickup sounds.
+Changed the level start sound.
+Added powerup timers to both HUDs.
+Fixed a bug where Super Adrenaline isn't properly given from a Completionist Box.
+Added a jetpack, available alongside backpacks (and can be obtained from completionist boxes).
+Reworked the spawn system for backpacks, weapon crates and jetpacks.
+Added a new automap HUD.
+Set the height of the HUD to 0, making the status bar look slightly odd.
+Added CVars: 
+woomy_jetpack: Toggles whether jetpacks spawn or not.
+The messages you get when opening a completionist box are now colored.
+Added an ENDOOM screen.
+Optimized the Silverhand Flamethrower's reload code.
+
+Version 2.5 "Purple Force" (20/08/2022)
+Fixed a visual bug involving the completionist box's and grenade's inventory sprites.
+Renamed the door and platform sounds to avoid clashes with mapsets that replace the same sounds.
+Added a kill, item and secret counter to the fullscreen HUD.
+The Warp Ort mechanic has been converted to DECORATE.
+Weapon Sway is now disabled by default.
+Added missing sprites related to the Warp Ort mechanic.
+Added a new title screen.
+Removed the frag grenade, flame belch and ice bomb as they get more and more useless each update as the main weapons are buffed.
+The Eclipse Autoshotgun now ejects shells when fired.
+
+Version 2.4 "Meenah" (11/08/2022)
+Added the Nuclear Capacitor, which temporarily upgrades almost all of the weapons.
+Added upgraded variants of all weapons (except the Renzetti Tracking Device and Dorogreg 100.09 Nuke Launcher).
+Removed the inventory system for health bonuses, armor shards and armor vests.
+Added the inventory bar to both HUDs.
+Super Adrenaline now has a slightly higher chance of appearing.
+Added a system where unique items can spawn inside secret areas.
+Added CVars:
+woomy_nuclearcapacitor: Switches between no spawn at all, if Nuclear Capacitors spawn in place of Adrenaline, or if Nuclear Capacitors spawn alongside Adrenaline (they have an approximate 39% chance of spawning).
+woomy_secretitems: Toggle if unique items spawn inside secret areas or not.
+woomy_completionistbox: Toggle if you obtain completionist boxes upon hundred percent-ing a statistic or not.
+Added some Terminator quotes if you enter a new level from a previous one.
+Added Quad Damage; they are self-explanatory, and can only be found in secret areas.
+Buffed the damage of the Pazuzu Unmaker's railgun altfire, making it more useful.
+Midway Nightdive Chainsaws and Minato Katanas now have a chance to spawn from Weapon Crates.
+Swapped the B and C sprites for the Inkopolis Pistol's alt-fire, therefore finally fixing the double-hand visual bug once and for all.
+Added completionist boxes, which are obtained once you get 100% kills, items or secrets.
+Added grenades; they are held in the inventory, and also only spawn in secret areas.
+Fixed a bug regarding the Cobra Crossbow's reload.
+Removed all instances of AttackSound to prevent them playing when you use the quick-kick.
+Updated the credits screen.
+Added an extra addon as a separate download: Cyberpunk 2077 Music, which is a jukebox wad that plays music from Cyberpunk 2077.
+
+Version 2.3 "Vexus" (02/08/2022)
+Added casings to all weapons.
+Added an inventory system where if you hold the use key while walking over a pickup, you can now store it in your inventory for later use. Limit is 100 for health bonuses and armor shards, and 10 for armor vests and powerups.
+Prefixed the "lith_player_damagebobmul" CVar to avoid crashes when playing with Lithium.
+Removed the Marine Supply Kit. Its unique ability (health and armor that is stored in the inventory) is now used by all pickups.
+Added some compatibility with Beyond Reality and Ashes Afterglow Sterilized Edition.
+Super Health Bonuses and Super Armor Shards now restore 10 of their respective counters. The latter also now gives Amogusite Armor protection.
+Powerups now work additively; picking up a new powerup while under the effects of the same one merely adds to the timer rather than resetting the time.
+You can now only respawn on the easiest difficulty, for the people who want to restart from their latest save instead when they die.
+Menus have been renovated and now transition smoothly.
+Added an option to access the test map from the episode menu.
+
+Version 2.2 "Carbunkle" (21/07/2022)
+Removed the Schwarze Sonne Plasma Rifle. It made the Hinikawa Rifle obsolete, and it's rather buggy as well.
+The Hinikawa Rifle's plasma projectile has been given the same damage output as the former Schwarze Sonne Rifle's plasma projectile.
+Buffed the damage of the Hinikawa Rifle's railgun altfire, making it more useful.
+Doubled the damage of both fire modes of the Amogusrath REGAN-1488.
+Reworked the footstep code.
+Added CVars: 
+woomy_legacymode: Switches between current and 'legacy' modes; legacy mode only allows weapons and ammo from version 1.0 to spawn in.
+woomy_allammoatonce: Switches between whether ammo should be randomized before spawning or allow all options to spawn at once.
+woomy_allweaponsatonce: Same as above, only for weapons instead.
+woomy_puffysphere: Disable Onukispheres and Yoshimuraspheres, to those who think they are too powerful.
+woomy_weaponcrate: Enable or disable weapon crates spawning, or have weapon crates spawn all the time.
+Jenny Wakeman has been added into the test map; she can be talked to, where she simply explains the layout of the map and what it's originally for.
+Redesigned the Charged Stimpacks and Medikits.
+Added Supercharged Stimpacks and Medikits, which restore up to 500 HP.
+Added Super Health Bonuses and Super Armor Shards, which work like the Supercharged equivalents of Stimpacks and Medikits.
+Added brightmaps to the Hinikawa Plasma Rifle.
+Changed the message and sounds for when you find a secret.
+Changed the sounds for the 100% completion messages.
+Adrenaline and Super Adrenaline now add to the item total.
+Merged the option menus into one, adding missing ones along the way.
+Removed the rocket-overwriting sprites that were there by mistake.
+Fixed a bug where you get the Scanner in the inventory if you pick up another MobaXterm powerup while under the influence of one.
+Changed the weapon crate sprites.
+Fixed a bug where weapon crates erroneously bleed when opened.
+Fixed a bug where sv_strafetiltreversed is erroneously not defined on CVARINFO.
+Added some compatibility with Lithium.
+Increased the player's air capacity to 60 seconds.
+Added an achievement system.
+Added Lithium's damage bobbing system.
+
+Version 2.1 "Wakeman" (10/07/2022)
+Added two new weapons: 'Renzetti' Tracking Device and 'Cobra' Crossbow.
+Added a new ammo type: Crossbow Bolts.
+Added voice taunts.
+Reworked the double jump code.
+Added frag grenade, ice bomb, flame belch and dash quick-binds.
+Added the ability to grab ledges.
+Removed some unused ACS files.
+Updated the credits screen.
+Completely revamped the test map; it now has custom skies and music, and all missing actors and textures have been removed.
+A new Back to Saturn X-style HUD has been added, completely replacing the old vanilla Doom HUD lookalike.
+The intermission screen now makes a unique sound if you get 100% of something.
+Added weapon crates, which spawn alongside backpacks half the time.
+Removed the alternate classes.
+Pistols no longer spawn in place of the Chainsaw.
+Added a minimap.
+Reworked the 100% completion messages.
+Removed LevelInfo.
+In order to fix a bug where you can't get 100% items, backpacks (and their variants) no longer add to the item total.
+Converted all A_CustomMissile functions to A_SpawnProjectile; same with A_FireCustomMissile to A_FireProjectile.
+Bundled Nash's Weapon Sway into the mod.
+Fixed most errors that GZDoom outputs that has been there since version 1.0.
+Added radio sound replacements.
+Added a unique intro when you first enter a map.
+Added a low health warning message.
+Added death and respawn messages.
+Added a proper tag for the Pocket Nuke ammo pickups.
+Bundled Josh771's Immerse into the mod.
+Made the Skeld Crewmate Suit active haze more visible.
+
+Version 2.0 "Chronuki" (30/06/2022)
+Added a startup screen.
+Added three classes that only differ in their starting pistol: Inkopolis, Splattershot and XJ-77 Blue Moon respectively. All weapons can still be found randomly replacing the Pistol (and rarely the Chainsaw as well).
+Made all weapons inherit from 'WoomyWeapon'; which causes all weapons to currently share the same bobbing animations and quick-kick code.
+Reworked the reload animation for the Nussbeisser Rocket Launcher and Amogusrath REGAN-1488.
+Converted all non-PNG image lumps to PNG to prevent palette issues with wads that have their own custom PLAYPAL.
+Added missing GLDefs to the remaining weapons.
+Added unique text-screen music.
+Added weapon raise sounds.
+Changed a few ammo pickup sounds.
+Fixed a sound error involving a switch.
+Added extra quit messages.
+The DB-6 Listera Hexa-Shotgun no longer auto-reloads after primary fire.
+Added missing decals (for real this time).
+Finally fixed the helmet flashlight.
+Added a custom cursor.
+Completely revamped the Workzone Fire Axe.
+All addons are now bundled under a separate download called 'WOOMY Addons'.
+
+Version 1.9 "Minderia" (28/05/2022)
+Reworked the key code, therefore fixing the keys not showing up on the automap. Good god was it a pain to have both keys show up on the automap and have them work with custom key sectors.
+Added attacks for the Ami, Yumi, and Julie companions. (Ami has the Zen-II, Yumi has the ChaosZero, and Julie has the Hinikawa Plasma Rifle)
+Finally updated the credits screen.
+Added tips to the title screen.
+Added a custom intermission screen.
+Reworked the spawner for the companion mod.
+Added a new weapon: XJ-77 'Blue Moon' Plasma Pistol.
+Changed the tags for a few weapons.
+Added more songs to the FASHVEEMO music mod.
+The scanner now works indefinitely as opposed to ending after 2 minutes.
+
+Version 1.8 "Itwgoat" (08/05/2022)
+Fixed a bug with the Harmony Minigun's reload.
+Split the Decorate file into separate files related to which version they're added to.
+Finally fixed the reload animation for the Alice Assault Rifle.
+Bundled Tekish's LevelInfo into the mod.
+Added Tilt++'s missing menus.
+Finally fixed the inventory position on the status bar. Now it shows up on the bottom left.
+Added more songs to the FASHVEEMO music mod.
+
+Version 1.7 "Tsugan" (28/04/2022)
+Fixed a bug with the Dorogreg Nuke Launcher where it would infinitely reload even if there's no reserve ammo.
+Added a new weapon: 'Splattershot' Handgun. Currently a random chainsaw spawn. (Also replaces the Pistol alongside the default Inkopolis Pistol)
+The Trinity Revolver has been moved to the shotgun spawn.
+Finally fixed the raise animation for the Twin Zen-IIs.
+Made the keys properly work with custom key sectors used by wads like ZPack and Toward The Hell.
+Added unique pickup sounds for the Pocket Nukes.
+Fixed a bug where the Twin Pocket Nukes pickup doesn't give you ammo.
+Added Ami Onuki, Yumi Yoshimura and Julie Hinikawa as companions! Currently they don't do much besides follow you around and say some quotes of theirs, but I'll try to implement some attacks into them in the future. They're available as a standalone file, named "HHPAY-Companions.pk3"
+Added a palette wad bundled in, that replaces the colors with shades of purple. Also available as a standalone file, named "CyberPalette.wad"
+
+Version 1.6 "Harmony" (18/04/2022)
+Reworked the quick-kick code.
+Fixed the Ultra Backpack ammo pickup; it now gives the proper ammo amounts.
+Picking up an Ultra Backpack now gives you a white haze to show when the infinite ammo portion is active.
+Added four new weapons: 'Minato' Amogusite Katana, 'Harmony' Minigun, 'Schwarze Sonne' Plasma Rifle, and 'Dorogreg 100.09' Nuke Launcher.
+Added a new ammo type: Pocket Nukes.
+Added unique intermission music.
+
+Version 1.5 "Harada" (07/04/2022)
+Added splashes.
+Reworked the footstep code.
+Removed most damage resistances on the barrels.
+Added the Yoshimurasphere, which is essentially a weaker Onukisphere without the armor.
+Removed the Portable Rejuvenation Unit; I thought it was useless and rather hastily-implemented. I might add a reworked version back in though.
+
+Version 1.4 "Nieue-Inkopolei" (29/03/2022)
+Added footsteps.
+Added 100% completion messages.
+Added a geiger counter.
+Bundled Nash's Tilt++ into the mod.
+Added charged stimpacks and medikits.
+Fixed a bug with the Bicentennial Shotgun where it switches away if trying to zoom in if there's no reserve ammo.
+Doubled the drop ammo factor for Noble Hunter difficulty.
+Rebundled the FASHVEEMO music mod and the old WOOMY mod because somebody complained about it.
+
+Version 1.3 "Archangela" (21/03/2022)
+Added a quick-kick option to all weapons, available by pressing Zoom.
+Added the ability to double jump.
+Added an extra difficulty, 'Noble Hunter'.
+Added a 'generic' weapon pickup sound.
+FASHVEEMO and the old WOOMY mod are no longer bundled with the new WOOMY mod, and are instead available as separate downloads.
+Doubled the damage output of both the DB-6 Listera and the Eclipse.
+Increased pellet output of the Eclipse Autoshotgun.
+Added an alt-fire to the Eclipse Autoshotgun that makes it fire explosive neoatomic shells.
+Fixed a bug with the Eclipse Autoshotgun that makes it fire slower if there's no reserve ammo.
+
+Version 1.2 "Pepezilla" (11/03/2022)
+Added new barrel replacements.
+Added new key replacements.
+Added key required messages.
+Changed the Onukisphere's sprites.
+Added a 'Recommended' text file.
+Changed the weapon spawn rates a bit.
+Edited some weapon obituaries.
+Added 'generic' item pickup sounds.
+
+Version 1.1 "Pegasus" (01/03/2022)
+Added three new weapons: Trinity Revolver, Silverhand Flamethrower and Pazuzu Unmaker.
+Added three new ammo types: .700 Butcher Rounds, Petrol Canisters and Human Souls.
+Increased the ammo capacity for the EcoCell Batteries.
+Edited the Credits and Endgame screens.
+Added a key fail sound.
+Halved the ammo you get from picking up a weapon.
+Dropped ammo now gives half its amount properly.
+Tweaked some weapon pickup messages.
+Added unique ammo pickup sounds.
+Added missing decals.
+Added Brutal Doom's test map.
+
+Version 1.0 "Timmynator Rex" (20/02/2022)
+Initial release.

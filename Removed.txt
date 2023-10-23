@@ -1,0 +1,73 @@
+Here is a list of all things that were once in WOOMY: Project Petersen, but have been removed for one way or another.
+
+Portable Rejuvenation Unit
+Version Added: 1.0 "Timmynator Rex"
+Version Removed: 1.5 "Harada"
+Usage: Portable regeneration item that is stored in the inventory like the Medical Backpack from Duke Nukem 3D and can be toggled on and off.
+Reason for Removal: Useless and hastily-implemented; its refill item doesn't spawn at all due to buggy code, and the regen script itself doesn't track how many Adrenaline items you picked up. The Minderiasphere, added in version 2.6 "Red Menace", is the closest current item to the Portable Rejuvenation Unit, as it regenerates health and can be stored in the inventory. Has since been readded in 2.9 "Rebecca".
+
+Alternate Classes
+Version Added: 2.0 "Chronuki"
+Version Removed: 2.1 "Wakeman"
+Usage: Two more classes that start with the Splattershot Handgun and XJ-77 Blue Moon Plasma Pistol instead of the Inkopolis Pistol.
+Reason for Removal: One class is enough for this mod. Plus, the starting weapons can be obtained from weapon crates and can also replace the vanilla Pistol.
+
+LevelInfo
+Version Added: 1.8 "Itwgoat"
+Version Removed: 2.1 "Wakeman"
+Usage: Mini-mod by Tekish that shows time, total time, kills, items and secrets.
+Reason for Removal: Completely useless after Marisa the Magician's minimap was added, since it shows all those statistics as well.
+
+Schwarze Sonne Plasma Rifle
+Version Added: 1.6 "Harmony"
+Version Removed: 2.2 "Carbunkle"
+Usage: Alternate Plasma Rifle replacement weapon that fires similarly to the Hinikawa Plasma Rifle and comes with an ADS function on alt-fire.
+Reason for Removal: Pretty much made the Hinikawa Rifle obsolete as once obtained, you'll never use the other again. It's also rather buggy as well, as sometimes when you try to aim down sights, you'll end up going back to normal state. The Hinikawa Rifle was later given the power of this weapon to compensate for its removal. Has since been readded in 2.8 "Lucyna" under a complete overhaul.
+
+Marine Supply Kit
+Version Added: 1.0 "Timmynator Rex"
+Version Removed: 2.3 "Vexus"
+Usage: A backpack, portable health kit and portable armor all in one convenient package.
+Reason for Removal: Removed due to the new inventory system where you can store powerups in your inventory by holding the use key as you walk over it. Despite said system being removed from health and armor pickups in version 2.4 "Meenah", the Marine Supply Kit still hasn't been readded. Actual portable health pickups were later added in version 2.7 "Blue Moon". Has since been readded in 2.9 "Rebecca" (with some changes) as the Survival Pack.
+
+Frag Grenade, Flame Belch and Ice Bomb quick-binds
+Version Added: 2.1 "Wakeman"
+Version Removed: 2.5 "Purple Force"
+Usage: Shoulder-mounted launchers that deal damage to enemies and can be fired regardless of what weapon you're holding.
+Reason for Removal: Became more and more useless as the 'main' weapons get buffed more and more. Also rather buggy code-wise. Has since been readded in 2.8 "Lucyna" with some changes to the code.
+
+Achievement System
+Version Added: 2.2 "Carbunkle"
+Version Removed: 2.7 "Blue Moon"
+Usage: An achievement system that tracks how many kills of a specific enemy you've done.
+Reason for Removal: Unwieldy; the achievements don't reset when you start a new game, much like War Trophies and Codename: Demolitionist. There also would've been more achievements planned, but those have been scrapped.
+
+Weapon Sway
+Version Added: 2.1 "Wakeman"
+Version Removed: 2.7 "Blue Moon"
+Usage: Mini-mod by Nash that turns the currently-held weapon to the left and right depending on where you are turning.
+Reason for Removal: Clashes with weapons that use A_WeaponOffset, which includes more than a few weapons on here. Was disabled by default in version 2.5 "Purple Force" before being removed altogether.
+
+Supercharged Stimpacks and Medikits
+Version Added: 2.2 "Carbunkle"
+Version Removed: 2.7 "Blue Moon"
+Usage: Red stimpacks and medikits that heal up to 500 HP and are super-rare to find.
+Reason for Removal: Rather useless compared to its weaker, charged counterpart; its unique bonus is hardly worth it. Considering how rare it is to even find one (1/100 chance), not much is lost. Has since been readded in 2.9 "Rebecca".
+
+Custom Automap HUD
+Version Added: 2.6 "Red Menace"
+Version Removed: 2.8 "Lucyna"
+Usage: A custom automap HUD in the style of a PDA.
+Reason for Removal: Janky and unwieldy; the fact that the height on SBARINFO has to be set to 0 to work properly is enough for removal. Also the font looks bad when in the automap.
+
+Helper Marines
+Version Added: 2.8 "Lucyna"
+Version Removed: 3.2 "Aura"
+Usage: Marine companions that attack enemies for you, with some interesting dialogue spoken from them.
+Reason for Removal: Bloated up space, and is also just useless.
+
+Pigs and Anomalies
+Version Added: 2.7 "Blue Moon", 2.9 "Rebecca"
+Version Removed: 3.2 "Aura"
+Usage: Extra dangerous obstacles that spawn alongside barrels.
+Reason for Removal: Bloated up space, besides, they rarely make a difference if they spawn or not. Also, they sometimes spawn in inaccessible areas.

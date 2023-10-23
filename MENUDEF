@@ -1,0 +1,497 @@
+DefaultListMenu
+{
+    Font "BigFont", "White"
+    Selector "M_SKULL1", -24, -6
+    Linespacing 18
+    Font "BigFont", "White"
+}
+
+ListMenu "MainMenu"
+{
+	Position 0, 0
+	StaticPatch -112, 0, "MENUBACK"
+	
+	Position 9, 88
+	StaticPatch -65, -45, "M_WOOMY"
+	AnimatedTransition
+	Font "BigFont", "Cyan", "White"
+    TextItem "Begin", "b", "PlayerClassMenu"
+	TextItem "Save", "s", "SaveGameMenu"
+    TextItem "Load", "l", "LoadGameMenu"
+    TextItem "Settings", "s", "OptionsMenu"
+	TextItem "Help", "h", "ReadThisMenu"
+    TextItem "Exit", "e", "QuitMenu"
+	
+}
+
+listMenu "PlayerclassMenu" {
+	staticTextCentered  160, 30, "Choose Class"
+	position            48, 53
+	AnimatedTransition
+}
+
+listMenu "EpisodeMenu" {
+	Font "BigFont", "Red", "White"
+	staticTextCentered  160, 30, "Choose Episode"
+	position            48, 53
+	AnimatedTransition
+}
+
+listMenu "SkillMenu" {
+	Font "BigFont", "White", "White"
+	staticTextCentered  160, 30, "Choose Skill Level"
+	position            48, 53
+	AnimatedTransition
+}
+
+OptionMenu woomy_tp_MenuInjector
+{
+  woomy_tp_MenuInjector
+}
+
+
+AddOptionMenu "OptionsMenu"
+{
+	StaticText ""
+	StaticText "WOOMY Options", 1
+	Submenu "Secret Finder","WoomySecretFinder"
+	Submenu "Tilt++","WoomyTiltPlusPlus"
+	Submenu "Immerse","WoomyImmerse"
+	Submenu "Geiger Counter","WoomyGeigerCounter"
+	Submenu "Flashlight","WoomyFlashlight"
+	Submenu "Minimap","WoomyMinimap"
+	Submenu "Bullet Time","WoomyBulletTime"
+	Submenu "Helper Marines","WoomyHelperMarines"
+	Submenu "Other Stuff","WoomyOtherOptions"
+}
+
+OptionMenu "WoomySecretFinder"
+{
+	Class "TF_TooltipOptionMenu"
+	Title "WOOMY: Secret Finder"
+    Option "$JPFINDER_FIND_BONUSES", "finder_find_bonuses", "OnOff"
+	Tooltip "Should the Secret Finder find health and armor bonuses?"
+    Option "$JPFINDER_FIND_POWERUPS", "finder_find_powerups", "OnOff"
+	Tooltip "Should the Secret Finder find powerups?"
+    Option "$JPFINDER_FIND_SECRETS", "finder_find_secrets", "OnOff"
+	Tooltip "Should the Secret Finder find secrets?"
+    Option "$JPFINDER_FIND_MONSTERS", "finder_find_monsters", "OnOff"
+	Tooltip "Should the Secret Finder find monsters?"
+    Option "$JPFINDER_FIND_KEYS", "finder_find_keys", "OnOff"
+	Tooltip "Should the Secret Finder find keys?"
+    Option "$JPFINDER_FIND_SWITCHES", "finder_find_switches", "OnOff"
+	Tooltip "Should the Secret Finder find switches?"
+    Option "$JPFINDER_FIND_EXITS", "finder_find_exits", "OnOff"
+	Tooltip "Should the Secret Finder find exits?"
+    Option "$JPFINDER_IGNORE_BONUSES", "finder_ignore_bonuses", "OnOff"
+	Tooltip "Should the item percentage ignore health and armor bonuses?"
+    Slider "$JPFINDER_RANGE", "finder_range", 250, 10000, 250, 0
+	Tooltip "How far the Secret Finder's range is, in map units."
+    Option "$JPFINDER_SHOW_DISTANCE", "finder_show_distance", "OnOff"
+	Tooltip "Show distance to the nearest detectable item?"
+}
+
+OptionMenu "WoomyTiltPlusPlus" 
+{
+	Class "TF_TooltipOptionMenu"
+	Title "WOOMY: Tilt++"
+
+	StaticText ""
+	StaticText "$TILTPLUSPLUSMNU_STRAFETILT_TITLE", 1
+	TiltPlusPlusOption "$TILTPLUSPLUSMNU_ENABLED",					"$TILTPLUSPLUSMNU_HELPTEXT_STRAFETILT",				"sv_strafetilt", "YesNo"
+	Tooltip "Toggle Strafe Tilt."
+	TiltPlusPlusOption "$TILTPLUSPLUSMNU_STRAFETILT_REVERSED",		"$TILTPLUSPLUSMNU_HELPTEXT_STRAFETILT_REVERSED",	"sv_strafetiltreversed", "YesNo"
+	Tooltip "Reverse the strafe tilt direction."
+	TiltPlusPlusSlider "$TILTPLUSPLUSMNU_SPEED",					"$TILTPLUSPLUSMNU_HELPTEXT_STRAFETILT_SPEED",		"sv_strafetiltspeed", 0.1, 2.0, 0.01, 2
+	Tooltip "How fast the strafe tilt speed is."
+	TiltPlusPlusSlider "$TILTPLUSPLUSMNU_ANGLE",					"$TILTPLUSPLUSMNU_HELPTEXT_STRAFETILT_ANGLE",		"sv_strafetiltangle", 0.1, 1.0, 0.01, 2
+	Tooltip "How extreme the strafe tilt angle is."
+
+	StaticText ""
+	StaticText "$TILTPLUSPLUSMNU_MOVETILT_TITLE", 1
+	TiltPlusPlusOption "$TILTPLUSPLUSMNU_ENABLED",					"$TILTPLUSPLUSMNU_HELPTEXT_MOVETILT",				"sv_movetilt", "YesNo"
+	Tooltip "Toggle Move Tilt."
+	TiltPlusPlusSlider "$TILTPLUSPLUSMNU_SPEED",					"$TILTPLUSPLUSMNU_HELPTEXT_MOVETILT_SPEED",			"sv_movetiltspeed", 0.1, 20.0, 0.1, 2
+	Tooltip "How fast the move tilt speed is."
+	TiltPlusPlusSlider "$TILTPLUSPLUSMNU_ANGLE",					"$TILTPLUSPLUSMNU_HELPTEXT_MOVETILT_ANGLE",			"sv_movetiltangle", 0.01, 0.10, 0.01, 2
+	Tooltip "How extreme the move tilt angle is."
+	TiltPlusPlusSlider "$TILTPLUSPLUSMNU_SCALAR",					"$TILTPLUSPLUSMNU_HELPTEXT_MOVETILT_SCALAR",		"sv_movetiltscalar", 0.0, 1.0, 0.1
+	Tooltip "How intense the move tilt is."
+
+	StaticText ""
+	StaticText "$TILTPLUSPLUSMNU_UNDERWATERTILT_TITLE", 1
+	TiltPlusPlusOption "$TILTPLUSPLUSMNU_ENABLED",					"$TILTPLUSPLUSMNU_HELPTEXT_UNDERWATERTILT",			"sv_underwatertilt", "YesNo"
+	Tooltip "Toggle Underwater Tilt."
+	TiltPlusPlusSlider "$TILTPLUSPLUSMNU_SPEED",					"$TILTPLUSPLUSMNU_HELPTEXT_UNDERWATERTILT_SPEED",	"sv_underwatertiltspeed", 0.1, 20.0, 0.1, 2
+	Tooltip "How fast the underwater tilt speed is."
+	TiltPlusPlusSlider "$TILTPLUSPLUSMNU_ANGLE",					"$TILTPLUSPLUSMNU_HELPTEXT_UNDERWATERTILT_ANGLE",	"sv_underwatertiltangle", 0.01, 0.5, 0.01, 2
+	Tooltip "How extreme the underwater tilt angle is."
+	TiltPlusPlusSlider "$TILTPLUSPLUSMNU_SCALAR",					"$TILTPLUSPLUSMNU_HELPTEXT_UNDERWATERTILT_SCALAR",	"sv_underwatertiltscalar", 0.0, 1.0, 0.1
+	Tooltip "How intense the underwater tilt is."
+
+	StaticText ""
+	StaticText "$TILTPLUSPLUSMNU_DEATHTILT_TITLE", 1
+	TiltPlusPlusOption "$TILTPLUSPLUSMNU_ENABLED",					"$TILTPLUSPLUSMNU_HELPTEXT_DEATHTILT",				"sv_deathtilt", "YesNo"
+	Tooltip "Toggle Death Tilt."
+}
+
+OptionMenu "WoomyImmerse"
+{
+	Class "TF_TooltipOptionMenu"
+	Title "WOOMY: Immerse"
+	
+	StaticText ""
+	StaticText "Leaning", 1
+	Slider "Lean Angle", "sv_leanangle", 11.25, 90.0, 11.25
+	Tooltip "Change the leaning angle."
+	
+	StaticText ""
+	StaticText "Real Aim", 1
+	Option "Sync Move Tilt to Real Aim", "sv_syncmovetilt", "YesNo"
+	Option "Springy Mouselook", "sv_realaimspring", "YesNo"
+	Option "Sway Camera", "sv_realaimtoggle", "YesNo"
+	Slider "Sway Multiplier", "sv_realaimsway", 0.5, 2.0, 0.25
+	Slider "Sway Rate", "sv_realaimrate", 0.5, 1.5, 0.125
+	Tooltip "Self-explanatory."
+}
+
+OptionMenu "WoomyGeigerCounter"
+{
+	Class "TF_TooltipOptionMenu"
+	Title "WOOMY: Geiger Counter"
+	
+	StaticText ""
+	StaticText "Geiger Counter", 1
+	Option "Activate on level start","Geiger_Start","GeigerStartType"
+	Tooltip "Should the Geiger Counter be activated?"
+	Slider "Range","Geiger_Range",128,512,32,0
+	Tooltip "How far the Geiger Counter's range is."
+	Slider "Volume","Geiger_Volume",0.1,1.0,0.1,1
+	Tooltip "How loud the Geiger Counter's sound is."
+	Option "With radsuit: ","Geiger_Radsuit","GeigerRadsuitType"
+	Tooltip "Should the Geiger Counter be activated with a radsuit powerup enabled?"
+}
+
+OptionMenu "WoomyFlashlight"
+{
+	Class "TF_TooltipOptionMenu"
+	Title "WOOMY: Flashlight"
+
+	StaticText " "
+	StaticText "Flashlight", 1
+	Option "Flashlight mode", "b_flashlightmode", "FlMode" 
+	Tooltip "Toggle flashlight mode."
+	Option "Use LQ Flashlight", "b_flashlightlowq", "YesNo"
+	Tooltip "Use low-quality flashlight to save performance."
+	StaticText " "
+	StaticText "Vertical Preset", 1
+	Command "Preset: Beam", "PVBeam"
+	Command "Preset: DarkDoom", "PVDark"
+	Slider "Vertical Flashlight position", "b_flashlightvpos", -255, 255, 1, 0
+	Tooltip "Vertical position of flashlight."
+	StaticText " "
+	StaticText "Horizontal Preset", 1
+	Command "Preset: Beam", "PHBeam"
+	Command "Preset: DarkDoom", "PHDark"
+	Command "Preset: Right Shoulder", "PHRShouder"
+	Command "Preset: Left Shoulder", "PHLShouder"
+	Slider "Horizontal Flashlight position", "b_flashlighthpos", -255, 255, 1, 0
+	Tooltip "Horizontal position of flashlight."
+}
+
+OptionMenu "WoomyMinimap"
+{
+	Class "TF_TooltipOptionMenu"
+	Title "WOOMY: Minimap"
+	
+	StaticText ""
+	StaticText "Minimap", 1
+	Option "Minimap Theme", "swwm_mmap_theme", "SWWMMMapTheme"
+	Tooltip "Change the minimap's border color."
+	Option "Minimap Label Color", "swwm_mmap_label", "SWWMMMapTheme"
+	Tooltip "Change the minimap's stat label color."
+}
+
+OptionMenu "WoomyBulletTime"
+{
+	Class "TF_TooltipOptionMenu"
+	Title "WOOMY: Bullet Time"
+
+    StaticText " "
+    StaticText "Adrenaline System", 1
+    Option "Unlimited Bullet Time", "bt_adrenaline_unlimited", "OnOff"
+	Tooltip "Infinite bullet time."
+    Slider "Bullet Time Duration", "bt_adrenaline_duration", 15, 120, 15
+	Tooltip "How long should bullet time last while enabled."
+    Slider "Adrenaline Regeneration Speed", "bt_adrenaline_regen_speed", 0, 35, 1
+	Tooltip "How fast is adrenaline regenerated."
+    Option "Adrenaline Kill Rewards during Bullet Time", "bt_adrenaline_kill_reward_when_active", "OnOff"
+	Tooltip "Should adrenaline be rewarded by killing while under bullet time?"
+    Slider "Adrenaline Kill Reward Multiplier", "bt_adrenaline_kill_reward_multiplier", 0, 10, 1
+	Tooltip "How much rewarded adrenaline is multiplied by killing."
+    Slider "Adrenaline Player Damage Reward Multiplier", "bt_adrenaline_player_damage_reward_multiplier", 0, 10, 1
+	Tooltip "How much rewarded adrenaline is multiplied by dealing damage."
+
+    StaticText " "
+    StaticText "Time Multipliers", 1
+	StaticText " "
+    StaticText "Default Multipliers", 2
+    Slider "World Multiplier", "bt_multiplier", 2, 20, 1
+	Tooltip "How slow is the world. (Not a fucking JoJo reference)"
+    Slider "Player Movement Multiplier", "bt_player_movement_multiplier", 2, 20, 1
+	Tooltip "How slow the player's movement is."
+    Slider "Player Weapons Multiplier", "bt_player_weapon_speed_multiplier", 2, 20, 1
+	Tooltip "How slow the player's weapons are."
+	StaticText " "
+    StaticText "Mid-Air Multipliers", 2
+    Option "Enable Mid-Air Multipliers", "bt_midair_enable", "OnOff"
+	Tooltip "Should the below multipliers be enabled when in mid-air?"
+    Option "Enable Mid-Air only when jumping", "bt_midair_jump_only", "OnOff"
+	Tooltip "Should the mid-air multipliers be enabled only when jumping?"
+    Slider "Minimum distance to floor", "bt_midair_min_distance", 8, 128, 8
+	Tooltip "Minimum distance for mid-air multipliers to activate."
+    Slider "World Multiplier", "bt_midair_multiplier", 2, 20, 1
+	Tooltip "How slow is the world. (Not a fucking JoJo reference)"
+    Slider "Player Movement Multiplier", "bt_midair_player_movement_multiplier", 2, 20, 1
+	Tooltip "How slow the player's movement is."
+    Slider "Player Weapons Multiplier", "bt_midair_player_weapon_speed_multiplier", 2, 20, 1
+	Tooltip "How slow the player's weapons are."
+	StaticText " "
+    StaticText "Berserk Multipliers", 2
+    Option "Enable Berserk Multipliers", "bt_berserk_effect_enable", "OnOff"
+	Tooltip "Should the below multipliers be enabled while under berserk?"
+    Slider "Berserk Effect Duration", "bt_berserk_effect_duration", 15, 120, 15
+	Tooltip "How long does bullet time last while under berserk."
+    Slider "World Multiplier", "bt_berserk_multiplier", 2, 20, 1
+	Tooltip "How slow is the world. (Not a fucking JoJo reference)"
+    Slider "Player Movement Multiplier", "bt_berserk_player_movement_multiplier", 2, 20, 1
+	Tooltip "How slow the player's movement is."
+    Slider "Player Weapons Multiplier", "bt_berserk_player_weapon_speed_multiplier", 2, 20, 1
+	Tooltip "How slow the player's weapons are."
+	StaticText " "
+    StaticText "Berserk + Mid-Air Multipliers", 2
+    Slider "World Multiplier", "bt_berserk_midair_multiplier", 2, 20, 1
+	Tooltip "How slow is the world. (Not a fucking JoJo reference)"
+    Slider "Player Movement Multiplier", "bt_berserk_midair_player_movement_multiplier", 2, 20, 1
+	Tooltip "How slow the player's movement is."
+    Slider "Player Weapons Multiplier", "bt_berserk_midair_player_weapon_speed_multiplier", 2, 20, 1
+	Tooltip "How slow the player's weapons are."
+
+    StaticText " "
+    StaticText "HUD and Display", 1
+    Slider "Adrenaline Counter Horizontal Offset", "bt_counter_horizontal_offset", 0, 100, 1
+	Tooltip "Horizontal offset of the adrenaline hourglass."
+    Slider "Adrenaline Counter Vertical Offset", "bt_counter_vertical_offset", 0, 100, 1
+	Tooltip "Vertical offset of the adrenaline hourglass."
+    Slider "Adrenaline Counter Scale", "bt_counter_scale", 1, 10, 1
+	Tooltip "Scale of the adrenaline hourglass."
+	
+    StaticText " "
+    StaticText "Extra Bullet Time Options", 1
+    Option "Enable Heartbeat Sound Effect", "bt_heartbeat", "OnOff"
+	Tooltip "Should a heartbeat sound effect play while under bullet time?"
+    Option "Enable Accelerated Heartbeat during Berserk Effect", "bt_berserk_heartbeat", "OnOff"
+	Tooltip "Should a faster heartbeat sound effect play while under berserk and bullet time?"
+
+}
+
+OptionMenu "WoomyHelperMarines"
+{
+	Class "TF_TooltipOptionMenu"
+	Title "WOOMY: Helper Marines"
+
+	StaticText " "	
+	StaticText "Helper Marines", 1
+	Option "Enabled Helper Marines","friends_enabled", "OnOff"
+	Tooltip "Should marine companions spawn alongside you?"
+	Option "Progressive Mode","friends_progmode", "OnOff"
+	Tooltip "Should marine companions be unlocked progressively?"
+	Slider "Tics until Marines talk when Idle", "blnk_idletalk", 350, 2000, 50
+	Tooltip "How long it takes between marines talking when idle, in tics."
+	StaticText " "
+	StaticText "Set which marines are enabled", 1
+	Option "Pistol","friend_pistol", "OnOff"
+	Option "Shotgun","friend_shotgun", "OnOff"
+	Option "Super Shotgun","friend_ssg", "OnOff"
+	Option "Chaingun","friend_chaingun", "OnOff"
+	Option "Rocket Launcher","friend_rocket", "OnOff"
+	Option "Plasma Rifle","friend_plasma", "OnOff"
+	Option "BFG 9000","friend_bfg", "OnOff"
+	Option "Chainsaw","friend_chainsaw", "OnOff"
+	Option "Berserk","friend_berserk", "OnOff"
+	Option "Rifle","friend_rifle", "OnOff"
+	Option "Dual Pistol","friend_dualpistol", "OnOff"
+	Option "Medic","friend_medic", "OnOff"
+	Option "Backpack","friend_backpack", "OnOff"	
+	Option "Helper Dog","friend_dog", "OnOff"	
+	Option "Minigun","Friend_Minigun", "OnOff"
+	Option "Grenade Launcher (Skulltag)","Friend_GrenadeST", "OnOff"
+	Option "Railgun","Friend_Railgun", "OnOff"
+	Option "BFG 10K","Friend_BFG10k", "OnOff"	
+	Option "Combat Knife","Friend_Knife", "OnOff"
+	Option "Sawed-Off","Friend_Sawedoff", "OnOff"
+	Option "Sniper Rifle","Friend_Sniper", "OnOff"	
+	Option "Sub Machinegun","Friend_SMG", "OnOff"
+	Option "Revenant Tracer","Friend_RevRocket", "OnOff"
+	Option "Grenade Launcher (Assault)","Friend_GrenadeL", "OnOff"
+	Option "Flame Thrower","Friend_Flamer", "OnOff"	
+	Option "Unmaker","Friend_Unmaker", "OnOff"
+	Tooltip "Toggle which marine companions are enabled."
+}
+
+OptionMenu "WoomyOtherOptions"
+{
+	Class "TF_TooltipOptionMenu"
+	Title "WOOMY: Other Stuff"
+
+	StaticText ""
+	StaticText "Other Stuff", 1
+	Option "Weapon Crate Spawns", "woomy_weaponcrate","WeaponCrateType"
+	Tooltip "Should weapon crates spawn alongside backpacks?"
+	Option "Legacy Mode", "woomy_legacymode","LegacyModeType"
+	Tooltip "Should only weapons and ammo from version 1.0 of Woomy: Project Petersen spawn on the map?"
+	Option "Ammo Spawns", "woomy_allammoatonce","SpawnType"
+	Tooltip "Should ammo spawn randomized or all at once?"
+	Option "Weapon Spawns", "woomy_allweaponsatonce","SpawnType"
+	Tooltip "Should weapons spawn randomized or all at once?"
+	Option "Puffyspheres", "woomy_puffysphere","LegacyModeType"
+	Tooltip "Should Onukispheres and Yoshimuraspheres spawn?"
+	Option "Adrenaline Extra Spawns", "woomy_nuclearcapacitor","CapacitorType"
+	Tooltip "Should Nuclear Capacitors and Berserk Injectors spawn alongside Adrenaline?"
+	Option "Secret Items", "woomy_secretitems","LegacyModeType"
+	Tooltip "Should unique items spawn in secret areas?"
+	Option "Completionist Boxes", "woomy_completionistbox","LegacyModeType"
+	Tooltip "Should completionist boxes be obtained upon completing a stat?"
+	Option "Jetpacks", "woomy_jetpack","LegacyModeType"
+	Tooltip "Should jetpacks spawn alongside backpacks?"
+	Option "Jetpack Refuels", "woomy_jetpackrefuel","LegacyModeType"
+	Tooltip "Should jetpacks be refueled when on ground?"
+	Slider "Health Regeneration on Kill","woomy_healthRegen",0,10,1,0
+	Tooltip "How much health is regenerated on kill."
+	Slider "Byte Gain on Kill","woomy_byteRegen",0,10,1,0
+	Tooltip "How much bytes are obtained on kill."
+	Option "Anti-Rad Tablet Spawns", "woomy_radtablet","LegacyModeType"
+	Tooltip "Should Anti-Rad Tablets spawn alongside Skeld Crewmate Suits?"
+	Option "Ammo/Ultima Extra Spawns", "woomy_adrenalboost","AmmoUltimaType"
+	Tooltip "Should Adrenal Boosts and Rejuvenation Units spawn alongside Ammospheres and Ultimaspheres?"
+	Option "Startup Animation", "woomy_startupanimation","LegacyModeType"
+	Tooltip "Should a startup animation play if you start a new game?"
+	Option "Hammerspace Mode", "woomy_hammerspace","LegacyModeType"
+	Tooltip "Should backpacks always increase your ammo capacity?"
+	Option "Anomalies", "woomy_anomaly","LegacyModeType"
+	Tooltip "Should anomalies spawn alongside custom decorations?"
+	Option "Pigs", "woomy_abpig","LegacyModeType"
+	Tooltip "Should pigs spawn alongside custom decorations?"
+}
+
+OptionValue "GeigerStartType"
+{
+	0,"Off"
+	1,"On"
+}
+
+OptionValue "GeigerRadsuitType"
+{
+	0,"Don't detect"
+	1,"Detect leaky floors"
+	2,"Detect all floors"
+}
+
+OptionValue "WeaponCrateType"
+{
+	0,"No chance"
+	1,"Half the time"
+	2,"All the time"
+}
+
+OptionValue "SpawnType"
+{
+	0,"Randomized"
+	1,"All at once"
+}
+
+OptionValue "LegacyModeType"
+{
+	0,"Disabled"
+	1,"Enabled"
+}
+
+OptionValue "CapacitorType"
+{
+	0,"Neither"
+	1,"Nuclear Capacitors"
+	2,"Berserk Injectors"
+	3,"Both"
+}
+
+OptionValue "FlMode"
+{
+	0, "Beam"
+	1, "DarkDoom"
+}
+
+OptionValue "FlVPos"
+{
+  18, "Beam"
+  32, "DarkDoom"
+}
+
+OptionValue "FlHPos"
+{
+  0, "Beam"
+  4, "DarkDoom"
+  36, "Shoulder"
+}
+
+OptionValue "SWWMMMapTheme"
+{
+	-1, "Default"
+	0, "Codename: Demolitionist"
+	1, "Red Oni"
+	2, "Red-Eyed Rampage"
+	3, "Red Star of Innocence"
+	4, "Child of Ash"
+	5, "VOID: The Dark Alliance"
+	6, "White"
+	7, "Red"
+	8, "Green"
+	9, "Blue"
+	10, "Yellow"
+	11, "Cyan"
+	12, "Purple"
+	13, "Brass"
+	14, "Silver"
+	15, "Gold"
+	16, "Mana"
+	17, "Crimson"
+	18, "Elder"
+	19, "Kinylum"
+	20, "Nokron"
+	21, "Nokorokinulum"
+	22, "Demo Blue"
+	23, "Demo Pink"
+	24, "Orange"
+	25, "Grass"
+	26, "Mint"
+	27, "Aqua"
+	28, "Magenta"
+	29, "Pink"
+	30, "Crystal"
+	31, "Fire"
+	32, "Sulfur"
+	33, "Witch"
+	34, "Cyanblu"
+	35, "Ice"
+	36, "Purpur"
+	37, "Tomato"
+	38, "Blurp"
+	39, "Purb"
+}
+
+OptionValue "AmmoUltimaType"
+{
+	0,"Neither"
+	1,"Adrenal Boosts"
+	2,"Portable Rejuvenation Units"
+	3,"Both"
+}

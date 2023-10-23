@@ -1,0 +1,139 @@
+gameinfo
+{
+	TitlePage = "Textures/WOOMTITL"
+	TitleMusic = "Music/MEGASFER"
+	IntermissionMusic = "Music/RAXXOSYG"
+	FinaleMusic = "Music/PINBALL"
+	PlayerClasses = "TimPetersen"
+	QuitSound = "SHUTDOWN"
+	statscreen_single = "WOOMYStatusScreen"
+	AddEventHandlers = "DMDHandler", "JPFinderHandler", "JPFinderUIHandler", "MKMHandler", "LeaningHandler", "ImmerseHandler", "WoomyFootstepsInit", "SecretItemSpawner", "BulletTime", "CreditCardSpawnHandler"
+	QuitMessages = "Don't tell me you're gonna play Splatoon.\nThat game is fucking shit.", "Puffy AmiYumi forever.", "Also try Cyberpunk 2077. It's totally bug-free. Honestly. Trust me.", "If you press Y, you're gonna\nget a Regan McNeil screamer.", "If you thought this mod was horrible,\nthen you should check out OverDoom.", "Overwatch 2, DDLC+ and Helltaker do not exist.", "amogus", "Rebecca is best waifu fight me", "I'll be back.", "Press Y to get splatlined by Team Chaos.", "JoJo sucks. And that's a fact.", "Are you sure you want to\nshut down your computer?", "Press Y to get ejected.", "Reject modernity; Embrace tradition.", "Why isn't there a\nSplatoon-themed Doom WAD yet?", "White lives matter. (/s)", "I recommend you to play\nWolfenstein: Blade of Agony.", "Who is your daddy, and what does he do?", "Hasta la vista, baby.", "It's morbin time.", "Jenny Wakeman forever.", "Make sure to try out Pega6us' Doom K\nonce that mod is released.", "'Bye Bye Boo!' ~Ami and Yumi", "Stick your cock up her ass, you motherfucking worthless cocksucker pizza!", "Beyond Memory, faces I see, mean nothing to me, only shadows in my dreams.", "Sorry TDRR, but there will be no Zandronum\nversion of WOOMY: Project Petersen.", "MAASE marking drum sheets.", "Please watch Cyberpunk: Edgerunners.", "What is this? Shitload Of Mashed Potatoes Day?", "This mod is now also available on GitHub.\nCheck it out at github.com/thetimmynatorex/woomy-project-petersen"
+}
+
+clearskills
+
+skill WoomyVeryEasy
+{
+	AutoUseHealth
+	DamageFactor = 0.5
+	EasyBossBrain
+	EasyKey
+	AmmoFactor = 2
+	SpawnFilter = Baby
+	TextColor = Blue
+	PlayerRespawn
+	Name = "Humble Beginner"
+	MustConfirm = "$DIFFVERYEASY"
+}
+
+skill WoomyMildEasy
+{
+	AutoUseHealth
+	DamageFactor = 0.5
+	EasyBossBrain
+	EasyKey
+	AmmoFactor = 2
+	DropAmmoFactor = 2
+	SpawnFilter = Nightmare
+	TextColor = Cyan
+	PlayerRespawn
+	Name = "Noble Hunter"
+	MustConfirm = "$DIFFMILDEASY"
+}
+
+skill WoomyEasy
+{
+	EasyBossBrain
+	SpawnFilter = Easy
+	TextColor = Green
+	Name = "Novice Shooter"
+	MustConfirm = "$DIFFEASY"
+}
+
+skill WoomyMedium
+{
+	DefaultSkill
+	SpawnFilter = Normal
+	TextColor = Yellow
+	Name = "Octo Killer"
+	MustConfirm = "$DIFFMEDIUM"
+}
+
+skill WoomyHard
+{
+	SpawnFilter = Hard
+	TextColor = Orange
+	Name = "Splatoon Hater"
+	MustConfirm = "$DIFFHARD"
+}
+
+skill WoomyVeryHard
+{
+	AmmoFactor = 2
+	FastMonsters
+	Aggressiveness = 1
+	RespawnTime = 14
+	RespawnLimit = 0
+	SpawnFilter = Nightmare
+	TextColor = Red
+	Name = "True Fuhrer"
+	MustConfirm = "$DIFFVERYHARD"
+}
+
+skill WoomyFuckYou
+{
+	DamageFactor = 2
+	AmmoFactor = 0.5
+	Aggressiveness = 1
+	NoInfighting
+	NoPain
+	DisableCheats
+	SpawnMulti
+	FastMonsters
+	RespawnTime = 14
+	RespawnLimit = 0
+	SpawnFilter = Nightmare
+	TextColor = Black
+	Name = "Scary Maze Slayer"
+	MustConfirm = "$DIFFFUCKYOU"
+}
+
+Intermission Inter_Cast
+{
+	Image
+	{
+		// This is only here to initialize the background and the music
+		Background = "Textures/ENDGAME"
+		Time = -1
+		Music = "Music/ENDGAME"
+	}
+	Link = Doom2Cast
+}
+
+map TEST "Wakeman Corp. Robot Testing Site" {
+   levelNum = 1888000
+   music    = "Music/HOMEHOLD"
+   next     = 1
+   sky1     = "TESTBGS4", 0.1
+   sky2     = "TESTSKD2"
+   doubleSky
+}
+
+episode TEST {
+   name = "Wakeman Testing Site"
+   key  = "W"
+}
+
+automap {
+   base                 = "Doom"
+   background           = "#000000"
+   ceilingDiffWallColor = "#007700"
+   floorDiffWallColor   = "#005500"
+   gridColor            = "#AA0000"
+   specialWallColor     = "#FF00FF"
+   wallColor            = "#00FF00"
+   yourColor            = "#00FF00"
+   portalColor          = "#00AA00"
+   showLocks            = true
+}

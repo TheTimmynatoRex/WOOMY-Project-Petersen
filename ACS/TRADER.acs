@@ -1,0 +1,969 @@
+// _________________
+// :: ACS LIBRARY ::
+// _________________
+
+
+
+#library "gadgets.acs"
+#include "zcommon.acs"
+
+// ___ Trader System (Thetis)
+
+/*
+
+   (excerpt from The ZDOOM Wiki, as of October 22, 2019)
+
+You can add color to lines of text by using the \cX escape code.
+Replace X with the following letter to produce the desired color:
+
+----------------------------------------------
+code  color                   code  color
+----  -----                   ----  -----
+a     Reddish Brick           n     Light Blue
+b     Tan                     o     Cream
+c     Gray                    p     Olive
+d     Green                   q     Dark Green
+e     Brown                   r     Dark Red
+f     Gold                    s     Dark Brown
+g     Red                     t     Purple
+h     Blue                    u     Dark Gray
+i     Orange                  v     Cyan
+j     White                   w     Ice
+k     Yellow                  x     Fire
+l     (use original colors)   y     Sapphire
+m     Black                   z     Teal
+
+-     Default color for Print() messages
++     Default color for PrintBold() messages
+*     Default color for chat messages
+!     Default color for team chat messages
+----------------------------------------------
+
+The color will revert back to the default message color at the end of every line,
+therefore a \cX escape must be on every line where color is needed.
+Using \c- also clears color, so that printed messages (obituaries, pickup messages, etc.)
+with player names within them will retain their individual colors.
+
+Example:
+
+   print(s:"\cgRoses are red\n\chViolets are blue\n\cjSilver for me\n\cfGold for you");
+
+You can also use the syntax \c[<colorname>], where <colorname> is a name of a color
+as defined in the TEXTCOLO lump.
+
+ */
+
+#define TRADER_MAX_CATEGORIES 5
+#define TRADER_MAX_ITEMS 100 // maximum absolute cap value
+#define TRADER_FIELDS_PER_ITEM 2
+
+#define TRADER_MAX_CUSTOMERS 32
+#define TRADER_CUSTOMER_TID_OFFSET 1256
+
+#define TRADER_CATEGORY_MEDICALS 0
+#define TRADER_CATEGORY_ARMOR 1
+#define TRADER_CATEGORY_WEAPONS 2
+#define TRADER_CATEGORY_AMMO 3
+#define TRADER_CATEGORY_GADGETS 4
+
+#define TRADER_LIMIT_MEDICALS 6
+#define TRADER_LIMIT_ARMOR 4
+#define TRADER_LIMIT_WEAPONS 20
+#define TRADER_LIMIT_AMMO 20
+#define TRADER_LIMIT_GADGETS 18
+
+
+// constants
+// __________________________________________________
+
+str TraderCategories[TRADER_MAX_CATEGORIES] =
+{
+   "Medicals",
+   "Armor",
+   "Weapons",
+   "Items (Page 1)",
+   "Items (Page 2)",
+};
+
+int TraderCategoryLimits[TRADER_MAX_CATEGORIES] =
+{
+	TRADER_LIMIT_MEDICALS,
+	TRADER_LIMIT_ARMOR,
+	TRADER_LIMIT_WEAPONS,
+	TRADER_LIMIT_AMMO,
+	TRADER_LIMIT_GADGETS,
+};
+
+str TraderCatalogue[TRADER_MAX_CATEGORIES][TRADER_MAX_ITEMS][TRADER_FIELDS_PER_ITEM] =
+{
+   // Medicals
+   {
+      { "UACVolveStimpack", "UACVolve Stimpack" },
+      { "UACVolveMedikit", "UACVolve Medikit" },
+      { "UACVolveChargedStimpack", "Charged UACVolve Stimpack" },
+      { "UACVolveChargedMedikit", "Charged UACVolve Medikit" },
+      { "UACVolveSuperchargedStimpack", "Supercharged UACVolve Stimpack" },
+      { "UACVolveSuperchargedMedikit", "Supercharged UACVolve Medikit" },
+   },
+
+   // Armor
+   {
+      { "AluminiumArmorVest", "Aluminium Armor Vest" },
+      { "TitaniumArmorVest", "Titanium Armor Vest" },
+      { "NetheriteArmorVest", "Netherite Armor Vest" },
+      { "AmogusiteArmorVest", "Amogusite Armor Vest" },
+   },
+
+   // Weapons
+   {
+      { "MNChainsaw", "'Midway Nightdive' Chainsaw" },
+      { "MinatoKatana", "'Minato' Katana" },
+      { "SSTSprayPaint", "'Deep Cut' Spray Paint" },
+	  { "SplattershotHandgun", "'Splattershot' Handgun" },
+	  { "XJ77BlueMoon", "XJ-77 'Blue Moon' Plasma Pistol" },
+	  { "BicentennialShotgun", "M2097 'Bicentennial' Shotgun" },
+	  { "TrinityRevolver", "'Trinity' Revolver" },
+	  { "HexaShotgun", "'DB-6 Listera' Hexa-Shotgun" },
+	  { "EclipseAutoShotgun", "'Eclipse' Autoshotgun" },
+	  { "AliceAK2047", "AK-2047 'Alice' Assault Rifle" },
+	  { "TwinZenII", "'Zen-II' Dual Mini-SMGs" },
+	  { "HarmonyMinigun", "'Harmony' Minigun" },
+	  { "Nussbeisser", "'Nussbeisser' Rocket Launcher" },
+	  { "CobraCrossbow", "'Cobra' Crossbow" },
+	  { "HinikawaRifle", "'Hinikawa' Plasma Rifle" },
+	  { "SilverhandFlamethrower", "'Silverhand' Flamethrower" },
+	  { "SSPulseCannon", "'Schwarze Sonne' Dark Matter Pulse Cannon" },
+	  { "ReganBFG", "'Amogusrath' REGAN-1488" },
+	  { "PazuzuUnmaker", "'Pazuzu' Unmaker" },
+	  { "DorogregNukeLauncher", "'Dorogreg 100.09' Nuke Launcher" },
+   },
+
+   // Ammunition
+   {
+      { "MobaXtermPortable", "MobaXterm" },
+      { "HelmetFlashlight", "Helmet Flashlight" },
+      { "AmmospherePortable", "Ammosphere" },
+      { "UltimaspherePortable", "Ultimasphere" },
+      { "UltraInvulnerabilityPortable", "Invulnerability Sphere" },
+      { "ImmortalitySpherePortable", "Immortality Sphere" },
+      { "SkeldCrewmateSuitPortable", "Skeld Crewmate Suit" },
+      { "LifeSpherePortable", "Life Sphere" },
+      { "TeraspherePortable", "Terasphere" },
+      { "QuadDamagePortable", "Quad Damage" },
+      { "NuclearCapacitorPortable", "Nuclear Capacitor" },
+	  { "MinderiaspherePortable", "Minderiasphere" },
+	  { "Jetpack", "Jetpack" },
+	  { "ACCUInventory", "Atomic-Core Cluster Unit" },
+	  { "SentryBox", "Sentry Gun" },
+	  { "PortableRejuvenationUnit", "Portable Rejuvenation Unit" },
+      { "Adrenaline", "Adrenaline" },
+	  { "SuperAdrenaline", "Super Adrenaline" },
+	  { "YoshimuraspherePortable", "Yoshimurasphere" },
+	  { "OnukispherePortable", "Onukisphere" },
+   },
+
+   // Gadgets
+   {
+      { "Medikitter", "Standard Medical Kit" },
+	  { "MiliMedikitter", "Field Medical Kit" },
+	  { "UACMedikitter", "Grade 3 Field Medical Kit" },
+	  { "Berserker", "Experimental Berserk Kit" },
+	  { "FireGem", "Fire Gem" },
+	  { "EarthGem", "Earth Gem" },
+	  { "WindGem", "Wind Gem" },
+	  { "WaterGem", "Water Gem" },
+	  { "PoisonGem", "Poison Gem" },
+	  { "LightningGem", "Lightning Gem" },
+	  { "IceGem", "Ice Gem" },
+	  { "DarkGem", "Dark Gem" },
+	  { "LightGem", "Light Gem" },
+	  { "ShrapnelGrenade", "Shrapnel Grenade" },
+	  { "IceGrenade", "Ice Grenade" },
+	  { "FlameGrenade", "Flame Grenade" },
+	  { "GasGrenade", "Gas Grenade" },
+	  { "BlackHoleGrenade", "Black Hole Grenade" },
+   },
+};
+
+str TraderItemDetail[TRADER_MAX_CATEGORIES][TRADER_MAX_ITEMS] =
+{
+   // Medicals
+   {
+      "\cgUACVolve Stimpack\cc: Restores 15 HP up to 100.",
+      "\cgUACVolve Medikit\cc: Restores 30 HP up to 100.",
+	  "\cgCharged UACVolve Stimpack\cc: Restores 15 HP up to 300.",
+	  "\cgCharged UACVolve Medikit\cc: Restores 30 HP up to 300.",
+	  "\cgSupercharged UACVolve Stimpack\cc: Restores 15 HP up to 500.",
+	  "\cgSupercharged UACVolve Medikit\cc: Restores 30 HP up to 500.",
+   },
+
+   // Armor
+   {
+      "\cgAluminium Armor Vest\cc: 100 Armor points, 25% damage protection.",
+      "\cgTitanium Armor Vest\cc: 150 Armor points, 50% damage protection.",
+      "\cgNetherite Armor Vest\cc: 200 Armor points, 75% damage protection.",
+      "\cgAmogusite Armor Vest\cc: 250 Armor points, 95% damage protection.",
+   },
+
+   // Weapons
+   {
+	"\cgMidway Nightdive\cc: Noisy chainsaw that does immense damage up close.",
+	"\cgMinato\cc: Stealthy energy katana with a nuclear capacitor-required teleport alt-fire.",
+	"\cgDeep Cut\cc: Spray paint with eight various colours to choose from.",
+	"\cgSplattershot\cc: Compact handgun with an ink-laser attachment.",
+	"\cgXJ-77 Blue Moon\cc: Plasma pistol with infinite recharging ammo and a charged alt-fire.",
+	"\cgM2097 Bicentennial\cc: Powerful pump-action shotgun with aim down sights mode.",
+	"\cgTrinity\cc: Revolver with four various firing modes.",
+	"\cgDB-6 Listera\cc: Six-barrel shotgun with devastating stopping power.",
+	"\cgEclipse\cc: Automatic shotgun with explosive alt-fire and high DPS.",
+	"\cgAK-2047 Alice\cc: Assault rifle that shoots copper bullets with full-auto and burst fire modes.",
+	"\cgTwin Zen-II\cc: Compact sub-machineguns with a fast firing rate and decent damage output.",
+	"\cgHarmony\cc: Powerful minigun with rapid fire and burst fire modes.",
+	"\cgNussbeisser\cc: Armor-piercing explosive launcher that launches both rockets and grenades.",
+	"\cgCobra\cc: Crossbow that fires normal and explosive bolts.",
+	"\cgHinikawa\cc: Plasma rifle with high damage per second and a railgun alt-fire.",
+	"\cgSilverhand\cc: Flamethrower that ignites flames and ejects petrol as a defensive trap.",
+	"\cgSchwarze Sonne\cc: Dark matter pulse rifle that shoots ripping projectiles and has a charged alt-fire.",
+	"\cgAmogusrath\cc: Big freaking gun with two firing modes, antimatter, and ultramatter.",
+	"\cgPazuzu\cc: Infernal weapon that fires three lasers in a spread with a railgun alt-fire.",
+	"\cgDorogreg 100.09\cc: Super-powerful nuclear missile launcher.",
+   },
+
+   // Ammunition
+   {
+      "\cgMobaXterm\cc: Reveals full automap and all things in the current map.",
+	  "\cgHelmet Flashlight\cc: Provides night vision. Can be toggled.",
+	  "\cgAmmosphere\cc: Infinite ammo for 60 seconds.",
+	  "\cgUltimasphere\cc: Double damage, double firing rate, infinite ammo, and health drain for 30 seconds.",
+	  "\cgInvulnerability Sphere\cc: Invulnerability for 60 seconds.",
+	  "\cgImmortality Sphere\cc: HP won't go below 1 for 60 seconds.",
+	  "\cgSkeld Crewmate Suit\cc: Damaging floor immunity, plus resistance to certain projectiles.",
+	  "\cgLife Sphere\cc: Gives 100 HP up to a maximum of 300.",
+	  "\cgTerasphere\cc: Gives 300 HP and an Amogusite Armor Vest.",
+	  "\cgQuad Damage\cc: Quadruples damage output for 60 seconds.",
+	  "\cgNuclear Capacitor\cc: Upgrades almost all weapons for 60 seconds.",
+	  "\cgMinderiasphere\cc: Regenerates health by 5 every second for 100 seconds.",
+	  "\cgJetpack\cc: Allows you to fly and hover for a limited time.",
+	  "\cgAtomic-Core Cluster Unit\cc: Launches five waves of cluster attacks before detonating itself.",
+	  "\cgSentry Gun\cc: Portable sentry gun that attacks enemies for you. Can be picked up again.",
+	  "\cgPortable Rejuvenation Unit\cc: Gradually regenerates your health to 100 if injured.",
+      "\cgAdrenaline\cc: Increases maximum HP by 1.",
+      "\cgSuper Adrenaline\cc: Increases maximum HP by 10.",
+	  "\cgYoshimurasphere\cc: Gives 500 HP.",
+	  "\cgOnukisphere\cc: Gives 500 HP and 500 armor with 100% protection.",
+   },
+
+   // Gadgets
+   {
+      "\cgStandard Medical Kit\cc: Gives you Pain Killers, a Saline Pack, 4 Bandages, and a Standard Stimpak.",
+      "\cgField Medical Kit\cc: Gives you an Adrenal Boost, Pain Killers, a Bloodpack, 4 Bandages, and two Military Stimpaks.",
+	  "\cgGrade 3 Field Medical Kit\cc: Gives you a Medical Gel, Anti-Radiation Tablets, Pain Killers, Saline Pack, 4 Bandages and two Standard Stimpaks.",
+	  "\cgExperimental Berserk Kit\cc: Gives you a Combat Enhancement Stimulant, Pain Killers, a Bloodpack, 4 Bandages, and an Advanced Stimpak.",
+	  "\cgFire Gem\cc: Flames sprout from the ground to damage enemies in a large radius.",
+	  "\cgEarth Gem\cc: Causes boulders to randomly bounce around and knock back enemies.",
+	  "\cgWind Gem\cc: Pulls in enemies with a powerful tornado whilst unleashing a barrage of smaller tornadoes.",
+	  "\cgWater Gem\cc: Droplets of water rain down to damage enemies, as well as heal allies.",
+	  "\cgPoison Gem\cc: Poisonous mist and globules damage foes over time. Also leaves small poisonous pools to act as mines.",
+	  "\cgLightning Gem\cc: Bolts of lightning seek and strike down enemies.",
+	  "\cgIce Gem\cc: Shards of ice are fired from the gem to freeze enemies.",
+	  "\cgDark Gem\cc: Dark voids repeatedly damage enemies they come in contact with.",
+	  "\cgLight Gem\cc: Assaults enemies with inescapable light.",
+	  "\cgShrapnel Grenade\cc: Sends shrapnel everywhere upon exploding, covering a wide area.",
+	  "\cgIce Grenade\cc: Explodes into ice shards everywhere, freezing any enemy that comes in contact.",
+	  "\cgFlame Grenade\cc: Covers a short area in lingering flames, burning any enemies touching them.",
+	  "\cgGas Grenade\cc: Covers the area around it in poison gas, dealing damage over time.",
+	  "\cgBlack Hole Grenade\cc: Explodes into a black hole that sucks enemies around it.",
+   },
+};
+
+int TraderPrices[TRADER_MAX_CATEGORIES][TRADER_MAX_ITEMS] =
+{
+   // Medicals
+   {
+      150,	//Stimpack
+      300,	//Medikit
+      500,	//Charged Stimpack
+      900,	//Charged Medikit
+      2500,	//Supercharged Stimpack
+      4000,	//Supercharged Medikit
+   },
+
+   // Armor
+   {
+      250,	// Aluminium
+      750,	// Titanium
+      1500,	// Netherite
+      2400,	// Amogusite
+   },
+   
+   // Weapons
+   {	
+	  7500,	//Midway Nightdive
+	  12000,	//Minato
+	  14000,	//Deep Cut
+	  5500,	//Splattershot
+	  8000,	//XJ-77 Blue Moon
+	  10000,	//M2097 Bicentennial
+	  15000,	//Trinity
+	  17500,	//DB-6 Listera
+	  22000,	//Eclipse
+	  25000,	//AK-2047 Alice
+	  20000,	//Zen-II
+	  30000,	//Harmony
+	  55000,	//Nussbeisser
+	  70000,	//Cobra
+	  85000,	//Hinikawa
+	  75000,	//Silverhand
+	  150000,	//Schwarze Sonne
+	  500000,	//Amogusrath
+	  666000,	//Pazuzu
+	  1000000,	//Dorogreg 100.09
+   },
+
+   // Ammunition
+   {
+      250,	//MobaXterm
+      750,	//Helmet Flashlight
+	  600,	//Ammosphere
+	  1250,	//Ultimasphere
+	  1500,	//Invulnerability Sphere
+	  1000,	//Immortality Sphere
+	  800,	//Skeld Crewmate Suit
+	  2000,	//Lifesphere
+	  4000,	//Terasphere
+	  3100,	//Quad Damage
+	  3000,	//Nuclear Capacitor
+	  2000,	//Minderiasphere
+	  1500,	//Jetpack
+	  3500,	//Atomic-Core Cluster Unit
+	  2500,	//Sentry Gun
+	  3000,	//Portable Rejuvenation Unit
+      1000,	//Adrenaline
+	  5000,	//Super Adrenaline
+	  10000,	//Yoshimurasphere
+	  50000,	//Onukisphere
+   },
+
+   // Gadgets
+   {
+      2000,	//Standard Medical Kit
+	  2500,	//Field Medical Kit
+	  3000,	//Grade 3 Field Medical Kit
+	  4000,	//Experimental Berserk Kit
+	  7000,	//Fire Gem
+	  7000,	//Earth Gem
+	  7000,	//Wind Gem
+	  7000,	//Water Gem
+	  7000,	//Poison Gem
+	  7000,	//Lightning Gem
+	  7000,	//Ice Gem
+	  7000,	//Dark Gem
+	  7000,	//Light Gem
+	  3500,	//Shrapnel Grenade
+	  4500,	//Ice Grenade
+	  5000,	//Flame Grenade
+	  6000,	//Gas Grenade
+	  9000,	//Black Hole Grenade
+   },
+};
+
+int TraderSpecials[TRADER_MAX_CATEGORIES][TRADER_MAX_ITEMS] =
+{
+   // Medicals: indicate actual quantity
+   {
+      15,	//UACVolve Stimpack
+      30,	//UACVolve Medikit
+      15,	//Charged UACVolve Stimpack
+      30,	//Charged UACVolve Medikit
+      15,	//Supercharged UACVolve Stimpack
+      30,	//Supercharged UACVolve Medikit
+   },
+
+   // Armor
+   {
+      0,
+      0,
+      0,
+      0,
+   },
+
+   // Weapons
+   {
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+   },
+
+   // Ammunition: indicate actors actual quantity
+   {
+      1,	//MobaXterm
+      1,	//Helmet Flashlight
+	  1,	//Ammosphere
+	  1,	//Ultimasphere
+	  1,	//Invulnerability Sphere
+	  1,	//Immortality Sphere
+	  1,	//Skeld Crewmate Suit
+	  1,	//Lifesphere
+	  1,	//Terasphere
+	  1,	//Quad Damage
+	  1,	//Nuclear Capacitor
+	  1,	//Minderiasphere
+	  100,	//Jetpack
+	  1,	//Atomic-Core Cluster Unit
+	  1,	//Sentry Gun
+	  100,	//Portable Rejuvenation Unit
+      1,	//Adrenaline
+	  10,	//Super Adrenaline
+	  1,	//Yoshimurasphere
+	  1,	//Onukisphere
+   },
+
+   // Gadgets: hybrid flag / value combination
+   {
+      1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+	  1,
+   },
+};
+
+
+
+// shared functions
+// __________________________________________________
+
+function int tSetInventory (str argItemActor, int argCount)
+{
+   int n = argCount - CheckInventory(argItemActor);
+
+   if (n > 0)        GiveInventory(argItemActor, n);
+   else if (n < 0)   TakeInventory(argItemActor, -n);
+
+   return n;
+}
+
+function int tZSquareRoot (int x)
+{
+   int r;
+
+   x = x + 1 >> 1;
+   while (x > r)
+      x -= r++;
+
+   return r;
+}
+
+function int tDistance (int argTID1, int argTID2)
+{
+   int x, y, z, d;
+
+   x = GetActorX(argTID1) - GetActorX(argTID2) >> 16; // convert fixed point to integer
+   y = GetActorY(argTID1) - GetActorY(argTID2) >> 16;
+   z = GetActorZ(argTID1) - GetActorZ(argTID2) >> 16;
+   d = tZSquareRoot( x*x + y*y + z*z );
+
+   return d;
+}
+
+function void tBuy (int argCat, int argItem, str argItemActor, int argCost)
+{
+   // chief purchasing power verification
+   if (CheckInventory("WoomyByte") >= argCost)
+   {
+      // Medicals
+      if (argCat == TRADER_CATEGORY_MEDICALS)
+      {
+         int StartingHealth = CheckInventory("Health");
+         int SuppliedHealth = TraderSpecials[TRADER_CATEGORY_MEDICALS][argItem];
+         GiveInventory(argItemActor, SuppliedHealth);
+
+         if (CheckInventory("Health") != StartingHealth)
+         {
+            ActivatorSound("tradingsystem/buy", 127);
+            TakeInventory("WoomyByte", argCost);
+            Print(s:"Purchased");
+         }
+         else
+         {
+            ActivatorSound("tradingsystem/fail", 127);
+            Print(s:"Health level at maximum - cannot purchase");
+         }
+      }
+
+      // Armor
+      else if (argCat == TRADER_CATEGORY_ARMOR)
+      {
+         int StartingArmor = CheckInventory("BasicArmor");
+         // no need to retrieve a specified amount;
+         // actor definition is self-sufficient
+         GiveInventory(argItemActor, 1);
+
+         if (CheckInventory("Armor") != StartingArmor)
+         {
+            ActivatorSound("tradingsystem/buy", 127);
+            TakeInventory("WoomyByte", argCost);
+            Print(s:"Purchased");
+         }
+         else
+         {
+            ActivatorSound("tradingsystem/fail", 127);
+            Print(s:"Armor level at maximum - cannot purchase");
+         }
+      }
+
+      // Weapons
+      else if (argCat == TRADER_CATEGORY_WEAPONS)
+      {
+         int StartingWeapon = CheckInventory(argItemActor);
+         int SuppliedWeapon = TraderSpecials[TRADER_CATEGORY_WEAPONS][argItem];
+         GiveInventory(argItemActor, 1);
+
+         if (CheckInventory(argItemActor) != StartingWeapon)
+         {
+            ActivatorSound("tradingsystem/buy", 127);
+            TakeInventory("WoomyByte", argCost);
+            Print(s:"Purchased");
+         }
+         else
+         {
+            ActivatorSound("tradingsystem/notenough", 127);
+            Print(s:"Weapon already purchased - ammunition given instead");
+         }
+      }
+
+      // Ammunition
+      else if (argCat == TRADER_CATEGORY_AMMO)
+      {
+         str AmmoType = tDetermineBaseAmmo(argItemActor);
+         int StartingAmmo = CheckInventory(AmmoType);
+         int SuppliedAmmo = TraderSpecials[TRADER_CATEGORY_AMMO][argItem];
+         GiveInventory(argItemActor, SuppliedAmmo);
+
+         if (CheckInventory(AmmoType) != StartingAmmo)
+         {
+            ActivatorSound("tradingsystem/buy", 127);
+            TakeInventory("WoomyByte", argCost);
+            Print(s:"Purchased");
+         }
+         else
+         {
+            ActivatorSound("tradingsystem/fail", 127);
+            Print(s:"Cannot carry more of this item");
+         }
+      }
+
+      else
+      {
+         if (  (argCat == TRADER_CATEGORY_GADGETS) 
+            )
+         {
+            int StartingItemAmount = CheckInventory(argItemActor);
+            int SuppliedItemAmount = TraderSpecials[TRADER_CATEGORY_GADGETS][argItem];
+            GiveInventory(argItemActor, SuppliedItemAmount);
+
+            if (CheckInventory(argItemActor) != StartingItemAmount)
+            {
+               ActivatorSound("tradingsystem/buy", 127);
+               TakeInventory("WoomyByte", argCost);
+               Print(s:"Purchased");
+            }
+            else
+            {
+               ActivatorSound("tradingsystem/fail", 127);
+               Print(s:"Cannot carry more of this item");
+            }
+         }
+      }
+   }
+   else
+   {
+      ActivatorSound("tradingsystem/notenough", 127);
+      Print(s:"Insufficient currency - cannot purchase");
+   }
+}
+
+function str tDetermineBaseAmmo (str argAmmo)
+{
+   return argAmmo;
+}
+
+function void tSell (int argCat, int argItem, str argItemActor, int argCost, int DoSellAll)
+{
+   if (  (argCat == TRADER_CATEGORY_MEDICALS)   ||
+         (argCat == TRADER_CATEGORY_ARMOR)
+      )
+   {
+      ActivatorSound("tradingsystem/fail", 127);
+      Print(s:"This item cannot be sold");
+   }
+   else
+   {
+      if (CheckInventory(argItemActor))
+      {
+         if (DoSellAll == 0)
+         {
+            ActivatorSound("tradingsystem/sell", 127);
+            TakeInventory(argItemActor, 1);
+            GiveInventory("WoomyByte", argCost);
+            Print(s:"Sold");
+         }
+         else
+         {
+            ActivatorSound("tradingsystem/sellall", 127);
+            GiveInventory("WoomyByte", argCost*CheckInventory(argItemActor));
+            TakeInventory(argItemActor, CheckInventory(argItemActor));
+            Print(s:"All instances of this item have been sold");
+         }
+      }
+      else
+      {
+         ActivatorSound("tradingsystem/fail", 127);
+         Print(s:"No instances to sell");
+      }
+   }
+}
+
+
+
+// scripts
+// __________________________________________________
+
+// __________________________________________________
+
+Script 779 (void) // 779 = Trader_Main
+{
+   if (!CheckInventory("IsTradingInProgress"))
+   {
+      // handle player status
+      GiveInventory("IsTradingInProgress", 1);
+      SetPlayerProperty(0, 1, 4);
+      Thing_Stop(0);
+
+      // handle player controls
+      ACS_ExecuteAlways(7193, 0, 0, 0, 0);
+
+      // handle presentation of catalogue
+      ACS_ExecuteAlways(7195, 0, 0, 0, 0);
+   }
+}
+
+// __________________________________________________
+
+Script 7193 (void) // 7193 = "Trader_ShopControls"
+{
+   int iCategory = 0;
+   int iPage = 0; // Left-Right
+   int iItem = 0; // Up-Down
+   int Cost = 0;
+   int KeyStatus;
+   int KeyPrevStatus;
+
+   ActivatorSound("tradingsystem/menuon", 127);
+
+   while (CheckInventory("IsTradingInProgress"))
+   {
+      KeyStatus = GetPlayerInput(-1, INPUT_BUTTONS);
+      KeyPrevStatus = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+
+      // navigation
+      if (KeyStatus & BT_FORWARD && !(KeyPrevStatus & BT_FORWARD))
+      {
+         if (iPage == 0 && iCategory > 0) iCategory--;
+         if (iPage == 1 && iItem > 0)     iItem--;
+         ActivatorSound("tradingsystem/up", 127);
+      }
+      if (KeyStatus & BT_BACK && !(KeyPrevStatus & BT_BACK))
+      {
+         if (iPage == 0 && iCategory < TRADER_MAX_CATEGORIES-1)         iCategory++;
+         if (iPage == 1 && iItem < TraderCategoryLimits[iCategory]-1)   iItem++;
+         ActivatorSound("tradingsystem/down", 127);
+      }
+      if (KeyStatus & BT_MOVERIGHT && !(KeyPrevStatus & BT_MOVERIGHT))
+      {
+         if (iPage < 1)
+         {
+            iPage++;
+            iItem = 0;
+         }
+         ActivatorSound("tradingsystem/navigate", 127);
+      }
+      if (KeyStatus & BT_MOVELEFT && !(KeyPrevStatus & BT_MOVELEFT))
+      {
+         if (iPage == 0)
+         {
+            ActivatorSound("tradingsystem/menuoff", 127);
+            TakeInventory("IsTradingInProgress", 1);
+            SetPlayerProperty(0, 0, 4);
+         }
+         else
+         {
+            if (iPage > 0)
+            {
+               iPage = 0;
+               iItem = 0;
+            }
+            ActivatorSound("tradingsystem/navigate", 127);
+         }
+      }
+
+      // actions
+      if (KeyStatus & BT_USE && !(KeyPrevStatus & BT_USE) && (iPage == 1))
+      {
+         Cost = TraderPrices[iCategory][iItem];
+         tBuy(iCategory, iItem, TraderCatalogue[iCategory][iItem][0], Cost);
+      }
+      if (KeyStatus & BT_ATTACK && !(KeyPrevStatus & BT_ATTACK) && (iPage == 1))
+      {
+         Cost = TraderPrices[iCategory][iItem] / 4; // resell at only half the price
+         tSell(iCategory, iItem, TraderCatalogue[iCategory][iItem][0], Cost, 0);
+      }
+      if (KeyStatus & BT_ALTATTACK && !(KeyPrevStatus & BT_ALTATTACK) && (iPage == 1))
+      {
+         Cost = TraderPrices[iCategory][iItem] / 4; // resell at only one fourth of the price
+         tSell(iCategory, iItem, TraderCatalogue[iCategory][iItem][0], Cost, 1);
+      }
+
+      tSetInventory("ItemIndex", iItem);
+      tSetInventory("PageIndex", iPage);
+      tSetInventory("CategoryIndex", iCategory);
+
+      Delay(1);
+   }
+}
+
+// __________________________________________________
+
+Script 7195 (void) CLIENTSIDE // 7195 = "Trader_ShopPresentation"
+{
+   while (CheckInventory("IsTradingInProgress"))
+   {
+      int iCategory = CheckInventory("CategoryIndex");
+      int iPage = CheckInventory("PageIndex");
+      int iItem = CheckInventory("ItemIndex");
+
+      SetHudSize(800, 600, 0);
+      SetFont("SMALLFNT");
+
+      HudMessage(s:"\clpress \ce", k:"+forward", s:"\cl or \ce", k:"+back", s:"\cl to navigate entries"; 0, 711, CR_GRAY, 400.0, 18.0, 0.2);
+      HudMessage(s:"\clpress \ce", k:"+moveleft", s:"\cl to close subdirectory, press \ce", k:"+moveright", s:"\cl to enter subdirectory,"; 0, 713, CR_GRAY, 400.0, 27.0, 0.2);
+      HudMessage(s:"\clpress \ce", k:"+use", s:"\cl to purchase, ", s:"press \ce", k:"+attack", s:"\cl to sell,"; 0, 717, CR_GRAY, 400.0, 36.0, 0.2);
+      HudMessage(s:"\clpress \ce", k:"+altattack", s:"\cl to sell all, ", s:"press \ce", k:"+moveleft", s:"\cl while in the main directory to exit the store."; 0, 719, CR_GRAY, 400.0, 45.0, 0.2);
+
+      for (int iScan = 0; iScan < TRADER_MAX_CATEGORIES; iScan++)
+      {
+         if (iScan == iCategory)
+            HudMessage( s:"\n",
+                        s:TraderCategories[iScan];
+                        HUDMSG_PLAIN, 3501 + iScan, CR_GOLD,
+                        119.2, 150.0 + 15.0 * iScan, 0.05);
+         else
+            HudMessage( s:"\n",
+                        s:TraderCategories[iScan];
+                        HUDMSG_PLAIN, 3501 + iScan, CR_WHITE,
+                        119.2, 150.0 + 15.0 * iScan, 0.05);
+      }
+
+      HudMessage( s:"\n\cfBytes: \cj",
+                  d:CheckInventory("WoomyByte");
+                  HUDMSG_PLAIN, 3501 + (iScan+1), CR_WHITE,
+                  119.2, 150.0 + 15.0 * (iScan+1), 0.05);
+
+      if (iPage == 1)
+      {
+         int PriceToBuy = TraderPrices[iCategory][iItem];
+         int PriceToSell = TraderPrices[iCategory][iItem] / 4; // selling price is always half
+
+         if (CheckInventory("WoomyByte") >= PriceToBuy)
+            HudMessage( s:"\n\cfCost: \cj",
+                        d:PriceToBuy;
+                        HUDMSG_PLAIN, 3501 + (iScan+2), CR_WHITE,
+                        119.2, 150.0 + 15.0 * (iScan+2), 0.05);
+         else
+            HudMessage( s:"\n\cgCost: \cm",
+                        d:PriceToBuy;
+                        HUDMSG_PLAIN, 3501 + (iScan+2), CR_WHITE,
+                        119.2, 150.0 + 15.0 * (iScan+2), 0.05);
+
+         // filter out items that cannot be sold
+         if (  !(iCategory == TRADER_CATEGORY_MEDICALS) &&
+               !(iCategory == TRADER_CATEGORY_ARMOR))
+         {
+            HudMessage( s:"\n\cfSell: \cj",
+                        d:PriceToSell, s:" (",
+                        d:PriceToSell*
+                        CheckInventory(TraderCatalogue[iCategory][iItem][0]), s:")";
+                        HUDMSG_PLAIN, 3501 + (iScan+4), CR_WHITE,
+                        119.2, 150.0 + 15.0 * (iScan+4), 0.05);
+
+            // current amount reminder
+            if (CheckInventory(TraderCatalogue[iCategory][iItem][0]) > 0)
+               HudMessage( s:"\n\cfInventory: \cj",
+                           d:CheckInventory(TraderCatalogue[iCategory][iItem][0]);
+                           HUDMSG_PLAIN, 3501 + (iScan+5), CR_WHITE,
+                           119.2, 150.0 + 15.0 * (iScan+5), 0.05);
+            else
+               HudMessage( s:"\n\cgInventory: \cm0";
+                           HUDMSG_PLAIN, 3501 + (iScan+5), CR_WHITE,
+                           119.2, 150.0 + 15.0 * (iScan+5), 0.05);
+         }
+         else HudMessage(  s:"\n_Cannot\nbe sold_";
+                           HUDMSG_PLAIN, 3501 + (iScan+4), CR_RED,
+                           119.2, 150.0 + 15.0 * (iScan+4), 0.05);
+
+         SetFont("DBIGFONT");
+
+         HudMessage( s:TraderItemDetail[iCategory][iItem];
+                     HUDMSG_PLAIN, 716, CR_GRAY,
+                     124.1, 250.1 + 15.0 * (TraderCategoryLimits[iCategory] + 1), 0.05);
+
+         SetFont("SMALLFNT");
+
+         // display price according to current finances
+         for (int i = 0; i < TraderCategoryLimits[iCategory]; i++)
+         {
+            int PriceToPay = TraderPrices[iCategory][i];
+
+            if (i == iItem)
+            {
+               // FOCUSED ITEM
+
+               if (CheckInventory("WoomyByte") >= PriceToPay)
+               {
+                  // payment can be done
+                  if (CheckInventory(TraderCatalogue[iCategory][i][0]) > 0)
+                  {
+                     // residual amount in store
+                     HudMessage( s:"\n",
+                                 s:TraderCatalogue[iCategory][i][1], s:" (", d:CheckInventory(TraderCatalogue[iCategory][i][0]), s:")";
+                                 HUDMSG_PLAIN, 7001 + i, CR_GOLD,
+                                 124.1, 150.0 + 15.0 * i, 0.05);
+                  }
+                  else
+                  {
+                     // none of this in store
+                     HudMessage( s:"\n",
+                                 s:TraderCatalogue[iCategory][i][1];
+                                 HUDMSG_PLAIN, 7001 + i, CR_GOLD,
+                                 124.1, 150.0 + 15.0 * i, 0.05);
+                  }
+               }
+               else
+               {
+                  // not enough currency to perform payment
+                  if (CheckInventory(TraderCatalogue[iCategory][i][0]) > 0)
+                  {
+                     // residual amount in store
+                     HudMessage( s:"\n",
+                                 s:TraderCatalogue[iCategory][i][1], s:" (", d:CheckInventory(TraderCatalogue[iCategory][i][0]), s:")";
+                                 HUDMSG_PLAIN, 7001 + i, CR_RED,
+                                 124.1, 150.0 + 15.0 * i, 0.05);
+                  }
+                  else
+                  {
+                     // none of this in store
+                     HudMessage( s:"\n",
+                                 s:TraderCatalogue[iCategory][i][1];
+                                 HUDMSG_PLAIN, 7001 + i, CR_RED,
+                                 124.1, 150.0 + 15.0 * i, 0.05);
+                  }
+               }
+            }
+            else
+            {
+               // OTHER ITEMS (NON-FOCUSED)
+
+               if (CheckInventory("WoomyByte") >= PriceToPay)
+               {
+                  if (CheckInventory(TraderCatalogue[iCategory][i][0]) > 0)
+                  {
+                     HudMessage( s:"\n",
+                                 s:TraderCatalogue[iCategory][i][1], s:" (", d:CheckInventory(TraderCatalogue[iCategory][i][0]), s:")";
+                                 HUDMSG_PLAIN, 7001 + i, CR_WHITE,
+                                 124.1, 150.0 + 15.0 * i, 0.05);
+                  }
+                  else
+                  {
+                     HudMessage( s:"\n",
+                                 s:TraderCatalogue[iCategory][i][1];
+                                 HUDMSG_PLAIN, 7001 + i, CR_WHITE,
+                                 124.1, 150.0 + 15.0 * i, 0.05);
+                  }
+               }
+               else
+               {
+                  if (CheckInventory(TraderCatalogue[iCategory][i][0]) > 0)
+                  {
+                     HudMessage( s:"\n",
+                                 s:TraderCatalogue[iCategory][i][1], s:" (", d:CheckInventory(TraderCatalogue[iCategory][i][0]), s:")";
+                                 HUDMSG_PLAIN, 7001 + i, CR_BLACK,
+                                 124.1, 150.0 + 15.0 * i, 0.05);
+                  }
+                  else
+                  {
+                     HudMessage( s:"\n",
+                                 s:TraderCatalogue[iCategory][i][1];
+                                 HUDMSG_PLAIN, 7001 + i, CR_BLACK,
+                                 124.1, 150.0 + 15.0 * i, 0.05);
+                  }
+               }
+            }
+         }
+      }
+
+      Delay(1);
+   }
+}
+
+// __________________________________________________
+
+Script 7102 (void) // 7102 = Trader_ShopEnd
+{
+   for (int i = 0; i < TRADER_MAX_CUSTOMERS; i++)
+   {
+      if ( !PlayerInGame(i) )
+         continue;
+      if (tDistance(0, i+TRADER_CUSTOMER_TID_OFFSET) < 64)
+      {
+         if (CheckInventory("IsTradingInProgress"))
+         {
+            GiveActorInventory(i+TRADER_CUSTOMER_TID_OFFSET, "TradeUnfreezer", 1);
+            TakeActorInventory(i+TRADER_CUSTOMER_TID_OFFSET, "IsTradingInProgress", 1);
+         }
+      }
+   }
+}

@@ -1,0 +1,173 @@
+#library "Tracker"
+#include "zcommon.acs"
+#define TIDBASE 46290
+#define BRONZE_PERCENTAGE 0.333
+#define SILVER_PERCENTAGE 0.667
+
+str trackersounds[4] = {
+"KILLS1",
+"KILLS2",
+"KILLS2",
+"KILLS1",
+};
+
+global bool 49:DEBUG;
+special - 44 : ACS (1,5) ; // ACS_NamedExecuteWithResult
+
+function void SetInventory(str item, int amount)
+{
+	int diff = amount - CheckInventory(item);
+	if(diff > 0)
+		GiveInventory(item, diff);
+	else if(diff < 0)
+		TakeInventory(item, -diff);
+}
+function int maxmon(int x, int y) { if(x > y) return x; return y; }
+
+
+Script "Level Tracker" ENTER
+{	
+	Delay(17);
+	int totalmonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	int totalitems = GetLevelInfo(LEVELINFO_TOTAL_ITEMS);
+	int totalsecrets = GetLevelInfo(LEVELINFO_TOTAL_SECRETS);
+	int madesomenoise =- false, secrets_announced =- false;
+	int ocddetected = -false;
+	int gotallsecrets = -false;
+	int killsandsecrets = -false;
+	int medalsearned;
+	int t = 1.0;
+	
+	// No point running this if there's nothing to get.
+	if(totalmonsters < 5 && totalsecrets < 1 && totalitems < 1)
+		Terminate;
+	
+	if((totalmonsters < 1) && (!madesomenoise))
+		{
+			madesomenoise = "1";
+		}
+	
+	if((totalsecrets < 1) && (!gotallsecrets))
+		{
+			gotallsecrets = "1";
+		}
+		
+	if((totalitems < 1) && (!ocddetected))
+		{
+			ocddetected = "1";
+		}
+	
+	if(totalmonsters < 1 && totalsecrets < 1)
+		{
+			killsandsecrets = "1";
+		}
+	
+	// This is neither for deathmatch nor for team games.
+	if(GameType() == GAME_NET_DEATHMATCH || GameType() == 4)
+		Terminate;
+	
+	while (666)
+	{
+		// Track the actual number of monsters, including killed/revived ones.
+		totalmonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+		totalitems = GetLevelInfo(LEVELINFO_TOTAL_ITEMS);
+		int killsearned = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
+		int itemscollected = GetLevelInfo(LEVELINFO_FOUND_ITEMS);
+		int secretsfound = GetLevelInfo(LEVELINFO_FOUND_SECRETS);
+		
+		
+		if((killsearned >= totalmonsters) && (!madesomenoise))
+		{
+			if(!secrets_announced)
+			{
+				medalsearned = 3; ACS("NiceMedal",3);
+			}
+			madesomenoise = "1";
+			Delay(10);
+		}	
+			else
+			{
+			int killpercent = killsearned * 1.0 / maxmon(totalmonsters,1);
+			int bronzeprogress = FixedDiv(killpercent, BRONZE_PERCENTAGE);
+			int silverprogress = FixedDiv(killpercent - BRONZE_PERCENTAGE, SILVER_PERCENTAGE - BRONZE_PERCENTAGE);
+			int goldenprogress = FixedDiv(killpercent - SILVER_PERCENTAGE, 1.0 - SILVER_PERCENTAGE);
+			if(bronzeprogress > 1.0) bronzeprogress = 1.0;
+			if(silverprogress > 1.0) silverprogress = 1.0; else if(silverprogress < 0) silverprogress = 0;
+			if(goldenprogress < 0  ) goldenprogress = 0;
+			if(medalsearned < 1) SetInventory("MapCompleted1", bronzeprogress >> 8);
+			if(medalsearned < 2) SetInventory("MapCompleted2", silverprogress >> 8);
+			if(medalsearned < 3) SetInventory("MapCompleted3", goldenprogress >> 8);
+			if(bronzeprogress == 1.0  &&  medalsearned < 1) { medalsearned = 1; ACS("NiceMedal",1); }
+			if(silverprogress == 1.0  &&  medalsearned < 2) { medalsearned = 2; ACS("NiceMedal",2); }
+			}
+		
+		if((itemscollected >= totalitems) && (!ocddetected))
+		{
+			GiveInventory("WoomyByte", 250);
+			OCD();
+			ocddetected = "1";
+		}
+		
+		if((secretsfound >= totalsecrets) && (!gotallsecrets))
+		{
+			GiveInventory("WoomyByte", 250);
+			AllSecrets();
+			gotallsecrets = "1";
+		}
+					
+		// Completionist message!
+		if((killsearned >= totalmonsters) && (secretsfound >= totalsecrets) && (itemscollected >= totalitems))
+		{
+			Delay(35);
+			Reward();
+			killsandsecrets = "1";
+			Delay(280);
+			Terminate;
+		}
+		Delay(3);
+	}
+}
+
+Script "NiceMedal" (int type)
+{
+	LocalAmbientSound(trackersounds[type],115 * type);
+	SetFont("BIGFONT");
+	switch(type)
+	{
+	case 1:
+		HudMessage(d:BRONZE_PERCENTAGE * 100 / 1.0, s:"% enemies killed";
+					HUDMSG_TYPEON,999,CR_DARKBROWN, 1.5,0.82, 3.0,0.005,1.0);
+		break;
+	case 2:
+		HudMessage(d:SILVER_PERCENTAGE * 100 / 1.0, s:"% enemies killed!";
+					HUDMSG_TYPEON,999,CR_WHITE, 1.5,0.82, 3.0,0.005,1.0);
+		break;
+	case 3:
+		GiveInventory("WoomyByte", 250);
+		HudMessage(s:"All enemies killed!!!";
+					HUDMSG_TYPEON,999,CR_GOLD, 1.5,0.82, 3.0,0.005,1.0);
+		break;
+	}
+}
+
+//Shoutouts to BigMacDavis
+Function void OCD(void)
+{
+	SetFont("BIGFONT");
+	HudMessage(s:"All items collected!\n"; HUDMSG_TYPEON,999,CR_GOLD, 1.5,0.82, 3.0,0.005,1.0);
+	LocalAmbientSound("ITEMS",115);
+}
+
+Function void AllSecrets(void)
+{
+	SetFont("BIGFONT");
+	HudMessage(s:"All secrets found!\n"; HUDMSG_TYPEON,999,CR_CYAN, 1.5,0.82, 3.0,0.005,1.0);	
+	LocalAmbientSound("SECRETS",115);
+}
+
+Function void Reward(void)
+{
+	SetFont("BIGFONT");
+	HudMessage(s:"All tasks completed. EXIT!\n"; HUDMSG_FADEOUT,150,CR_RED, 1.5,0.1, 8.0,1.0,1.0);	
+	LocalAmbientSound("BLACKEYE",127);
+}

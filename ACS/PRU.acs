@@ -1,0 +1,39 @@
+#library "pru.acs"
+#include "zcommon.acs"
+
+// Healing rate in tics. Adjust this if you want to change how fast the item
+// heals the player over time. Larger values equals slower healing rate. (Use
+// values greater than 0)
+#define HEALRATE 5
+
+Script "Portable Rejuvenation Unit" (void)
+{
+  // Checking on the player's max health returns zero (this's only the case if
+  // the modder hasn't defined a max health for the player) instead of hundred,
+  // which what the default max health is. This line makes sure it's a hundred
+  // to get the right calculations below.
+  If(GetActorProperty(0, APROP_SpawnHealth) == 0) SetActorProperty(0, APROP_SpawnHealth, 100);
+
+  // The amount of health the player needs to reach full health
+  int hp_needed = GetActorProperty(0, APROP_SpawnHealth) - GetActorProperty(0, APROP_Health);
+
+  If(hp_needed > 0) // If the player needs health, then proceed with healing. Otherwise, do nothing when the item is used.
+  {
+    ActivatorSound("PRUActivate", 127); // Play the 'use' sound for the item
+    GiveInventory("PRUActive", 1); // Item is currently active and the healing process has begun
+
+    // Keep healing as long as there is health in the PRU's 'pool'
+    While(CheckInventory("PortableRejuvenationUnit") > 0)
+    {
+      If(GetActorProperty(0, APROP_Health) >= GetActorProperty(0, APROP_SpawnHealth)) Break;  // If player is fully healed, stop the healing process
+      If(!CheckInventory("PRUActive")) Break; // If the item has been deactivated, stop the healing process
+
+      HealThing(1);
+      TakeInventory("PortableRejuvenationUnit", 1);
+
+      Delay(HEALRATE);
+    }
+
+    TakeInventory("PRUActive", 1); // Item is currently inactive and the healing process has ended
+  }
+}

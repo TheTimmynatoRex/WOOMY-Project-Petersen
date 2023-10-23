@@ -1,0 +1,106 @@
+// All Doom Switches have custom sounds
+
+// First the Doom Share Ware Switches
+
+switch SW1BRCOM on sound switches_electri3 pic SW2BRCOM tics 0
+switch SW1BRN1 on sound switches_clunk pic SW2BRN1 tics 0
+switch SW1BRN2 on sound switches_electri2 pic SW2BRN2 tics 0
+switch SW1BRNGN on sound switches_electri2 pic SW2BRNGN tics 0
+switch SW1BROWN on sound switches_clunk pic SW2BROWN tics 0
+switch SW1COMM on sound switches_electri3 pic SW2COMM tics 0
+switch SW1COMP on sound switches_electri3 pic SW2COMP tics 0
+switch SW1DIRT on sound switches_electri3 pic SW2DIRT tics 0
+switch SW1EXIT on sound switches_electri3 pic SW2EXIT tics 0
+switch SW1GRAY on sound switches_electri3 pic SW2GRAY tics 0
+switch SW1GRAY1 on sound switches_electri2 pic SW2GRAY1 tics 0
+switch SW1METAL on sound switches_electri2 pic SW2METAL tics 0
+switch SW1PIPE on sound switches_clunk pic SW2PIPE tics 0
+switch SW1SLAD on sound switches_electri2 pic SW2SLAD tics 0
+switch SW1STARG on sound switches_clunk pic SW2STARG tics 0
+switch SW1STON1 on sound switches_electri3 pic SW2STON1 tics 0
+switch SW1STON2 on sound switches_electri2 pic SW2STON2 tics 0
+switch SW1STONE on sound switches_electri3 pic SW2STONE tics 0
+switch SW1STRTN on sound switches_electri3 pic SW2STRTN tics 0
+
+
+//Now the Doom1 registered switches
+
+switch SW1BLUE on sound switches_clunk pic SW2BLUE tics 0
+switch SW1CMT on sound switches_clunk pic SW2CMT tics 0
+switch SW1GARG on sound switches_gargoyle pic SW2GARG tics 0
+switch SW1GSTON on sound switches_clunk pic SW2GSTON tics 0
+switch SW1HOT on sound switches_clunk pic SW2HOT tics 0
+switch SW1LION on sound switches_gargoyle pic SW2LION tics 0
+switch SW1SATYR on sound switches_gargoyle pic SW2SATYR tics 0
+switch SW1SKIN on sound switches_skin pic SW2SKIN tics 0
+switch SW1VINE on sound switches_electri2 pic SW2VINE tics 0
+switch SW1WOOD on sound switches_clunk pic SW2WOOD tics 0
+
+//Now the Doom2 switches
+
+switch SW1WDMET on pic SW2WDMET tics 0
+
+//Altered Doom2 switches
+
+switch SW1BRIK on sound switches_electri3 pic SW2BRIK tics 0
+switch SW1MARB on sound switches_clunk pic SW2MARB tics 0
+switch SW1MET2 on sound switches_electri3 pic SW2MET2 tics 0
+switch SW1MOD1 on sound switches_electri2 pic SW2MOD1 tics 0
+switch SW1PANEL on sound switches_clunk pic SW2PANEL tics 0
+switch SW1ROCK on sound switches_clunk pic SW2ROCK tics 0
+switch SW1SKULL on sound switches_clunk pic SW2SKULL tics 0
+switch SW1STON6 on sound switches_electri3 pic SW2STON6 tics 0
+switch SW1TEK on sound switches_electri2 pic SW2TEK tics 0
+switch SW1ZIM on sound switches_clunk pic SW2ZIM tics 0
+
+warp2 flat FCANZ0
+warp2 flat CEYEZ0
+
+texture ARSDA0
+    pic ARSDA0 tics 3
+    pic ARSDB0 tics 3
+    pic ARSDC0 tics 3
+    pic ARSDD0 tics 3
+    pic ARSDC0 tics 3
+    pic ARSDB0 tics 3
+	
+texture ARS2A0
+    pic ARS2A0 tics 3
+    pic ARS2B0 tics 3
+    pic ARS2C0 tics 3
+    pic ARS2D0 tics 3
+    pic ARS2C0 tics 3
+    pic ARS2B0 tics 3
+	
+texture HEVAA0
+    pic HEVAA0 tics 7
+    pic HEVAB0 tics 7
+
+texture HEVBA0
+    pic HEVBA0 tics 7
+    pic HEVBB0 tics 7
+
+texture HEVCA0
+    pic HEVCA0 tics 7
+    pic HEVCB0 tics 7
+
+texture HEVDA0
+    pic HEVDA0 tics 7
+    pic HEVDB0 tics 7
+	
+texture ECELA0
+	pic ECELA0 tics 4
+	pic ECELB0 tics 4
+	pic ECELC0 tics 4
+	pic ECELD0 tics 4
+	pic ECELE0 tics 4
+
+texture RAMCA0
+	pic RAMCA0 tics 3
+	pic RAMCB0 tics 9
+
+texture SOUAA0
+	pic SOUAA0 tics 4
+	pic SOUAB0 tics 4
+	pic SOUAC0 tics 4
+	pic SOUAD0 tics 4

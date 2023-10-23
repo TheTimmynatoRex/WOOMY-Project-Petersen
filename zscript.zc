@@ -1,0 +1,825 @@
+version "4.3.3"
+
+#include "zscript/Footsteps.zs"
+#include "zscript/Tips.zs"
+#include "zscript/Minimap.zs"
+#include "zscript/Immerse.zs"
+#include "zscript/SecretFinder.zs"
+#include "zscript/HellCrusher.zs"
+#include "zscript/SecretItems.zs"
+#include "zscript/BulletTime.zs"
+#include "zscript/ToolTips.zs"
+
+//Geiger Counter (by HexaDoken)
+class DMDHandler : EventHandler
+{
+	int aa;
+	bool active;
+	private transient bool Start;
+	private transient float Volume;
+	private transient int Range;
+	private transient int Radsuit;
+	
+	override void OnRegister()
+	{
+		Start = cvar.getcvar("Geiger_Start",Players[0]).getbool();
+		if(start) active = true;
+	}
+	
+	override void WorldTick()
+	{
+		if(!active) return;
+		Range = cvar.getcvar("Geiger_Range",Players[0]).getint();
+		Volume = cvar.getcvar("Geiger_Volume",Players[0]).getfloat();
+		int a = DMD();
+		if(a > 0) a = (Range / 32) + 2 - a;
+		float vol = 1.0 * a / ((Range / 32) + 1) * Volume;
+		if(aa != a)
+		{
+			if(!aa) players[0].mo.A_StartSound("rad_geiger",27,CHANF_LOOPING,vol);
+			else if(!a) players[0].mo.A_StopSound(27);
+			else players[0].mo.A_SoundVolume(27,vol);
+		}
+		aa = a;
+	}
+	
+	int DMD()
+	{
+		let plr = players[0].mo;
+		Radsuit = cvar.getcvar("Geiger_Radsuit",Players[0]).getint();
+		bool leak;
+		if(players[0].mo.FindInventory("PowerIronFeet",true))
+		{
+			if(!Radsuit) return 0;
+			else if(Radsuit == 1) leak = true;
+		}
+		for(int a = 0; a <= Range / 32; a++)
+		{
+			for(int b = -a; b <= a; b++)
+			{
+				for(int c = -a; c <= a; c++)
+				{
+					Vector2 vec = (plr.pos.x + 32*b,plr.pos.y + 32*c);
+					let sec = level.PointInSector(vec);
+					int zed = sec.floorPlane.ZatPoint(vec);
+					Vector3 vec3 = (plr.pos.x + 32*b,plr.pos.y + 32*c,zed);
+					if(level.IsPointInLevel(vec3) && sec.DamageAmount > 0)
+					{
+						if(leak)
+						{ if(sec.LeakyDamage > 0) return a+1; }
+						else return a+1;
+					}
+				}
+			}
+		}
+		return 0;
+	}
+	
+	override void NetworkProcess(ConsoleEvent e)
+	{
+		if(e.Name ~== "Geiger_Toggle")
+		{
+			active = !active;
+			Console.printf("Damage floor detector "..(active?"on.":"off."));
+			if(!active) {players[0].mo.A_StopSound(27); aa = 0;} 
+		}
+	}
+}
+
+// An updated intermission screen inspired by the one from MetaDoom.
+// InitStats and UpdateStats are copy/pasted straight from GZDoom.pk3 for the sake
+// of completeness and in the event I decide to change something later on.
+// DrawStats was copied from GZDoom.pk3 and modified by me to include the sounds
+// and colors. Intermission/tick2 is ripped from MetaDoom.
+// WidescreenDatShit and the Drawer override are copy/pasted from MetaDoom.
+// Credit for those goes to Kinsie and Gutawer.
+
+class WOOMYStatusScreen : DoomStatusScreen{
+	int intermissioncounter;
+
+	override void initStats (){
+		intermissioncounter = gameinfo.intermissioncounter;
+		CurState = StatCount;
+		acceleratestage = 0;
+		sp_state = 1;
+		cnt_kills[0] = cnt_items[0] = cnt_secret[0] = -1;
+		cnt_time = cnt_par = -1;
+		cnt_pause = Thinker.TICRATE;
+		cnt_total_time = -1;
+	}
+
+	override void Drawer (void)
+	{
+		switch (CurState)
+		{
+		case StatCount:
+			bg.drawBackground(CurState, false, false);
+			widescreenDatShit();
+			drawStats();
+			break;
+	
+		case ShowNextLoc:
+			drawShowNextLoc();
+			widescreenDatShit();
+			break;
+	
+		case LeavingIntermission:
+			break;
+
+		default:
+			drawNoState();
+			widescreenDatShit();
+			break;
+		}
+	}
+
+	override void updateStats (){
+		if (acceleratestage && sp_state != 10){
+			acceleratestage = 0;
+			sp_state = 10;
+			PlaySound("intermission/ticktwo");
+
+			cnt_kills[0] = Plrs[me].skills;
+			cnt_items[0] = Plrs[me].sitems;
+			cnt_secret[0] = Plrs[me].ssecret;
+			cnt_time = Thinker.Tics2Seconds(Plrs[me].stime);
+			cnt_par = wbs.partime / Thinker.TICRATE;
+			cnt_total_time = Thinker.Tics2Seconds(wbs.totaltime);
+		}
+
+		if (sp_state == 2){
+			if (intermissioncounter){
+				cnt_kills[0] += 2;
+				if (!(bcnt&3)){
+					PlaySound("intermission/tickone");
+				}
+			}
+			if (!intermissioncounter || cnt_kills[0] >= Plrs[me].skills){
+				cnt_kills[0] = Plrs[me].skills;
+				if (Plrs[me].skills >= wbs.maxkills)
+				{
+					PlaySound("intermission/ticktwo");
+					PlaySound("intermission/hundredpc");
+				} else {
+					PlaySound("intermission/ticktwo");
+				}
+				sp_state++;
+			}
+		}
+		else if (sp_state == 4){
+			if (intermissioncounter){
+				cnt_items[0] += 2;
+				if (!(bcnt&3)){
+					PlaySound("intermission/tickone");
+				}
+			}
+			if (!intermissioncounter || cnt_items[0] >= Plrs[me].sitems){
+				cnt_items[0] = Plrs[me].sitems;
+				if (Plrs[me].sitems >= wbs.maxitems)
+				{
+					PlaySound("intermission/ticktwo");
+					PlaySound("intermission/hundredpc");
+				} else {
+					PlaySound("intermission/ticktwo");
+				}
+				sp_state++;
+			}
+		}
+		else if (sp_state == 6){
+			if (intermissioncounter){
+				cnt_secret[0] += 1;
+				if (!(bcnt&3)){
+					PlaySound("intermission/tickone");
+				}
+			}
+			if (!intermissioncounter || cnt_secret[0] >= Plrs[me].ssecret){
+				cnt_secret[0] = Plrs[me].ssecret;
+				if (Plrs[me].ssecret >= wbs.maxsecret)
+				{
+					PlaySound("intermission/ticktwo");
+					PlaySound("intermission/hundredpc");
+				} else {
+					PlaySound("intermission/ticktwo");
+				}
+				sp_state++;
+			}
+		}
+		else if (sp_state == 8){
+			if (intermissioncounter){
+				if (!(bcnt&3)){
+					PlaySound("intermission/tickone");
+				}
+
+				cnt_time += 10;
+				cnt_par += 10;
+				cnt_total_time += 10;
+			}
+
+			int sec = Thinker.Tics2Seconds(Plrs[me].stime);
+			if (!intermissioncounter || cnt_time >= sec){
+				cnt_time = sec;
+			}
+
+			int tsec = Thinker.Tics2Seconds(wbs.totaltime);
+			if (!intermissioncounter || cnt_total_time >= tsec){
+				cnt_total_time = tsec;
+			}
+
+			int psec = wbs.partime / Thinker.TICRATE;
+			if (!intermissioncounter || cnt_par >= psec){
+				cnt_par = psec;
+				if (cnt_time >= sec){
+					cnt_total_time = tsec;
+					PlaySound("intermission/ticktwo");
+					sp_state++;
+				}
+			}
+		}
+		else if (sp_state == 10){
+			if (acceleratestage){
+				PlaySound("intermission/nextstage");
+				initShowNextLoc();
+			}
+		}
+		else if (sp_state & 1){
+			if (!--cnt_pause){
+				sp_state++;
+				cnt_pause = Thinker.TICRATE;
+			}
+		}
+	}
+
+	override void drawStats (void){
+		int lh = IntermissionFont.GetHeight() * 3 / 2;	// line height
+		int killMedals = 0;
+		int itemMedals = 0;
+		int scrtMedals = 0;
+		drawLF();
+		
+		// Kills
+		if(cnt_kills[0] == wbs.maxkills){
+			screen.DrawText (BigFont, Font.CR_GREEN, SP_STATSX, SP_STATSY-3, Stringtable.Localize("$TXT_IMKILLS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY, cnt_kills[0], wbs.maxkills, true, Font.CR_GREEN);
+			killMedals = 4;
+		}
+		else if(cnt_kills[0] >= wbs.maxkills*0.75){
+			screen.DrawText (BigFont, Font.CR_YELLOW, SP_STATSX, SP_STATSY-3, Stringtable.Localize("$TXT_IMKILLS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY, cnt_kills[0], wbs.maxkills, true, Font.CR_YELLOW);
+			killMedals = 3;
+		}
+		else if(cnt_kills[0] >= wbs.maxkills*0.5){
+			screen.DrawText (BigFont, Font.CR_ORANGE, SP_STATSX, SP_STATSY-3, Stringtable.Localize("$TXT_IMKILLS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY, cnt_kills[0], wbs.maxkills, true, Font.CR_ORANGE);
+			killMedals = 2;
+		}
+		else if(cnt_kills[0] >= wbs.maxkills*0.25){
+			screen.DrawText (BigFont, Font.CR_RED, SP_STATSX, SP_STATSY-3, Stringtable.Localize("$TXT_IMKILLS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY, cnt_kills[0], wbs.maxkills, true, Font.CR_RED);
+			killMedals = 1;
+		}
+		else{
+			screen.DrawText (BigFont, Font.CR_BLACK, SP_STATSX, SP_STATSY-3, Stringtable.Localize("$TXT_IMKILLS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY, cnt_kills[0], wbs.maxkills, true, Font.CR_BLACK);
+		}
+		
+		// Items
+		if(cnt_items[0] == wbs.maxitems){
+			screen.DrawText (BigFont, Font.CR_GREEN, SP_STATSX, SP_STATSY+lh-3, Stringtable.Localize("$TXT_IMITEMS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY+lh, cnt_items[0], wbs.maxitems, true, Font.CR_GREEN);
+			itemMedals = 4;
+		}
+		else if(cnt_items[0] >= wbs.maxitems*0.75){
+			screen.DrawText (BigFont, Font.CR_YELLOW, SP_STATSX, SP_STATSY+lh-3, Stringtable.Localize("$TXT_IMITEMS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY+lh, cnt_items[0], wbs.maxitems, true, Font.CR_YELLOW);
+			itemMedals = 3;
+		}
+		else if(cnt_items[0] >= wbs.maxitems*0.5){
+			screen.DrawText (BigFont, Font.CR_ORANGE, SP_STATSX, SP_STATSY+lh-3, Stringtable.Localize("$TXT_IMITEMS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY+lh, cnt_items[0], wbs.maxitems, true, Font.CR_ORANGE);
+			itemMedals = 2;
+		}
+		else if(cnt_items[0] >= wbs.maxitems*0.25){
+			screen.DrawText (BigFont, Font.CR_RED, SP_STATSX, SP_STATSY+lh-3, Stringtable.Localize("$TXT_IMITEMS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY+lh, cnt_items[0], wbs.maxitems, true, Font.CR_RED);
+			itemMedals = 1;
+		}
+		else{
+			screen.DrawText (BigFont, Font.CR_BLACK, SP_STATSX, SP_STATSY+lh-3, Stringtable.Localize("$TXT_IMITEMS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY+lh, cnt_items[0], wbs.maxitems, true, Font.CR_BLACK);
+		}
+		
+		// Secrets
+		if(cnt_secret[0] == wbs.maxsecret){
+			screen.DrawText (BigFont, Font.CR_GREEN, SP_STATSX, SP_STATSY+2*lh-3, Stringtable.Localize("$TXT_IMSECRETS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY+2*lh, cnt_secret[0], wbs.maxsecret, true, Font.CR_GREEN);
+			scrtMedals = 4;
+		}
+		else if(cnt_secret[0] >= wbs.maxsecret*0.75){
+			screen.DrawText (BigFont, Font.CR_YELLOW, SP_STATSX, SP_STATSY+2*lh-3, Stringtable.Localize("$TXT_IMSECRETS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY+2*lh, cnt_secret[0], wbs.maxsecret, true, Font.CR_YELLOW);
+			scrtMedals = 3;
+		}
+		else if(cnt_secret[0] >= wbs.maxsecret*0.5){
+			screen.DrawText (BigFont, Font.CR_ORANGE, SP_STATSX, SP_STATSY+2*lh-3, Stringtable.Localize("$TXT_IMSECRETS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY+2*lh, cnt_secret[0], wbs.maxsecret, true, Font.CR_ORANGE);
+			scrtMedals = 2;
+		}
+		else if(cnt_secret[0] >= wbs.maxsecret*0.25){
+			screen.DrawText (BigFont, Font.CR_RED, SP_STATSX, SP_STATSY+2*lh-3, Stringtable.Localize("$TXT_IMSECRETS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY+2*lh, cnt_secret[0], wbs.maxsecret, true, Font.CR_RED);
+			scrtMedals = 1;
+		}
+		else{
+			screen.DrawText (BigFont, Font.CR_BLACK, SP_STATSX, SP_STATSY+2*lh-3, Stringtable.Localize("$TXT_IMSECRETS"), DTA_Clean, true, DTA_Shadow, true);
+			drawPercent (IntermissionFont, 320 - SP_STATSX, SP_STATSY+2*lh, cnt_secret[0], wbs.maxsecret, true, Font.CR_BLACK);
+		}
+		
+		// Ranking
+		int rank = killMedals+itemMedals+scrtMedals;
+		
+		if(sp_state > 8){
+			if(cnt_time > 5){
+				screen.DrawText (BigFont, Font.CR_WHITE, SP_STATSX, SP_STATSY+3*lh-3, Stringtable.Localize("Ranking:"), DTA_Clean, true, DTA_Shadow, true);
+				if(rank == 12){
+					screen.DrawText (BigFont, Font.CR_PURPLE, 305 - SP_STATSX, SP_STATSY+3*lh-3, Stringtable.Localize("X"), DTA_Clean, true, DTA_Shadow, true);
+					if(cnt_time > cnt_par*3)	
+						screen.DrawText (BigFont, Font.CR_PURPLE, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Terminator"), DTA_Clean, true, DTA_Shadow, true);
+					else if(cnt_time > cnt_par)
+						screen.DrawText (BigFont, Font.CR_PURPLE, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("True Slayer"), DTA_Clean, true, DTA_Shadow, true);
+					else
+						screen.DrawText (BigFont, Font.CR_PURPLE, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Jenny Wakeman"), DTA_Clean, true, DTA_Shadow, true);
+				}
+				else if(rank > 9){
+					screen.DrawText (BigFont, Font.CR_BLUE, 305 - SP_STATSX, SP_STATSY+3*lh-3, Stringtable.Localize("S"), DTA_Clean, true, DTA_Shadow, true);
+					if(cnt_time > cnt_par*2)
+						screen.DrawText (BigFont, Font.CR_BLUE, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Samurai"), DTA_Clean, true, DTA_Shadow, true);
+					else
+						screen.DrawText (BigFont, Font.CR_BLUE, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Silverhand"), DTA_Clean, true, DTA_Shadow, true);
+				}
+				else if(rank > 6){
+					screen.DrawText (BigFont, Font.CR_GREEN, 305 - SP_STATSX, SP_STATSY+3*lh-3, Stringtable.Localize("A"), DTA_Clean, true, DTA_Shadow, true);
+					if(cnt_time > cnt_par*2)
+						screen.DrawText (BigFont, Font.CR_GREEN, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Trailblazer"), DTA_Clean, true, DTA_Shadow, true);
+					else
+						screen.DrawText (BigFont, Font.CR_GREEN, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Scavenger"), DTA_Clean, true, DTA_Shadow, true);
+				}
+				else if(rank > 3){
+					screen.DrawText (BigFont, Font.CR_YELLOW, 305 - SP_STATSX, SP_STATSY+3*lh-3, Stringtable.Localize("B"), DTA_Clean, true, DTA_Shadow, true);
+					if(cnt_time > cnt_par)	
+						screen.DrawText (BigFont, Font.CR_YELLOW, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Beginner"), DTA_Clean, true, DTA_Shadow, true);
+					else
+						screen.DrawText (BigFont, Font.CR_YELLOW, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Citizen"), DTA_Clean, true, DTA_Shadow, true);
+				}
+				else if(rank > 0){
+					screen.DrawText (BigFont, Font.CR_ORANGE, 305 - SP_STATSX, SP_STATSY+3*lh-3, Stringtable.Localize("C"), DTA_Clean, true, DTA_Shadow, true);
+					if(cnt_time > cnt_par)
+						screen.DrawText (BigFont, Font.CR_ORANGE, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Casual"), DTA_Clean, true, DTA_Shadow, true);
+					else
+						screen.DrawText (BigFont, Font.CR_ORANGE, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Rookie"), DTA_Clean, true, DTA_Shadow, true);
+				}
+				else{
+					screen.DrawText (BigFont, Font.CR_RED, 305 - SP_STATSX, SP_STATSY+3*lh-3, Stringtable.Localize("F"), DTA_Clean, true, DTA_Shadow, true);
+					if(cnt_time > cnt_par)
+						screen.DrawText (BigFont, Font.CR_RED, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Weakling"), DTA_Clean, true, DTA_Shadow, true);
+					else
+						screen.DrawText (BigFont, Font.CR_RED, SP_STATSX, SP_STATSY+4*lh-3, Stringtable.Localize("Pacifist"), DTA_Clean, true, DTA_Shadow, true);
+				}
+			}
+			else{
+				screen.DrawText (BigFont, Font.CR_RED, SP_STATSX, SP_STATSY+3*lh-3, Stringtable.Localize("404 Not Found"), DTA_Clean, true, DTA_Shadow, true);
+			}
+		}
+		
+		screen.DrawTexture (Timepic, true, SP_TIMEX, SP_TIMEY, DTA_Clean, true);
+		drawTime (160 - SP_TIMEX, SP_TIMEY, cnt_time);
+		if (wi_showtotaltime){
+			drawTime (160 - SP_TIMEX, SP_TIMEY + lh, cnt_total_time, true);	// no 'sucks' for total time ever!
+		}
+
+		if (wbs.partime){
+			screen.DrawTexture (Par, true, 160 + SP_TIMEX, SP_TIMEY, DTA_Clean, true);
+			drawTime (320 - SP_TIMEX, SP_TIMEY, cnt_par);
+		}
+	}
+	
+	void widescreenDatShit ()
+    {
+        TextureID interborder = TexMan.CheckForTexture("INTBACK", TexMan.Type_MiscPatch);
+        Vector2 borderSize = TexMan.GetScaledSize(interborder);
+        Vector2 interpicTL, interpicRS;
+        [interpicTL, interpicRS] = Screen.VirtualToRealCoords((0, 0), (640, 400), (640, 400));
+        screen.DrawTexture (interborder, true, interPicTL.x - borderSize.x * CleanXFac, -64, DTA_CleanNoMove, true);
+        screen.DrawTexture (interborder, true, interPicTL.x + interPicRS.x, -64, DTA_CleanNoMove, true);
+    }
+}
+
+Class Grabbing_A_Ledge : Inventory	{Default	{inventory.maxamount 1;}	}
+
+Class TimPetersen : DoomPlayer
+{
+
+	//Ledge Grabbing
+	bool	LedgeGrabbed;
+	float	LedgeAngle;
+	int		LedgeHeight;
+	bool	LedgeCheck;
+	int		LedgeTime;
+	int		LedgeHeightMax;
+	int		LedgeHeightMin;
+	float	FrameTime;
+	double	velx;
+	double	vely;
+	double	velz;
+	weapon	ReselectWeapon;
+	playerinfo ZMPlayer;
+	
+	
+	Default {
+   +NOSKIN;
+   +NORADIUSDMG;
+
+   Player.DisplayName "Tim Petersen";
+   Player.StartItem "InkopolisPistol";
+   Player.StartItem "JPSecretFinder";
+   Player.StartItem "WorkzoneAxe";
+   Player.StartItem "EisenfaustCyberware";
+   Player.StartItem "JPFinderTracker";
+   Player.StartItem "InkopolisAmmo", 15;
+   Player.StartItem "ShotgunClip", 8;
+   Player.StartItem "HexaShell", 6;
+   Player.StartItem "ASGClip", 20;
+   Player.StartItem "LZAKAmmo", 30;
+   Player.StartItem "ZenIIMag", 60;
+   Player.StartItem "NussClip", 12;
+   Player.StartItem "HinikawaClip", 60;
+   Player.StartItem "SilverhandClip", 90;
+   Player.StartItem "ReganBFGClip", 100;
+   Player.StartItem "PazuzuClip", 66;
+   Player.StartItem "TrinityClip", 6;
+   Player.StartItem "HarmonyClip", 100;
+   Player.StartItem "NukeLauncherClip", 1;
+   Player.StartItem "SplatterClip", 20;
+   Player.StartItem "BlueMoonAmmo", 100;
+   Player.StartItem "CrossbowClip", 1;
+   Player.StartItem "PulseCannonAmmo", 50;
+   Player.StartItem "BuckshotShellSelected", 1;
+   Player.StartItem "ASGBuckshotShellSelected", 1;
+   Player.StartItem "DEDashJump";
+	Player.StartItem "Ice_Bomb";
+	Player.StartItem "Daul_Grenade";
+	Player.StartItem "Flame_Belch";
+   Player.StartItem "Overmax", 200;
+   Player.StartItem "StartingAnimation";
+   Player.StartItem "ReaperShopPDA";
+   Player.SoundClass "Terminator";
+   Player.JumpZ 10;
+   Player.MaxHealth 100;
+   Player.InvulnerabilityMode "reflective";
+   Player.ForwardMove 1, 1;
+   Player.Face "TER";
+   Player.AirCapacity 3.0;
+}
+   States
+   {
+   Spawn:
+      PRIA A 1;
+	  Loop;
+   See:
+      PRIA ABCD 4;
+	  Loop;
+   Missile:
+      PRIA E 12;
+	  Goto Spawn;
+   Melee:
+      PRIA F 6 BRIGHT;
+      Goto Missile;
+   Pain:
+      PRIA G 4;
+      PRIA G 4 A_Pain;
+      Goto Spawn;
+   Death:
+      PRIA H 10;
+      PRIA I 10 A_PlayerScream;
+      PRIA J 10 A_NoBlocking;
+      PRIA KLM 10;
+      PRIA N -1;
+      Stop;
+   XDeath:
+      PRIA O 5;
+      PRIA P 5 A_XScream;
+      PRIA Q 5 A_NoBlocking;
+      PRIA RSTUV 5;
+      PRIA W -1;
+      Stop;
+   }
+  	//////////////////////////////////////
+	// Ledge Grab						//
+	//////////////////////////////////////
+	
+	Override void HandleMovement() {
+        if(LedgeCheck)
+        {
+            LedgeReach();
+        }
+        if(LedgeGrabbed)
+        {
+            LedgeGrab();
+        }
+        LedgeGrabInitiator();
+        super.HandleMovement();
+    }
+	
+	void LedgeGrabInitiator()
+	{
+		ZMPlayer = self.player;
+		
+		//Already ledge grabbing, no clipping, moving away from where you are looking, ceiling already too low for sure
+		if((pos.z <= floorz) || LedgeCheck || LedgeGrabbed || (ZMPlayer.Cheats & CF_NOCLIP2) || Vel.XY dot AngleToVector(Angle) <= 0 || CeilingZ <= Pos.Z + Height * 1.6f) { return; }
+		
+		//============================================
+		//Find ledge (if any)						//
+		//============================================
+		
+		FLineTraceData LedgeTrace;
+		Float TraceDistance = sqrt(2) * Radius + 1; //account for the fact that Doom's hitboxes are square
+		LineTrace(Angle, TraceDistance, 0, TRF_BLOCKSELF|TRF_THRUACTORS, Height * 1.2f, data: LedgeTrace);
+		Vector3 HitPos = LedgeTrace.HitLocation;
+		
+		Int LedgeCandidate;
+		if(LedgeTrace.HitType == TRACE_HitWall) //hit wall scenario
+		{
+			if(LedgeTrace.Hit3DFloor != NULL) //3D floor
+			{
+				LedgeCandidate = LedgeTrace.Hit3DFloor.Top.ZAtPoint(HitPos.XY);
+			}
+			else //regular wall
+			{
+				Line HitLine = LedgeTrace.HitLine;
+				if(HitLine.FrontSector != NULL && HitLine.FrontSector != CurSector)
+					LedgeCandidate = HitLine.FrontSector.FloorPlane.ZatPoint(HitPos.XY);
+				else if(HitLine.BackSector != NULL && HitLine.BackSector != CurSector)
+					LedgeCandidate = HitLine.BackSector.FloorPlane.ZatPoint(HitPos.XY);
+			}
+		}
+		else if(LedgeTrace.HitSector != CurSector)//tracer stopper mid air in a sector that is not the one where player currently is
+		{
+			LedgeCandidate = LedgeTrace.HitSector.NextLowestFloorAt(HitPos.X, HitPos.Y, HitPos.Z, FFCF_3DRESTRICT, 0);
+		}
+		else
+		{
+			return;
+		}
+		
+		//Check if the candidate ledge can suffice
+		if(LedgeCandidate > Pos.Z + Height * 0.6f && LedgeCandidate <= Pos.Z + Height * 1.6f) ///0.6f , 1.2f
+		{
+			Vector3 OrigPos = Pos;
+			SetXYZ((Pos.XY, LedgeCandidate));
+			if(!CheckMove(Pos.XY + 5.f * AngleToVector(Angle))) //not enough space, cancel everything :(
+			{
+				SetXYZ(OrigPos);
+				return;
+			}
+			SetXYZ(OrigPos);
+			LedgeHeight = LedgeCandidate;
+			LedgeHeightMin = (LedgeHeight - Height * 0.97f);
+			LedgeHeightMax = (LedgeHeight - Height * 0.751f);
+		}
+		else
+		{
+			return; //too high/low
+		}
+		
+		velz = 16; //8
+		LedgeCheck = True;
+		
+		if(vel.length() < 5)
+		{
+			GiveInventory("Grabbing_A_Ledge", 1);
+		}
+		if(pos.z >= (LedgeHeightMin+20))
+		{
+			player.SetPSprite(PSP_WEAPON,player.ReadyWeapon.FindState("FinishClimb"));
+			
+			A_StopSound(CHAN_WEAPON);
+			A_StartSound("ledgeclimb");
+			LedgeAngle = Angle;
+			LedgeCheck = False;
+			LedgeGrabbed = True;
+			return;
+		}
+		{
+			player.SetPSprite(PSP_WEAPON,player.ReadyWeapon.FindState("LedgeClimb"));
+		}
+	}
+	void LedgeReach()
+	{
+		LedgeTime++;
+		if(LedgeTime >= 30)
+		{
+			SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
+			LedgeGrabbed = LedgeTime = LedgeHeight = LedgeHeightMin = LedgeHeightMax = FrameTime = 0;
+		}
+	}
+	
+	void LedgeGrab()
+	{
+		if(Pos.Z >= LedgeHeight || !Vel.Length() || LedgeTime >= 35)
+		{
+			//End Ledge Grab
+			LedgeCheck = False;
+			SetOrigin((Pos.X, Pos.Y, LedgeHeight), True);
+			SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
+			
+			//Only if ledge grab was successful
+			if(LedgeTime >= 35) { return; }
+			LedgeGrabbed = LedgeTime = LedgeHeight = LedgeHeightMin = LedgeHeightMax = FrameTime = 0;
+			Vel = Vel.Length() ? (5.f * AngleToVector(LedgeAngle), -3) : (0, 0, 0); //push player forward and downward
+			A_StartSound("*land", CHAN_BODY);
+		}
+		else
+		{
+			Vel = Vel.Length() ? (0, 0, 8) : (0, 0, 0);
+		}
+		
+		//Fail safe to unlock player movement if something goes wrong
+		LedgeTime++;
+		if(LedgeTime >= 35)
+		{
+			SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
+			LedgeGrabbed = LedgeTime = LedgeHeight = LedgeHeightMin = LedgeHeightMax = FrameTime = 0;
+		}
+		
+		//Sprite animation
+		PlayIdle();
+	}
+}
+
+Class WoomyWeapon : Weapon //Added in version 2.0; converted to ZScript in 2.1
+{
+Default {
+	weapon.bobstyle "alpha";
+	weapon.bobspeed 2;
+	weapon.bobrangex 0.5;
+	weapon.bobrangey 0.3;
+}
+	action void LedgeReach(float HeightDecrease)
+	{
+		let plr = TimPetersen(self);
+		plr.LedgeHeightMax = (plr.LedgeHeight - Height * HeightDecrease * 1.0f); //SPEED
+		A_Stop();
+		SetOrigin((Pos.X, Pos.Y, plr.LedgeHeightMax), True);
+	}
+	States 
+	{
+	Ready: 
+	TNT1 A 1;
+	Stop;
+	Select: 
+	TNT1 A 1;
+	Stop;
+	Deselect: 
+	TNT1 A 1;
+	Stop;
+	Fire: 
+	TNT1 A 1;
+	Stop;
+	Zoom:
+        TNT1 A 0 A_Playsound("KICKFOOT",1,1,0);
+        EXKI A 2;
+	    EXKI B 3;
+	    EXKI C 3 A_CustomPunch(20, 0, 0, "WoomyBulletPuff", 65);
+	    EXKI D 2;
+	    EXKI E 3;
+		EXKI F 2;
+		EXKI G 1;
+        TNT1 A 0 A_Jump(256, "Ready");
+		Goto Ready;
+	}
+	
+	
+	States
+	{
+	
+	
+	
+	Ready3:
+	TNT1 A 1 A_Jump(256, "Ready");
+	Loop;	
+			
+	LedgeClimb:
+	
+	TNT1 A 0 A_ZoomFactor(1);
+	TNT1 A 0 A_ClearOverlays(-1000,99);	
+	TNT1 A 0 A_OverlayRotate(0,0);
+	TNT1 A 0 A_WeaponOffset(0,32,WOF_INTERPOLATE);
+	
+	TNT1 A 0 A_Stopsound(CHAN_5);
+	TNT1 A 0 A_Stopsound(CHAN_6);
+	TNT1 A 0 A_Stopsound(CHAN_7);
+	TNT1 A 0 A_Stopsound(CHAN_WEAPON);
+	TNT1 A 0 A_Stopsound(CHAN_ITEM);
+	TNT1 A 0 A_Stopsound(CHAN_BODY);
+	TNT1 A 0 A_Stopsound(CHAN_AUTO);
+	
+			CL1M A 0;
+			"####" A 0 A_Stop();
+			//"####" A 0 A_GunFlash("LedgeGrabFlash");
+			"####" A 0 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD|WRF_NOSWITCH);
+			"####" A 0 SetPlayerProperty(0,1,PROP_TOTALLYFROZEN);
+			"####" A 0 A_StartSound("ledgeclimb");
+			"####" ABC 1 {
+				let plr = TimPetersen(self);
+				
+				if(Pos.Z < (plr.LedgeHeight - Height * 0.78f))
+				{
+					A_SetPitch(pitch-pitch/2, SPF_INTERPOLATE);
+					Vel = Vel.Length() ? (0, 0, plr.velz) : (0, 0, 0);
+					//plr.velz--;
+				}
+				else if(Pos.Z < (plr.LedgeHeight - Height * 0.76f))
+				{
+					LedgeReach(0.751);
+					return ResolveState("LedgeReach");
+				}
+				return ResolveState(null);
+			}
+		
+			
+		LedgeReach:
+		
+		"####" A 0 A_ClearOverlays(-1000,99);	
+		
+			"####" D 1 {
+				let plr = TimPetersen(self);
+				//if(Pos.Z >= (plr.LedgeHeight - Height * 0.78f) && Pos.Z < (plr.LedgeHeight - Height * 0.76f))
+				if(Pos.Z >= (plr.LedgeHeight - Height * 0.78f))
+				{
+					A_SetPitch(pitch-pitch/2, SPF_INTERPOLATE);
+					GiveInventory("Grabbing_A_Ledge", 1);
+					LedgeReach(0.751);
+				}
+				else if(Pos.Z < (plr.LedgeHeight - Height * 0.78f))
+				{
+					Vel = Vel.Length() ? (0, 0, plr.velz) : (0, 0, 0);
+				}
+			}
+			"####" A 0 A_JumpIf(CountInv("Grabbing_A_Ledge")==1, 1);
+			Goto LedgeReach;
+			
+			"####" E 1 {
+				let plr = TimPetersen(self);
+				
+				plr.velz = 3.6;
+				A_SetPitch(0, SPF_INTERPOLATE);
+				LedgeReach(0.751);
+				A_StopSound(CHAN_WEAPON);
+				plr.LedgeAngle = Angle;
+				plr.LedgeCheck = False;
+				plr.LedgeGrabbed = True;
+			}
+			"####" F 1 {
+				A_SetPitch(pitch-0.5, SPF_INTERPOLATE);
+				Vel = Vel.Length() ? (0, 0, 0.5) : (0, 0, 0);
+			}
+			"####" G 1 {
+				let plr = TimPetersen(self);
+				A_SetPitch(pitch+3, SPF_INTERPOLATE);
+				Vel = Vel.Length() ? (0, 0, plr.velz) : (0, 0, 0);
+			}
+			"####" HI 1 {
+				let plr = TimPetersen(self);
+				A_SetPitch(pitch+4, SPF_INTERPOLATE);
+				Vel = Vel.Length() ? (0, 0, plr.velz) : (0, 0, 0);
+			}
+			
+		FinishClimb:
+		
+		"####" A 0 A_ClearOverlays(-1000,99);	
+
+		
+			CL1M A 0;
+			//"####" A 0 A_GunFlash("LedgeGrabFlash");
+			"####" JK 1 {
+				let plr = TimPetersen(self);
+				
+				plr.velz = 3.6;
+				A_SetPitch(pitch-3, SPF_INTERPOLATE);
+				Vel = Vel.Length() ? (0, 0, plr.velz) : (0, 0, 0);
+			}
+			"####" LM 1 A_SetPitch(pitch-2, SPF_INTERPOLATE);
+			TNT1 AA 1 {
+				A_SetPitch(pitch-pitch/2, SPF_INTERPOLATE);
+				A_WeaponReady();
+			}
+			TNT1 A 0 A_SetPitch(0, SPF_INTERPOLATE);
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
+			TNT1 A 0 TakeInventory("Grabbing_A_Ledge", 1);
+			TNT1 A 0;
+			Goto Ready3;
+		}		
+}
+
+class MapCompleted1 : Inventory { Default { +INVENTORY.UNDROPPABLE; Inventory.InterhubAmount 0; Inventory.MaxAmount 256; } }
+class MapCompleted2 : Inventory { Default { +INVENTORY.UNDROPPABLE; Inventory.InterhubAmount 0; Inventory.MaxAmount 256; } }
+class MapCompleted3 : Inventory { Default { +INVENTORY.UNDROPPABLE; Inventory.InterhubAmount 0; Inventory.MaxAmount 256; } }

@@ -1,0 +1,430 @@
+WOOMY: Project Petersen
+
+Plotline: 
+The year is 2119. The Inkopolis-Night City Alliance (INCA) has took control of the whole world ever since its formation in 2022. They have recently began terraforming the Moon and Mars under Project Minato.
+
+Everything's going fine and dandy until, all of a sudden, multiple portals to Hell suddenly opened up on both Earth and Mars. Hundreds upon thousands of demons claiming themselves to be the Infernal Colonial Forces poured out and started torturing all kinds of sentient species.
+
+You are Timothy John Petersen, better known as Terminator model TJP-13633. Ever since you uploaded your brain to Mikoshi back in 2077, Arasaka has announced construction of Terminator models to download the uploaded engrams from Mikoshi in case they're finally ready to be transported into a new body. You finally decided, after a few decades of being a soulless engram, to gain a new body in 2109. While initially it was hard getting used to a robot body that's directly inspired by Arnold Schwarzenegger's movies, you managed to get a hold of its advantages and manage to become a power that cyberpsychos and even Adam Smasher fear, especially after his untimely death in 2077. You have now decided to stop the demon invasion once again, especially since you managed to do exactly that back in 2031. Operation Exorcist has now begun.
+
+Unfortunately, the ICF have a secret up their sleeve. Using the power of the Houzuki-Petersen Wormholes, they are able to send you through various dimensions, hoping to buy them enough time to kill off humanity unlike their failures almost a century ago. You were unfazed however, saying that you half-expected something like this to happen and that you'll find a way to go back to your own realm sometime soon.
+
+Classes: 
+
+Tim Petersen: The man himself. A self-insert of the mod's author, he was initially an autistic nobody, until the Chaos Events happened in 2020 which caused Inkopolis and Night City to suddenly transport into our dimension. He employed himself to Team Order, and helped them defeat Pearl Houzuki and her group, Team Chaos. Many more chaotic events happened throughout the years, but he managed to end all of them. In 2077, at 75 years old and close to death, he uploaded himself to Mikoshi as an engram. 32 years later, he gained a new T-800-style cyborg body, alongside many inhuman abilities related to it. Now he's a cyborg super soldier employed at Houzuki-Ida's military forces, ready to protect Earth and any and all extraterrestrial colonies from extradimensional invaders.
+Starter weapons: "Eisenfaust" Cyberware, "Workzone" Fire Axe, "Renzetti" Tracking Device, "Inkopolis" Pistol
+
+Cyberware: 
+
+Of course, what's a cyborg super soldier without being so chock full of cyberware it makes even cyberpsychos run away in fear?
+
+Default Keybinds: 
+F: Flashlight.
+G: Bullet Time.
+H: Frag Grenades.
+J: Ice Bomb.
+K: Flame Belch.
+B: Dash.
+
+Kiroshi Optics "Marina" Eye Cyberware
+This is the tech that enables the HUD to be seen. The cyberware shows you various critical components detrimental to your survival, including how much health, armor and ammo you currently have, alongside what items you have in your inventory, a minimap to track where you are, and a statistics counter to show how many kills, items and secrets you have and how much time you've currently spent in.
+
+Vektor Arms "Eisenfaust" Cyberware
+Based on the popular Gorilla Arms cyberware, newbie company Vektor Arms (made with Militech's support) decided to invent a type of arm cyberware (dubbed Eisenfaust, German for Iron Fist) so powerful it can punch out even the heaviest demons with ease while keeping the user's muscles from being restrained and exhausted. Only trained professional ripperdocs are allowed to equip this on any edgerunner, and even then, only super soldiers who work for militaries and corporations are legally allowed to have this cyberware equipped on them.
+FIRE: Rapid punch.
+ALT-FIRE: Hold to charge up. Release to throw a deadlier punch depending on how long you held the button.
+AMMO: N/A
+NUCLEAR-BOOSTED: Fire now deals the same damage as alt-fire. Alt-fire is disabled.
+
+UAC "Hayden" Thrust Boosters
+Special leg cyberware designed to increase the user's foot strength and give them inhuman abilities related to speed and jumps. Press the jump button while in mid-air to jump a second time. Press the dash button (aka User4) to dash quickly in whatever direction you're going. Dash can be used up to two times before needing to cool down.
+
+Militech "Morpheus" Sandevistan Cyberware
+Based on Dynalar's Sandevistan cyberware, Militech's own variation is designed to be used by spies and stealth assassins to catch their enemies off guard while sneaking through their defences. Press the G button to toggle bullet time. While under bullet time, the entire world around you will slow down to a snail's pace, Matrix-style, enabling you to fire hundreds of bullets at their faces without time for them to react. Just keep in track of the hourglass in the HUD, as that is drained while bullet time is active and once emptied, bullet time is deactivated.
+
+UAC "Doom Slayer" Shoulder Launchers
+A set of custom-made shoulder-mounted grenade launchers designed by the UAC. They are able to fire three different types of projectiles, each controlled by three buttons. H shoots a frag grenade, J shoots an ice bomb that freezes enemies close to it, and K belches out flames for a short time, instantly burning anyone affected by it. Frag grenades can be shot twice before needing a cooldown, while the other modes need to cool down after being used once.
+
+UAC "John Kane" Flashlight
+It's just an ordinary flashlight, albeit one that's customizable and embedded under your skin as a cyborg implant. Runs practically indefinitely, without worrying about its batteries running out. Press F to toggle the flashlight.
+
+Arasaka "R.E.B.E.C.C.A." AI PDA
+Powered by the eponymous AI (R.E.B.E.C.C.A. standing for The Rogue Eternal Brutal Edgerunner's Cool and Cute Accompanient) and running on Microsoft's Windows 100.09 operating system, the built-in PDA gives you access to the Reaper Shop, an online store where you can buy practically every single item and weapon that's available in the mod, using bytes as currency. The rarer (or more powerful) the item, the more expensive it is, up to a million bytes.
+
+Bytes
+Bytes are the official currency of the Inkopolis-Night City Alliance, and are used to buy from the Reaper Shop. They are obtained by killing enemies, completing stats, or by finding rare items that spawn in deathmatch starts. Said rare items come in two formats, UAC Cards and Demon Keys.
+UAC Cards: 
+Bronze: 500 Bytes
+Silver: 1,000 Bytes
+Gold: 2,500 Bytes
+Platinum: 5,000 Bytes
+Diamond: 10,000 Bytes
+Demon Keys: 
+Orange: 500 Bytes
+Purple: 1,000 Bytes
+Cyan: 2,500 Bytes
+Green: 5,000 Bytes
+Red: 10,000 Bytes
+
+Weapons: 
+
+For all weapons:
+RELOAD: Reload. (Except melee weapons)
+ZOOM: Quick-kick.
+
+Aldi "Workzone" Fire Axe
+Originally bought at an Aldi store in England, you had this axe for most of your life. It can chop demon flesh quickly and easily, much like how axes were used to chop trees down before chainsaws were made. If that's not enough, you can even charge a more powerful swing to decimate even the most powerful demons with ease.
+FIRE: Swing the axe.
+ALT-FIRE: Hold to charge; release to swing with greater power.
+RELOAD: Throw the axe a great distance. Can be picked up again.
+AMMO: N/A
+NUCLEAR-BOOSTED: Fire deals double damage, and alt-fire always swings with maximum power.
+
+Wakeman Corp. "Renzetti" Tracking Device
+A gift from XJ-9 herself. This special device was designed by Nora Wakeman to locate various objects, including items, enemies, secrets and switches, among other things. It only tracks the nearest thing that can be tracked, but it's still useful if you're attempting a 100% speedrun.
+FIRE: None.
+ALT-FIRE: None. 
+AMMO: N/A
+NUCLEAR-BOOSTED: Nothing's changed; this thing doesn't attack at all (excluding the quick-kick).
+
+Francis Darx Inc. "Midway Nightdive" Chainsaw
+Francis Darx Inc's main goal is to research weapons and artifacts from other dimensions and reverse-engineer them, and later manufacture multitudes and sell them to the public. One of their most popular weapons is a double-bladed chainsaw, designed to chop down both trees and enemy forces with ease. Be wary though, as its noisy engine can alert your enemies to your presence.
+FIRE: Activate the chainsaw.
+ALT-FIRE: Toggle engine on or off.
+AMMO: N/A
+NUCLEAR-BOOSTED: Attacks even faster, and the damage it deals is increased ten-fold.
+
+Houzuki-Ida "Minato" Amogusite Katana
+Houzuki-Ida co-founder Pearl Houzuki's personal melee weapon. A katana/lightsaber hybrid, it was forged using various resources made from various dimensions; its blade is made of amogusite and hardened light, while its handle is made of hardened netherite. It can cut through flesh and ink easily, no matter how tough.
+FIRE: Swing the katana.
+ALT-FIRE: None.
+AMMO: N/A
+NUCLEAR-BOOSTED: Gains an alt-fire where you can teleport to whatever you're aiming at by creating a portable wormhole.
+
+Squid Sisters "Deep Cut" Spray Paint
+Deep Cut has had a harsh reputation over the years due to being involved in many controversies (especially after the discovery that they, alongside the then-British PM Liz Truss, were tied to Queen Elizabeth II's death and a secret organization called the Marcus Association). So a spray paint can that honors them is one of the reasons why the Squid Sisters megacorp is not that well known. Despite this, this can sprays ink over walls and even deals damage to enemies, so you can graffiti the turf, Splatoon-style!
+FIRE: Spray the paint. 
+ALT-FIRE: Switch between eight colours, in order: Red, Orange, Yellow, Green, Blue, Purple, White and Black.
+AMMO: N/A
+NUCLEAR-BOOSTED: Sprays faster and in a wide spread.
+
+Arasaka/Houzuki-Ida "Inkopolis" Pistol
+This is your primary sidearm. The main reason that this gun was even made was so that humans can also participate in turf wars and Splatfests. Don't be fooled by its down-to-earth looks; this is actually a paintball gun, albeit one that shoots 9mm bullet-sized globs of corrosive ink at Mach 2 speeds. Thanks to Houzuki-Ida's revolutionary InkTek(tm) technology, you also have an infinite amount of ink-bullets.
+FIRE: Fire an ink-bullet.
+ALT-FIRE: Fire a small ink-grenade that bounces off walls. Consumes 3 ink-bullets.
+AMMO: Ink-bullets
+CLIP: 15
+RESERVE: Infinite
+NUCLEAR-BOOSTED: You now wield two Inkopolis pistols; Fire fires both pistols together, increasing the fire rate further, while alt-fire shoots two ink-grenades from both pistols. You also have infinite ammo, and reloading is disabled.
+
+Squid Sisters "Splattershot" Handgun
+The Splattershot Handgun is notable for being the first ever non-ink based weapon to be marketed exclusively to inklings and octolings alike. It's also the first weapon ever made by the Squid Sisters megacorporation, who's falling behind compared to the other Japanese/Splatoonian megacorps. Tim Petersen's artificially-constructed inkling daughter, Tsugan Petersen-Onuki, used it as her signature weapon, however she decided to stay behind and not follow her 'dad' on his dimensional adventures.
+FIRE: Fire a bullet.
+ALT-FIRE: Fire a laser. Despite using your blood (or ink) as a resource, it does not damage your health.
+AMMO: 9-Gauge Bullets
+CLIP: 20
+RESERVE: 400/800
+NUCLEAR-BOOSTED: The handgun fires much faster on both fire modes, and it's much more accurate as well.
+
+Wakeman Corp. XJ-77 "Blue Moon" Plasma Pistol
+The XJ-77 Blue Moon is the first weapon made by Wakeman Corp, which usually specializes in making robots designed for any and all uses (including their world-famous XJ-9 robot, more commonly known as Jenny Wakeman). Designed to provide civilians with as much firepower as a Wakeman robot while remaining portable, it fires bullet-sized dark matter at enemies. Thankfully, it can be recharged by simply removing the magazine and exposing it to the open air, which converts the gas around it into dark matter.
+FIRE: Fire a dark matter bullet.
+ALT-FIRE: Hold to charge a more powerful bullet; release to fire.
+AMMO: Dark Matter
+CLIP: 100
+RESERVE: Infinite
+NUCLEAR-BOOSTED: Both fire modes deal double damage, the charge for the alt-fire has been removed, and the ammo recharges itself on a whim. Reloading is disabled.
+
+Militech M2097 "Bicentennial" Shotgun
+Based on the famous trench gun manufactured in 1897 by the Winchester company, it's designed by Militech as part of the annual 'Bring Back The Past' event that's going on Earth where companies from around the world recreate elements from past years into the present. The M2097 was one of many firearms modernized for the present time (another well-known one, the AK-2047, was also designed for the BBTP event, albeit manufactured by Russian arms manufacturer Techtronika instead).
+FIRE: Fire a 10-gauge shell.
+ALT-FIRE: Aim down sights.
+AMMO: 10-Gauge Shells
+CLIP: 9
+RESERVE: 80/160
+NUCLEAR-BOOSTED: The weapon becomes more accurate, and you no longer need to pump between each shot.
+
+Arasaka/Onuki-Yoshimura "Trinity" Revolver
+The next-generation evolution of the well-known Thunderhawk revolver, the Trinity is designed to be a multi-purpose weapon that fires special Butcher rounds that have buckshot, hellfire, electric or poison modes. However, Butcher rounds with only the buckshot mode are legal to be sold to and shot by ordinary civilians. A revolver that shoots pseudo-shotgun shells makes this particular type of revolver one of the most sold firearms on Earth.
+FIRE: Fire the selected ammo round.
+ALT-FIRE: Toggle ammo type. Cycles through buckshot, hellfire, electric and poison modes.
+AMMO: .700 Butcher Rounds
+CLIP: 6
+RESERVE: 60/120
+NUCLEAR-BOOSTED: All four ammo types are fired simultaneously regardless of mode. Alt-fire is disabled.
+
+Rostović "DB-6 Listera" Hexa-Shotgun
+Requested by a certain Lister, the Listera is an absolute beast of a sawed-off shotgun, spouting six barrels of lead and death. Because of the amount of resources required to make even one gun, these things have become ludicrously expensive, leaving only high-end edgerunners being able to buy even one Listera.
+FIRE: Fire all six shells.
+ALT-FIRE: Fire two shells at a time.
+AMMO: 10-Gauge Shells
+CLIP: 6
+RESERVE: 80/160
+NUCLEAR-BOOSTED: Both fire modes become more accurate, and alt-fire now only consumes one shell.
+
+Francis Darx Inc. "Eclipse" Autoshotgun
+The most popular weapon from Francis Darx Inc's Demon Eclipse Collection, an automatic shotgun based on both the AA-12 and the Militech Crusher designed to shoot shotgun shells at a moderately-fast rate without breathing room for the target to fight back. Even better is the fact that the Eclipse is also compatible with many various types of shells.
+FIRE: Fire the selected shell.
+ALT-FIRE: Toggle ammo type. Cycles through buckshot, slug, dragon's breath and flak modes.
+AMMO: 10-Gauge Shells
+CLIP: 20
+RESERVE: 80/160
+NUCLEAR-BOOSTED: Fires faster and more accurately.
+
+Arasaka/KGHM AK-2047 "Alice" Assault Rifle
+KGHM's foray into the weapons department (with help from Arasaka), modified from an old-fashioned Techtronika AK-2047 (itself made as a centennial modernization of the world-famous AK-47). It shoots armor-piercing copper bullets freshly mined from the copper mines in Lubin, Zapadoslavia. It's also one of the most popular self-defense weapons by rural farmers.
+FIRE: Full-auto fire.
+ALT-FIRE: Burst fire.
+AMMO: Copper Bullets
+CLIP: 30
+RESERVE: 360/720
+NUCLEAR-BOOSTED: Fire rate, damage and accuracy has been doubled. Alt-fire now shoots grenades.
+
+Francis Darx Inc. "Zen-II" Dual Mini-SMGs
+The Zen Dynamics Collection's Zen-II SMG has been declared as a revolutionary weapon that will change the firearms industry, maintaining a really high firing rate of 700 RPM while also being as compact as a handgun. It has seen great success among the Earthly population, mainly used by scouts and police officers due to its small size and stopping power.
+FIRE: Fire both guns at once.
+ALT-FIRE: Burst-fire 3 bullets at once from each gun.
+AMMO: 9-Gauge Bullets
+CLIP: 60
+RESERVE: 400/800
+NUCLEAR-BOOSTED: Fire becomes more accurate and more damaging. Alt-fire now shoots shrapnel shards that rip through enemies and consume 10 ammo.
+
+Onuki-Yoshimura "Harmony" Minigun
+Erroneously referred to as a chaingun during development, the Harmony is designed to be used by mounted turrets and Eisenmann supersoldiers. However, demand has grown for a man-portable version to be manufactured and sold to the general public. Not only can it perform its iconic rapid-fire function, but it also has a burst fire option to fire four bullets at a time, a rarity for its kind.
+FIRE: Rapid fire.
+ALT-FIRE: Burst fire.
+AMMO: 9-Gauge Bullets
+CLIP: 100
+RESERVE: 400/800
+NUCLEAR-BOOSTED: Weapon becomes more accurate, and only one bullet is consumed per burst.
+
+Onuki-Yoshimura "Nussbeisser" Rocket Launcher
+After meeting sufficient demand and seeing how well rocket launchers are used for anti-tank purposes, the higher-ups at Onuki-Yoshimura have decided to invent the Nussbeisser Rocket Launcher, a 12-barrelled beast of a weapon that can shoot Nussrockets; armor-piercing rockets that also double as grenades. Onuki-Yoshimura is currently leasing the Nussrocket patent to other weapon manufacturers to make their own kinds of weaponry.
+FIRE: Fire a rocket.
+ALT-FIRE: Fire a grenade.
+AMMO: Nussrockets
+CLIP: 12
+RESERVE: 60/120
+NUCLEAR-BOOSTED: Fires much faster, and the rockets and grenades travel twice as fast. Both projectiles also explode into five grenades.
+
+Wakeman Corp. "Cobra" Crossbow
+If it ain't broke, don't fix it. That's what the scientists at Wakeman Corp thought when designing the Cobra Crossbow, a dual-function crossbow that can fire either standard bolts, or explosive bolts that, well, explode when it hits the surface. Due to its lethality and dangerousness when improperly handled, it's not sold to the general public; only XJ-9 robots and commandos of armies can legally buy and use them.
+FIRE: Fire a standard bolt.
+ALT-FIRE: Fire an explosive bolt.
+AMMO: Crossbow Bolts
+CLIP: 1
+RESERVE: 60/120
+NUCLEAR-BOOSTED: Auto-reloads quickly after firing a bolt. Manual reloading is disabled.
+
+Onuki-Yoshimura "Hinikawa" Plasma Rifle
+Codenamed 'Project Phthonus' during development and named after famous keytarist Julie Hinikawa, this plasma gun was designed for use by space marines in space warfare, because prior tests have ensured that gunpowder-based weapons are ineffective in lower gravities. Not only that, it also comes with a railgun option to snipe any enemies from afar without loss of accuracy.
+FIRE: Fire a stream of plasma.
+ALT-FIRE: Railgun shot. Consumes 15 batteries.
+AMMO: EcoCell Batteries
+CLIP: 60
+RESERVE: 600/1200
+NUCLEAR-BOOSTED: No longer goes into a cooldown after either firing mode, and the ammo recharges itself. Reloading is disabled.
+
+Malorian Arms/Houzuki-Ida "Silverhand" Flamethrower
+An unholy fusion of the M1 Flamethrower and the Malorian Arms 3516, the Silverhand can either eject a stream of flames cooking anything that stands in its way, or eject the fuel in its unignited form into the ground to set up deadly traps, making it both an offensive and defensive weapon.
+FIRE: Shoot a stream of flames.
+ALT-FIRE: Eject the petrol, which can then be ignited.
+AMMO: Petrol Canisters
+CLIP: 90
+RESERVE: 500/1000
+NUCLEAR-BOOSTED: The weapon shoots twice as fast, and the flames last twice as long.
+
+ThyssenKrupp AG "Schwarze Sonne" Dark Matter Pulse Cannon
+Built with support from weapon manufacturer Rommel Arms, the Schwarze Sonne (German for Black Sun) is the first mass-produced pulse rifle that fires dark matter projectiles that rip through enemies with ease. This weapon has since become the standard-issue firearm for soldiers based in Germania, who praise it as a breakthrough in German science and technology.
+FIRE: Fire a stream of dark matter.
+ALT-FIRE: Charge a powerful dark matter projectile that rips through enemies and deals tons of damage. Consumes 25 batteries.
+AMMO: EcoCell Batteries
+CLIP: 50
+RESERVE: 600/1200
+NUCLEAR-BOOSTED: You now wield two Pulse Cannons. Fire fires both weapons at once. Alt-fire now fires a black hole from one Pulse Cannon. Cooldown is removed, ammo recharges itself, and manual reloading is disabled.
+
+Houzuki-Ida/Onuki-Yoshimura "Amogusrath" REGAN-1488
+Based on the Union Aerospace Corporation's famous Bio Force Gun Mark 9000 project, the REGAN-1488 (Reality Extorting Germanic Antimatter Neutralizer Mk. 1488), built upon stolen Fourth Reich technology, utilizes compressed antimatter to shoot devastating antimatter shots at powerful enemies and crowds. As if that wasn't enough, it can consume a full antimatter magazine to shoot an even bigger 'Ultramatter' shot that deals enough damage to wipe out a cyberdemon in one shot.
+FIRE: Antimatter shot. Consumes 20 capsules.
+ALT-FIRE: Ultramatter shot. Consumes 100 capsules.
+AMMO: Antimatter Capsules
+CLIP: 100
+RESERVE: 500/1000
+NUCLEAR-BOOSTED: Alt-fire charge time is reduced, and the ammo recharges itself. Reloading is disabled.
+
+Infernal Colonial Forces "Pazuzu" Unmaker
+Created by none other than Loremaster the Science Demon, this infernal weapon was constructed to be used by the demonic elites of the ICF, and only them. Thankfully, after the Scary Maze War of 2030, almost all of those elites have been killed, and their weapons were taken away to be studied by Houzuki-Ida.
+FIRE: Fire three lasers in a spread.
+ALT-FIRE: Fire an ultra-powerful sniper beam. Consumes 6 souls.
+AMMO: Human Souls
+CLIP: 66
+RESERVE: 333/666
+NUCLEAR-BOOSTED: Both fire modes deal quadruple the damage and fire much faster.
+
+Houzuki-Ida/Onuki-Yoshimura "Dorogreg 100.09" Nuke Launcher
+Requested by Tim Petersen himself, the Nuke Launcher is rather self-explanatory; it's a man-portable cannon that shoots a few-kiloton nuclear warhead in its vicinity. It's often said to be the evolution of the old Davy Crockett nuke launcher, known as the smallest nuke ever detonated.
+FIRE: Fire a nuke.
+ALT-FIRE: Place a nuke in a timed mine fashion, in which it beeps for a few seconds before exploding normally.
+AMMO: Pocket Nukes
+CLIP: 1
+RESERVE: 50/100
+NUCLEAR-BOOSTED: The warning alarm is removed, making it fire instantly.
+
+Militech "Rebecca" Hellfire Vial and "Lucyna" Acid Mist Vial
+What's a cyberpunk future without a little chemical warfare? These vials were created in secret laboratories deep inside Militech's facilities to be dropped on Arasaka's buildings, but after the Edgerunner Incident where David Martinez and his crew infiltrated a Militech facility nearby Las Vegas, hundreds of these vials were stolen from there and are sold on the black market.
+FIRE: Throw the vial.
+ALT-FIRE: None.
+AMMO: Themselves
+RESERVE: 50/100
+NUCLEAR-BOOSTED: Throw the vial much farther.
+
+Items: 
+
+UACVolve Health Bonus
+The latest breakthrough in medicine, the UACVolve health bonus regenerates a small portion of your health by finding harmful substances in your body and eliminates them. Restores 5 health up to a maximum of 300. A rare Super variant of it exists, which restores up to 500 health instead.
+
+UACVolve Stimpack
+When you're wounded but not wounded enough for a full medikit, these stimpacks are your best friend. Restores 15 health. Three variants exist: normal variants, which heal to 100 HP, and rare charged variants, which heal to 300 HP, and super-rare supercharged variants, which heal to 500 HP.
+
+UACVolve Medikit
+Usually given by medics to their fellow soldiers, these first aid kits are mainly sold to Trauma Team and various armies around the world, but are also sold to the public as well. Restores 30 health. Much like stimpacks, three variants exist: normal variants, which heal to 100 HP, and rare charged variants, which heal to 300 HP, and super-rare supercharged variants, which heal to 500 HP.
+
+Portable Health Items
+The health pickups mentioned above are useful to maintaining your health, but unfortunately cannot be carried. However, these pickups, created by both UAC and Trauma Team, can be carried around with you, making you survive for longer if there are no health items close to you when close to dying.
+List of health pickups, from weakest to strongest: 
+Sterilized Bandage: 10 HP
+Medical Gel: 15 HP
+Military Stimpak: 20 HP
+Standard Stimpak: 30 HP
+Saline Pack: 50 HP
+Advanced Stimpak: 60 HP
+Bloodpack: 100 HP
+
+Portable Medikits
+These portable medical kits, also created by the collaboration of the UAC and Trauma Team, contain many vital medicines useful for prolonging the user's lifespan, from the usual health restorers to experimental prototypes.
+List below for which medikit gives you which items:
+Standard Medical Kit: Pain Killers, a Saline Pack, 4 Bandages, and a Standard Stimpak.
+Field Medical Kit: Adrenal Boost, Pain Killers, a Bloodpack, 4 Bandages, and two Military Stimpaks.
+Grade 3 Field Medical Kit: Medical Gel, Anti-Radiation Tablets, Pain Killers, Saline Pack, 4 Bandages and two Standard Stimpaks.
+Experimental Berserk Kit: Combat Enhancement Stimulant, Pain Killers, a Bloodpack, 4 Bandages, and an Advanced Stimpak.
+
+Armor Shard
+Manufactured by Eggman Robotics (who are the main rivals to the Wakeman Corporation), these armor shards won't do well on their own, but will still provide some good protection against the various types of projectiles you'll face. Restores 5 armor up to a maximum of 250. Like with the health bonus, a rare Super variant exists, which restores up to 500 armor.
+
+Armor Vests
+Eggman Robotics mainly manufactures military robots to be deployed on the frontlines alongside cyborgs and supersoldiers, but they also produce protective armor to be worn by said soldiers. In order, from weakest to strongest: 
+Aluminium (Green): 100 Armor Points, 25% Protection.
+Titanium (Yellow): 150 Armor Points, 50% Protection.
+Netherite (Blue): 200 Armor Points, 75% Protection.
+Amogusite (Red): 250 Armor Points, 95% Protection.
+
+MobaXterm
+A multifunctional terminal emulator application created by Mobatek that's mainly used for networking purposes. When picked up, gives you full automap plus a scanner that marks all objects on said map.
+
+Helmet Flashlight
+Night vision goggles that can be used to see in dark places with ease. Great for navigating dark labyrinths when paired with MobaXterm. When picked up, it can be toggled on or off in your inventory.
+
+Backpack
+Manufactured by the UAC, these backpacks give you a small supply of all kinds of ammo and also double your ammo capacity, allowing you to waste less time finding ammo.
+
+Toolbox
+These toolboxes that are randomly found in the place of backpacks give you much more ammo than a backpack, but unfortunately does not double your ammo capacity, since you (obviously) can't wear them on your back.
+
+Ultra Backpack
+The best of three worlds; gives you double ammo capacity, as much ammo as a toolbox, and also gives you 15 seconds of infinite ammo thanks to the same demonic energies used for the ammosphere.
+
+Survival Pack
+A white-coloured variant of the backpack that not only gives you more ammo than usual, but also gives you one of each portable medikits to help you survive better on your journey.
+
+Weapon Crate
+As expected from the title, these crates hold various different types of weaponry from a mere pistol to a powerful superweapon, plus some ammo for them as well if you're lucky. They spawn alongside any backpack spawn (more specifically, the three items mentioned above) half the time.
+
+Ammosphere
+Created by the demonic forces of the ICF before the UAC seized the ritual grounds used for making them, picking up this red sphere will allow you to fire weapons without consuming any ammunition for 60 seconds.
+
+Ultimasphere
+Much more powerful than the ammosphere, it gives you double firing speed, double walking speed and infinite ammo for 30 seconds. Also you can drain health from enemies when it's active.
+
+Portable Rejuvenation Unit
+Reserved to Trauma Team medics only, these revolutionary units are basically automatic healers, applying cellular regeneration to any unnatural wounds without you having to stop firing and tending to your wounds. Be warned though; these things will not regenerate your health past 100, even if your max health is boosted by Adrenaline pickups. On the upside, you can carry up to 1000 restorable HP for the PRU to use.
+
+Invulnerability Sphere
+Initially created by the Infernal Colonial Forces, these green spheres branding a demonic face were later stolen in multitudes by Houzuki-Ida, mainly for testing purposes. You're unable to take damage for 60 seconds when picked up.
+
+Immortality Sphere
+A rare variation of the invulnerability sphere mentioned above. Once picked up, you'll still be able to take damage, but your health won't go below 1. Effect lasts for 60 seconds.
+
+Adrenaline
+Manufactured by the UAC alongside their popular UACVolve line of medicine, this allows people to fully restore themselves when they're almost fatally wounded. Restores 1 health beyond the maximum up to 300 health.
+
+Super Adrenaline
+A more powerful version of the adrenaline, reserved for only the richest of corpos and for Trauma Team medics. Restores 10 health beyond the maximum up to 300 health.
+
+Nuclear Capacitor
+A nuclear power core designed by the Wakeman Corporation to overclock their combat robots during emergencies, but is extremely unstable and has caused more than a few robots to explode violently. When picked up, it upgrades your weapons for 60 seconds, with (thankfully) no risk of exploding.
+
+Skeld Crewmate Suit
+Specially designed suits created for survival in many kinds of harsh environments, including damaging floors, poisonous projectiles and under water. Lasts 80 seconds when worn.
+
+Quad Damage
+A purple sphere of possible demonic origin bearing the Quake logo. Picking one up quadruples the damage output for 60 seconds. Can be obtained from item crates in secret areas like most other items on here.
+
+Grenades
+Explosive devices with an arming pin built in them. They are based in the inventory instead of being a separate weapon, but can only be obtained from item crates, completionist boxes or the Reaper Shop. They come in five variants; shrapnel, ice, flame, gas and black hole, each one releasing their respective payloads.
+
+Minderiasphere
+A grey sphere depicting an oddly familiar logo. Wonder if the Minderia Corporation created it. Picking it up regenerates your health by five points up to your normal 100 health, enabling you to fight for longer without needing to worry about low health. Spawns in item crates inside secret areas.
+
+Life Sphere
+Once demonic, now reverse-engineered by the UAC. This weird sphere finds any and all non-natural wounds and patches them up similarly to the other health pickups, but at a much greater rate. Restores 100 health up to a maximum of 300.
+
+Yoshimurasphere
+Basically a weaker Onukisphere (mentioned below). A Life Sphere that's injected with Yumi Yoshimura's essence, it brings your health to beyond even what an ordinary Life Sphere can give you. Restores 500 health.
+
+Terasphere
+Three life spheres plus an amogusite armor vest creates this legendary artifact. These things are quite rare to find, but when you do find one, it'll be worth taking. Restores 300 health and 250 armor.
+
+Onukisphere
+Take a Terasphere, and inject it with Ami Onuki's time travelling powers. Time travel not included. It's also quite a rare sight to behold. Restores 500 health and armor. 
+
+Completionist Box
+A mystery box that you get when you get 100% on either kills, items, or secrets. Opening it gives you a random powerup of equal chance, from a backpack to an Adrenaline to even an Onukisphere.
+
+Jetpack
+Manufactured by the Wakeman Corporation, this advanced model of jetpack is designed for humans to fly high distances at great speeds, maneuvering over holes and obstacles too high or wide to jump through. Hold jump to fly, while releasing and holding again allows you to hover without going up or down. Pressing the use key performs a thrust in whatever direction you're going.
+
+Atomic-Core Cluster Unit
+The closest thing to an inventory-based superweapon. This UAC-made bad boy counts down from 5 seconds, and then sends out five waves of cluster explosions, before itself exploding in a nuclear fashion, dealing devastating damage. It's not recommended to stand near the device while it's active. Only spawns in secret areas.
+
+Pain Killers
+Sold alongside MaxDoc inhalers in pharmacies, these tablets will make your pain receptors temporarily numb, making you feel less pain. Gives you 25% damage resistance for two minutes when used. Can be obtained from all portable medikits.
+
+Adrenal Boost
+Not to be confused with Adrenaline. An injection stimulant that enables you to run 25% faster, jump 25% higher, and take 20% less damage from all sources for 60 seconds, enabling you to become even more of a speed demon than you are now. Can either be obtained from Field Medical Kits or spawned alongside Ammospheres and Ultimaspheres.
+
+Anti-Radiation Tablets
+Specialized tablets that are created and used as treatment for irradiation. When used, you will take half damage from all damaging floors for two minutes (like a worse Skeld Crewmate Suit). Can either be obtained from Grade 3 Field Medical Kits or spawned alongside Skeld Crewmate Suits.
+
+Combat Enhancement Stimulant
+Also known as a Berserk Injector, it's an experimental injection stimulant that's currently in its prototype stages. Using it not only gives you 30% damage resistance from all sources, but all your weapons will deal double damage for 60 seconds. Can either be obtained from Experimental Berserk Kits or spawned alongside Adrenaline and Nuclear Capacitors.
+
+Elemental Gems
+These gems are rare artifacts of unknown origin that possess the power of a specific element depending on the colour. Spawns in secret areas. A list is specified below: 
+Fire (Red): Flames sprout from the ground to damage enemies in a large radius.
+Earth (Brown): Causes boulders to randomly bounce around and knock back enemies.
+Wind (Green): Pulls in enemies with a powerful tornado whilst unleashing a barrage of smaller tornadoes.
+Water (Blue): Droplets of water rain down to damage enemies, as well as heal allies.
+Poison (Purple): Poisonous mist and globules damage foes over time. Also leaves small poisonous pools to act as mines.
+Lightning (Yellow): Bolts of lightning seek and strike down enemies.
+Ice (Cyan): Shards of ice are fired from the gem to freeze enemies.
+Dark (Black): Dark voids repeatedly damage enemies they come in contact with.
+Light (White): Assaults enemies with inescapable light.
+Rare (Black): Extremely rare even compared to the other gems, this one has the power of all of the above gems combined.
+
+Sentry Gun
+A portable sentry gun created by the Wakeman Corporation that's armed with four barrels derived from the Harmony minigun. Has 500 health when deployed and can fire up to 200 times before requiring a reload. Only spawns in secret areas or from completionist boxes.
+
+Enemies: 
+
+Ami Onuki.exe and Yumi Yoshimura.exe
+Demonic projections of the famous Japanese music duo Puffy AmiYumi. Despite the band falling into obscurity throughout several years (and the duo themselves still being alive somehow), the demons decide to ruin their reputations by manifesting as evil clones and do things that the general public would be absolutely horrified by. And that includes killing people, especially you. They both have 5000 HP. Ami wields a Zen-II and either rapid-fires or burst fires from her gun, while Yumi wields a Chaos-Zero and also rapid-fires, alongside sending shrapnel shards to cover the area she's in.

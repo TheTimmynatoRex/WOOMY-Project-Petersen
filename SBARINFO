@@ -1,0 +1,250 @@
+height 32;
+monospacefonts true, "0";
+interpolatehealth true, 5;
+interpolatearmor true, 5;
+LowerHealthCap false;
+Resolution 320,200;
+CompleteBorder true;
+
+
+statusbar Fullscreen, Fullscreenoffsets
+{
+
+//Health, Armor
+drawimage "BTHPAP", 2, -33;
+Alpha 0.4
+{
+	drawimage armoricon, 87, -21, center, 58, 16, forcescale;
+}
+// Armor
+drawnumber 3, STATUSFONTY, untranslated, health, 45, -30;
+drawnumber 3, STATUSFONTY, untranslated, Armor, 104, -30;
+
+
+
+// Arms Bar
+		drawimage "BTARMS", -109, -46;
+        drawswitchableimage weaponslot 0, "STGNUM0", "STYSNUM0", -68, -43;
+        drawswitchableimage weaponslot 1, "STGNUM1", "STYSNUM1", -61, -43;
+        drawswitchableimage weaponslot 2, "STGNUM2", "STYSNUM2", -54, -43; 
+        drawswitchableimage weaponslot 3, "STGNUM3", "STYSNUM3", -47, -43;
+        drawswitchableimage weaponslot 4, "STGNUM4", "STYSNUM4", -40, -43;
+        drawswitchableimage weaponslot 5, "STGNUM5", "STYSNUM5", -33, -43;
+        drawswitchableimage weaponslot 6, "STGNUM6", "STYSNUM6", -26, -43;
+        drawswitchableimage weaponslot 7, "STGNUM7", "STYSNUM7", -19, -43;
+		drawswitchableimage weaponslot 8, "STGNUM8", "STYSNUM8", -12, -43;
+
+
+
+// Ammo Tallies (Vanilla)
+drawimage "BTAMMOS", -118, -33;
+drawimage "XTRA", -132, -53;
+
+
+Alpha 0.4
+{
+	drawimage ammoicon2, -95, -22, center, 32, 14, forcescale;
+}
+
+// Current Ammo
+drawnumber 4, STATUSFONTY, untranslated, ammo2, drawshadow, interpolate(5), -75, -50;
+drawnumber 3, STATUSFONTY, untranslated, ammo1, drawshadow, interpolate(5), -75, -30;
+
+drawselectedinventory alwaysshowcounter, INDEXFONT_DOOM, -45, -33;
+
+// Keys Doom
+
+        drawimage "BTKYLEFT", 119, -33;
+		drawimage "BULBLH", 130, -36;
+        drawbar "BULBLH", "BULBLD", health, vertical, interpolate(6), 130, -36;
+		DrawSwitchableImage invulnerable, "BULBLG", "", 130, -36, none, 0, 0, alternateonfail {drawbar "BULBLH", "BULBLD", health, vertical, interpolate(6), 130, -36;}
+		
+		drawimage "BTKYRGHT", -135, -33;
+		drawimage "BULBRH", -137, -36;
+
+
+		DrawSwitchableImage invulnerable, "BULBRG", "", -137, -36, none, 0, 0, alternateonfail {drawbar "BULBRH", "BULBRD", armor, vertical, interpolate(6), -137, -36;}
+		DrawSwitchableImage invulnerable, "", "", -137, -36, none, 0, 0, alternateonfail {drawbar "BULBRO", "BARCLER", armor OverMax, vertical, interpolate(3), -137, -36;}
+		DrawSwitchableImage invulnerable, "", "", 130, -36, none, 0, 0, alternateonfail {drawbar "BULBLO", "BARCLER", health OverMax, vertical, interpolate(3), 130, -36;}
+		DrawSwitchableImage invulnerable, "BULBRG", "", -137, -36;
+        InInventory BlueCard, 1 {drawimage "STKEYS0", 122, -30;}
+        InInventory YellowCard, 1 {drawimage "STKEYS1", 122, -20;}
+        InInventory RedCard, 1 {drawimage "STKEYS2", 122, -10;}
+		InInventory BlueSkull, 1 {drawimage "STKEYS3", -129, -30;}
+        InInventory YellowSkull, 1 {drawimage "STKEYS4", -129, -20;}
+        InInventory RedSkull, 1 {drawimage "STKEYS5", -129, -10;}
+		
+drawimage "BTMONEY", -60, -59;
+drawnumber 8, INDEXFONTY, untranslated, "WoomyByte", -5, -56;
+
+// Mug
+drawimage translatable "STRANS", 3, -72;
+drawmugshot 5, 7, -69;
+
+
+// Kills, Items & Secrets
+drawimage "BTPKIS", 46, -59;
+
+  drawnumber 3, INDEXFONTY, untranslated, kills, 88, -54;
+  drawnumber 3, INDEXFONTY, untranslated, items, 88, -48;
+  drawnumber 3, INDEXFONTY, untranslated, secrets, 88, -42;
+
+  drawnumber 3, INDEXFONTY, untranslated, monsters, 116, -54;
+  drawnumber 3, INDEXFONTY, untranslated, totalitems, 116, -48;
+  drawnumber 3, INDEXFONTY, untranslated, totalsecrets, 116, -42;
+
+	//Invulnerability Sphere
+	drawnumber 3, SMALLFONT, Blue, PowerupTime InvulnerabilitySphere, whennotzero, 150, -10, 0;
+
+	//Immortality Sphere
+	drawnumber 3, SMALLFONT, DarkGrey, PowerupTime ImmortalitySphereBuddha, whennotzero, 170, -10, 0;
+
+	//Skeld Crewmate Suit
+	drawnumber 3, SMALLFONT, DarkGreen, PowerupTime RadSuit, whennotzero, 190, -10, 0;
+
+	//Ammosphere
+	drawnumber 3, SMALLFONT, Red, PowerupTime AmmoSphere, whennotzero, 210, -10, 0;
+
+	//Ultimasphere
+	drawnumber 3, SMALLFONT, DarkRed, PowerupTime UltimaSphereDamage, whennotzero, 230, -10, 0;
+
+	//Nuclear Capacitor
+	drawnumber 3, SMALLFONT, Green, PowerupTime NuclearCapacitor, whennotzero, 250, -10, 0;
+
+	//Quad Damage
+	drawnumber 3, SMALLFONT, Purple, PowerupTime QuadDamage, whennotzero, 270, -10, 0;
+
+	//Minderiasphere
+	drawnumber 3, SMALLFONT, White, PowerupTime Minderiasphere, whennotzero, 290, -10, 0;
+
+	//Pain Killers
+	drawnumber 3, SMALLFONT, Grey, PowerupTime PainKillerProtecc, whennotzero, 310, -10, 0;
+
+	//Adrenal Boost
+	drawnumber 3, SMALLFONT, Brick, PowerupTime AdrenalRun, whennotzero, 330, -10, 0;
+
+	//Anti-Rad Tablets
+	drawnumber 3, SMALLFONT, Yellow, PowerupTime RadProtecc, whennotzero, 350, -10, 0;
+
+	//Berserk Injector
+	drawnumber 3, SMALLFONT, Black, PowerupTime ZerkMode, whennotzero, 370, -10, 0;
+
+}
+
+statusbar Normal
+{
+    drawimage "WSTBAR", 0, 168;
+Alpha 0.4 {
+	drawimage ammoicon2, 25, 181, center, 32, 14, forcescale;
+}
+    drawnumber 4, HUDFONT_DOOM, untranslated, ammo2, drawshadow, interpolate(5), 44, 171;
+    drawnumber 2, HUDFONT_DOOM, untranslated, ammo1, drawshadow, interpolate(5), 81, 171;
+	
+// Armor
+Alpha 0.4
+{
+	drawimage armoricon, 205, 181, center, 58, 16, forcescale;
+}
+
+	drawnumber 3, HUDFONT_DOOM, untranslated, health, drawshadow, interpolate(5), 129, 171;
+    drawnumber 3, HUDFONT_DOOM, untranslated, armor, drawshadow, interpolate(5), 221, 171;
+
+		DrawSwitchableImage invulnerable, "BULBLGS", "", 143, 169, none, 0, 0, alternateonfail {drawbar "BULBLS", "SBULB", health, vertical, interpolate(6), 143, 169;}
+        DrawSwitchableImage invulnerable, "BULBLGS", "", 143, 169, none, 0, 0, alternateonfail {drawbar "BULBLZ", "ZBULB", health OverMax, vertical, interpolate(3), 143, 169;}
+		drawbar "BULBRS", "SBULB", armor, vertical, interpolate(6), 173, 169;
+		drawbar "BULBRZ", "ZBULB", armor OverMax, vertical, interpolate(3), 173, 169;
+		DrawSwitchableImage invulnerable, "BULBRGS", "", 173, 169;
+    //keys
+    drawswitchableimage keyslot 2 && 5, "nullimage", "STKEYS0", "STKEYS3", "STKEYS6", 239, 171;
+    drawswitchableimage keyslot 3 && 6, "nullimage", "STKEYS1", "STKEYS4", "STKEYS7", 239, 181;
+    drawswitchableimage keyslot 1 && 4, "nullimage", "STKEYS2", "STKEYS5", "STKEYS8", 239, 191;
+
+drawselectedinventory alwaysshowcounter, INDEXFONT_DOOM, 275, 168;
+
+        drawmugshot 5, 143, 168;
+	
+	//Invulnerability Sphere
+	drawnumber 3, SMALLFONT, Blue, PowerupTime InvulnerabilitySphere, whennotzero, 60, 160, 0;
+
+	//Immortality Sphere
+	drawnumber 3, SMALLFONT, DarkGrey, PowerupTime ImmortalitySphereBuddha, whennotzero, 80, 160, 0;
+
+	//Skeld Crewmate Suit
+	drawnumber 3, SMALLFONT, DarkGreen, PowerupTime RadSuit, whennotzero, 100, 160, 0;
+
+	//Ammosphere
+	drawnumber 3, SMALLFONT, Red, PowerupTime AmmoSphere, whennotzero, 120, 160, 0;
+
+	//Ultimasphere
+	drawnumber 3, SMALLFONT, DarkRed, PowerupTime UltimaSphereDamage, whennotzero, 140, 160, 0;
+
+	//Nuclear Capacitor
+	drawnumber 3, SMALLFONT, Green, PowerupTime NuclearCapacitor, whennotzero, 160, 160, 0;
+
+	//Quad Damage
+	drawnumber 3, SMALLFONT, Purple, PowerupTime QuadDamage, whennotzero, 180, 160, 0;
+
+	//Minderiasphere
+	drawnumber 3, SMALLFONT, White, PowerupTime Minderiasphere, whennotzero, 200, 160, 0;
+
+	//Pain Killers
+	drawnumber 3, SMALLFONT, Grey, PowerupTime PainKillerProtecc, whennotzero, 220, 160, 0;
+
+	//Adrenal Boost
+	drawnumber 3, SMALLFONT, Brick, PowerupTime AdrenalRun, whennotzero, 240, 160, 0;
+
+	//Anti-Rad Tablets
+	drawnumber 3, SMALLFONT, Yellow, PowerupTime RadProtecc, whennotzero, 260, 160, 0;
+
+	//Berserk Injector
+	drawnumber 3, SMALLFONT, Black, PowerupTime ZerkMode, whennotzero, 280, 160, 0;
+	
+drawimage "BTMONEY", 324, 170;
+drawnumber 8, INDEXFONTY, untranslated, "WoomyByte", 379, 173;
+
+}
+
+mugshot "Normal", health2
+{
+	{ST00, ST01, ST02} 17;
+}
+
+mugshot "Pain", healthspecial, directional
+{
+	{TR00, KILL0, TL00} 35;
+}
+
+mugshot "Rampage", health
+{
+	ARNO0 1;
+}
+
+mugshot "Ouch", health
+{
+	OUCH0 35;
+}
+
+mugshot "Grin", health
+{
+	EVL0 70;
+}
+
+mugshot "God"
+{
+	GOD0 17;
+}
+
+mugshot "Death"
+{
+	DEAD0 -1;
+}
+
+statusbar inventory // Standard bar overlay (ZDoom Addition)
+{
+    drawinventorybar Doom, translucent, 7, INDEXFONT, 50, 170;
+}
+
+statusbar inventoryfullscreen // ZDoom HUD overlay.
+{
+    drawinventorybar Doom, translucent, 7, INDEXFONT, 50, 170;
+}

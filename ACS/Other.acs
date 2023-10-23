@@ -1,0 +1,159 @@
+#Library "Other"
+#Include "ZCommon.ACS"
+
+Script "DukeTaunt_Loop" ENTER NET
+{
+	int Kills1; int Kills2;
+	int TauntTimer;
+	
+	While(TRUE)
+	{
+		Kills1 = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
+		Delay(1);
+		Kills2 = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
+		
+		If((Kills2 > Kills1) && TauntTimer <= 0)
+		{
+			If(Random(0,256) >= 192)
+			{
+				TauntTimer = 350;
+				PlaySound(0,"ARNQUO",CHAN_VOICE,1.0,0,ATTN_NORM);
+			}
+		}
+		
+		TauntTimer--;
+	}
+}
+
+//Script from Eviternity (mapset by Dragonfly)
+Script "DisplayLevelTitle" OPEN
+{
+    str mapLump = strParam(n:PRINTNAME_LEVEL);
+    if(StrCmp(mapLump, "TITLEMAP") != 0)
+	{
+		Delay(15);
+		AmbientSound("levelload",100);
+        str currentLevelName = strParam(n:PRINTNAME_LEVELNAME);
+        SetHudSize(640, 480, 0);
+        SetFont("BIGFONT");
+        HudMessage(s:currentLevelName;
+            HUDMSG_TYPEON, 0, CR_WHITE, 320.0, 20.0, 3.0, 0.05, 1.5);
+    }
+}
+
+Script "WoomyKillsCheckScript" Enter
+{
+	if (GetLevelInfo (LEVELINFO_KILLED_MONSTERS) == GetLevelInfo (LEVELINFO_TOTAL_MONSTERS) && GetLevelInfo (LEVELINFO_TOTAL_MONSTERS) > 0)
+	{
+		if (GetCVar ("woomy_completionistbox"))
+		{
+			GiveInventory ("CompletionistBox", 1);
+		}
+		Terminate;
+	}
+	Delay (1);
+	Restart;
+}
+
+Script "WoomyItemsCheckScript" Enter
+{
+	if (GetLevelInfo (LEVELINFO_FOUND_ITEMS) == GetLevelInfo (LEVELINFO_TOTAL_ITEMS) && GetLevelInfo (LEVELINFO_TOTAL_ITEMS) > 0)
+	{
+		if (GetCVar ("woomy_completionistbox"))
+		{
+			GiveInventory ("CompletionistBox", 1);
+		}
+		Terminate;
+	}
+	Delay (1);
+	Restart;
+}
+
+Script "WoomySecretsCheckScript" Enter
+{
+	if (GetLevelInfo (LEVELINFO_FOUND_SECRETS) == GetLevelInfo (LEVELINFO_TOTAL_SECRETS) && GetLevelInfo (LEVELINFO_TOTAL_SECRETS) > 0)
+	{
+		if (GetCVar ("woomy_completionistbox"))
+		{
+			GiveInventory ("CompletionistBox", 1);
+		}
+		Terminate;
+	}
+	Delay (1);
+	Restart;
+}
+
+SCRIPT "Friend_Enter" ENTER
+{
+	GiveInventory("FriendMarineProtection", 0x7FFFFFFD);
+}
+
+SCRIPT "Friend_Respawn" RESPAWN
+{
+	GiveInventory("FriendMarineProtection", 0x7FFFFFFD);
+}
+
+SCRIPT "Friend_Return" RETURN
+{
+	GiveInventory("FriendMarineProtection", 0x7FFFFFFD);
+}
+
+
+int killed;
+int kcache;
+int cHPK=0; //HP/Kill
+int cHPK2=0;
+int killed2;
+int kcache2;
+
+script "AUTOINIT" ENTER {
+	cHPK = GetCVar("woomy_healthRegen");
+	if(cHPK > 0) {
+		health_regen();
+	}
+	//check_cheats();
+	delay(1);
+	restart;
+}
+
+function void health_regen(void) {
+	kcache = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
+	if( killed < kcache) {
+		int diff = kcache - killed;
+		killed = kcache;
+		if(GetActorProperty(0, APROP_HEALTH) >= 1) {
+			idxyz(diff);
+		}	
+	}
+}
+// killing monsters is good 4 u
+function void idxyz(int am) {
+	am=am*cHPK;
+		GiveInventory("UACVolveHealthBonus", am);  
+}
+
+script "AUTOINIT2" ENTER {
+	cHPK2 = GetCVar("woomy_byteRegen");
+	if(cHPK2 > 0) {
+		byte_regen();
+	}
+	//check_cheats();
+	delay(1);
+	restart;
+}
+
+function void byte_regen(void) {
+	kcache2 = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
+	if( killed < kcache2) {
+		int diff = kcache2 - killed2;
+		killed2 = kcache2;
+		if(GetActorProperty(0, APROP_HEALTH) >= 1) {
+			idxyz2(diff);
+		}	
+	}
+}
+// killing monsters is good 4 u
+function void idxyz2(int am) {
+	am=am*cHPK2;
+		GiveInventory("WoomyByte", am); 
+}

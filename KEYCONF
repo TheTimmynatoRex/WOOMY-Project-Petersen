@@ -1,0 +1,54 @@
+
+addkeysection "WOOMY: Project Petersen" "WPP"
+
+addmenukey "Minimap Zoom In" "event swwmzoomin"
+addmenukey "Minimap Zoom Out" "event swwmzoomout"
+defaultbind "kp+" "event swwmzoomin"
+defaultbind "kp-" "event swwmzoomout"
+
+addmenukey "Strafe-Lean" +strafelean
+addmenukey "Lean Left" +lean_left
+addmenukey "Lean Right" +lean_right
+
+alias +strafelean "set cl_strafelean true"
+alias -strafelean "set cl_strafelean false"
+alias +lean_left "netevent lean_left";
+alias +lean_right "netevent lean_right";
+alias -lean_left "netevent unlean_left";
+alias -lean_right "netevent unlean_right";
+
+defaultbind q +lean_left
+defaultbind e +lean_right
+
+// Key Configuration
+// Aliases
+Alias "ToggleFlashlight" "PukeName ToggleFlashlight"
+Alias "PVBeam" "b_flashlightvpos 18"
+Alias "PVDark" "b_flashlightvpos 32"
+
+Alias "PHBeam" "b_flashlighthpos 0"
+Alias "PHDark" "b_flashlighthpos 4"
+Alias "PHLShouder" "b_flashlighthpos -36"
+Alias "PHRShouder" "b_flashlighthpos 36"
+
+// Menu Keys
+AddMenuKey "Toggle Flashlight" "ToggleFlashlight"
+
+// Default Binds
+DefaultBind "F" "ToggleFlashlight"
+
+addmenukey "Start/Stop Bullet Time" bullettime
+alias bullettime ""
+defaultbind g bullettime
+
+addmenukey "Flame Belch" Flame_Belch                  
+alias Flame_Belch   "use Flame_Belch"
+defaultbind H +Flame_Belch
+
+addmenukey "Ice Bomb" Ice_Bomb                  
+alias Ice_Bomb   "use Ice_Bomb"
+defaultbind J +Ice_Bomb
+
+addmenukey "Frag Grenade" Daul_Grenade                  
+alias Daul_Grenade   "use Daul_Grenade"
+defaultbind K +Daul_Grenade
